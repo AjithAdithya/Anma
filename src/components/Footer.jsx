@@ -53,11 +53,11 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              📸 @anmacrochet
+              📸 @_anma_crochet
             </a>
             <a
               className="footer__social-link footer__social-link--email"
-              href="mailto:hello@anmacrochet.com"
+              href="mailto:rkmadhu0509@gmail.com"
             >
               📧 Email Us
             </a>
