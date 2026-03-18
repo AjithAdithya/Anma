@@ -151,13 +151,13 @@
   color: #28a745;
 }
 
-/* Photo grid — Instagram-style */
+/* Product grid */
 .catalogue__grid {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
 }
 
 /* Empty state */
@@ -192,7 +192,8 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 960px) {
   .catalogue__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 }
 
@@ -202,8 +203,8 @@
   }
 
   .catalogue__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .catalogue__filter-btn {
