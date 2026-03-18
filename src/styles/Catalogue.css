@@ -1,0 +1,172 @@
+/* ===== CATALOGUE SECTION ===== */
+.catalogue {
+  padding: 5rem 1.5rem;
+  background: var(--off-white);
+  position: relative;
+}
+
+.catalogue::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--mint), var(--blue), var(--lavender), var(--coral));
+}
+
+.catalogue__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.catalogue__header .section-title {
+  margin-bottom: 0.5rem;
+}
+
+.catalogue__header .section-subtitle {
+  margin-bottom: 0;
+}
+
+/* Filter buttons */
+.catalogue__filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+
+.catalogue__filter-btn {
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--radius-xl);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: 2.5px solid transparent;
+  background: var(--white);
+  color: var(--dark);
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  letter-spacing: 0.3px;
+}
+
+.catalogue__filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.catalogue__filter-btn.active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Individual filter button colors */
+.catalogue__filter-btn[data-cat="All"].active,
+.catalogue__filter-btn[data-cat="All"]:hover {
+  background: linear-gradient(135deg, var(--coral), var(--lavender));
+  color: var(--white);
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.35);
+}
+
+.catalogue__filter-btn[data-cat="Blankets"].active,
+.catalogue__filter-btn[data-cat="Blankets"]:hover {
+  background: var(--coral-pastel);
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+.catalogue__filter-btn[data-cat="Amigurumi"].active,
+.catalogue__filter-btn[data-cat="Amigurumi"]:hover {
+  background: var(--mint-pastel);
+  border-color: var(--mint);
+  color: #28a745;
+}
+
+.catalogue__filter-btn[data-cat="Clothing"].active,
+.catalogue__filter-btn[data-cat="Clothing"]:hover {
+  background: var(--blue-pastel);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.catalogue__filter-btn[data-cat="Accessories"].active,
+.catalogue__filter-btn[data-cat="Accessories"]:hover {
+  background: var(--yellow-pastel);
+  border-color: var(--yellow);
+  color: #8B6914;
+}
+
+.catalogue__filter-btn[data-cat="Home Decor"].active,
+.catalogue__filter-btn[data-cat="Home Decor"]:hover {
+  background: var(--lavender-pastel);
+  border-color: var(--lavender);
+  color: #7b2fbe;
+}
+
+/* Product grid */
+.catalogue__grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* Empty state */
+.catalogue__empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--gray);
+}
+
+.catalogue__empty-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.catalogue__empty-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Count indicator */
+.catalogue__count {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gray);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.3px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 960px) {
+  .catalogue__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .catalogue {
+    padding: 4rem 1rem;
+  }
+
+  .catalogue__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .catalogue__filter-btn {
+    font-size: 0.82rem;
+    padding: 0.45rem 1rem;
+  }
+}
