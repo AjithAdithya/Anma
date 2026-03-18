@@ -1,58 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { products } from '../data/products'
+import React from 'react'
 import '../styles/Contact.css'
 
-const productNames = ['Select a product...', ...products.map((p) => p.name)]
-
-const initialForm = {
-  name: '',
-  email: '',
-  phone: '',
-  product: '',
-  message: '',
-}
+const INSTAGRAM_HANDLE = 'anmacrochet'
+const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`
+const INSTAGRAM_DM_URL = `https://ig.me/m/${INSTAGRAM_HANDLE}`
 
 export default function Contact() {
-  const [form, setForm] = useState(initialForm)
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  // Listen for product selection from ProductCard
-  useEffect(() => {
-    const handler = (e) => {
-      setForm((prev) => ({ ...prev, product: e.detail }))
-      // Small delay so scroll animation completes first
-    }
-    window.addEventListener('selectProduct', handler)
-    return () => window.removeEventListener('selectProduct', handler)
-  }, [])
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setLoading(true)
-    // Simulate async submission
-    setTimeout(() => {
-      setLoading(false)
-      setSubmitted(true)
-    }, 1200)
-  }
-
-  const handleReset = () => {
-    setForm(initialForm)
-    setSubmitted(false)
-  }
-
   return (
     <section id="contact" className="contact">
       <div className="contact__header">
         <h2 className="section-title">Order / Contact Us 💌</h2>
         <p className="section-subtitle">
-          Ready to order or have questions? We'd love to hear from you!
+          Ready to order or have questions? Slide into our DMs — we'd love to chat!
         </p>
       </div>
 
@@ -63,33 +22,18 @@ export default function Contact() {
           <div>
             <h3 className="contact__info-title">Let's Connect!</h3>
             <p className="contact__info-subtitle">
-              Fill in the form or reach out directly. We reply within 24 hours and love chatting
-              about all things crochet! 🧶
+              We reply within 24 hours and love chatting about all things crochet! 🧶
             </p>
           </div>
 
           <div className="contact__info-cards">
             <div className="contact__info-card">
-              <div className="contact__info-icon contact__info-icon--email">📧</div>
-              <div>
-                <p className="contact__info-label">Email Us</p>
-                <p className="contact__info-value">
-                  <a href="mailto:hello@anmacrochet.com">hello@anmacrochet.com</a>
-                </p>
-              </div>
-            </div>
-
-            <div className="contact__info-card">
               <div className="contact__info-icon contact__info-icon--insta">📸</div>
               <div>
                 <p className="contact__info-label">Instagram</p>
                 <p className="contact__info-value">
-                  <a
-                    href="https://instagram.com/anmacrochet"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    @anmacrochet
+                  <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                    @{INSTAGRAM_HANDLE}
                   </a>
                 </p>
               </div>
@@ -102,158 +46,47 @@ export default function Contact() {
                 <p className="contact__info-value">Mon–Sat, 10 AM – 7 PM IST</p>
               </div>
             </div>
-          </div>
 
-          {/* Decorative element */}
-          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '120px',
-              height: '120px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, var(--coral-pastel), var(--lavender-pastel))',
-              fontSize: '3.5rem',
-              boxShadow: 'var(--shadow-md)',
-              animation: 'float 5s ease-in-out infinite',
-            }}>
-              🧶
+            <div className="contact__info-card">
+              <div className="contact__info-icon contact__info-icon--custom">🎨</div>
+              <div>
+                <p className="contact__info-label">Custom Orders</p>
+                <p className="contact__info-value">Colours, sizes & gifting welcome!</p>
+              </div>
             </div>
-            <p style={{ marginTop: '0.75rem', fontSize: '0.88rem', fontWeight: 700, color: 'var(--gray)' }}>
-              Handmade just for you ✨
-            </p>
           </div>
         </div>
 
-        {/* RIGHT: Form */}
-        <div className="contact__form-wrap">
-          {!submitted ? (
-            <>
-              <h3 className="contact__form-title">Send an Order / Enquiry</h3>
-              <p className="contact__form-subtitle">
-                Tell us what you need and we'll get back to you with details!
-              </p>
-
-              <form className="contact__form" onSubmit={handleSubmit} noValidate>
-                {/* Row: Name + Email */}
-                <div className="contact__form-row">
-                  <div className="contact__form-group">
-                    <label className="contact__label" htmlFor="name">
-                      Your Name <span>*</span>
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      className="contact__input"
-                      placeholder="e.g. Priya Sharma"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="contact__form-group">
-                    <label className="contact__label" htmlFor="email">
-                      Email <span>*</span>
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      className="contact__input"
-                      placeholder="you@email.com"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
-
-                {/* Row: Phone + Product */}
-                <div className="contact__form-row">
-                  <div className="contact__form-group">
-                    <label className="contact__label" htmlFor="phone">
-                      Phone Number
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      className="contact__input"
-                      placeholder="+91 98765 43210"
-                      value={form.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <div className="contact__form-group">
-                    <label className="contact__label" htmlFor="product">
-                      Product Interest
-                    </label>
-                    <select
-                      id="product"
-                      name="product"
-                      className="contact__select"
-                      value={form.product}
-                      onChange={handleChange}
-                    >
-                      {productNames.map((p) => (
-                        <option key={p} value={p === 'Select a product...' ? '' : p}>
-                          {p}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div className="contact__form-group">
-                  <label className="contact__label" htmlFor="message">
-                    Your Message <span>*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    className="contact__textarea"
-                    placeholder="Tell us what you'd like — custom colours, sizes, quantities, gifting needs... anything!"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="contact__submit"
-                  disabled={loading || !form.name || !form.email || !form.message}
-                >
-                  {loading ? (
-                    <>Sending... ⏳</>
-                  ) : (
-                    <>Send Message 💌</>
-                  )}
-                </button>
-              </form>
-            </>
-          ) : (
-            <div className="contact__success">
-              <span className="contact__success-emoji">🎉</span>
-              <h3 className="contact__success-title">Message Sent!</h3>
-              <p className="contact__success-text">
-                Thank you, <strong>{form.name}</strong>! We've received your message and will get
-                back to you within 24 hours. We can't wait to create something beautiful for you!
-                🧶💕
-              </p>
-              <button
-                className="btn btn-secondary contact__success-btn"
-                onClick={handleReset}
-              >
-                Send Another Message
-              </button>
+        {/* RIGHT: Instagram DM CTA */}
+        <div className="contact__dm-wrap">
+          <div className="contact__dm-card">
+            {/* Instagram logo */}
+            <div className="contact__dm-logo">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="contact__dm-logo-svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
             </div>
-          )}
+
+            <h3 className="contact__dm-title">Slide into our DMs 💬</h3>
+            <p className="contact__dm-subtitle">
+              The easiest way to place an order, ask about custom colours, or just say hi —
+              send us a message directly on Instagram!
+            </p>
+
+            <a
+              href={INSTAGRAM_DM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact__dm-btn"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+              Message us on Instagram
+            </a>
+
+            <p className="contact__dm-handle">@{INSTAGRAM_HANDLE}</p>
+          </div>
         </div>
 
       </div>

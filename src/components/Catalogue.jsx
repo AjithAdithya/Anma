@@ -1,10 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { products, categories } from '../data/products'
 import ProductCard from './ProductCard'
+import ProductModal from './ProductModal'
 import '../styles/Catalogue.css'
 
 export default function Catalogue() {
   const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedProduct, setSelectedProduct] = useState(null)
+
+  // Open product from ?item=ID on page load
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const itemId = params.get('item')
+    if (itemId) {
+      const found = products.find((p) => p.id === Number(itemId))
+      if (found) setSelectedProduct(found)
+    }
+  }, [])
+
+  const handleSelect = (product) => {
+    setSelectedProduct(product)
+    const url = new URL(window.location)
+    url.searchParams.set('item', product.id)
+    window.history.pushState({}, '', url)
+  }
+
+  const handleClose = () => {
+    setSelectedProduct(null)
+    const url = new URL(window.location)
+    url.searchParams.delete('item')
+    window.history.pushState({}, '', url)
+  }
 
   const filtered =
     activeCategory === 'All'
@@ -54,11 +80,11 @@ export default function Catalogue() {
         {activeCategory !== 'All' ? ` in ${activeCategory}` : ''}
       </p>
 
-      {/* Grid */}
+      {/* Photo grid */}
       <div className="catalogue__grid">
         {filtered.length > 0 ? (
           filtered.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} onSelect={handleSelect} />
           ))
         ) : (
           <div className="catalogue__empty">
@@ -67,6 +93,11 @@ export default function Catalogue() {
           </div>
         )}
       </div>
+
+      {/* Lightbox modal */}
+      {selectedProduct && (
+        <ProductModal product={selectedProduct} onClose={handleClose} />
+      )}
     </section>
   )
 }

@@ -65,7 +65,7 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Individual filter button colors */
+/* Filter button active/hover colors */
 .catalogue__filter-btn[data-cat="All"].active,
 .catalogue__filter-btn[data-cat="All"]:hover {
   background: linear-gradient(135deg, var(--coral), var(--lavender));
@@ -74,48 +74,90 @@
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.35);
 }
 
-.catalogue__filter-btn[data-cat="Blankets"].active,
-.catalogue__filter-btn[data-cat="Blankets"]:hover {
+.catalogue__filter-btn[data-cat="Bags"].active,
+.catalogue__filter-btn[data-cat="Bags"]:hover {
   background: var(--coral-pastel);
   border-color: var(--coral);
   color: var(--coral);
 }
 
-.catalogue__filter-btn[data-cat="Amigurumi"].active,
-.catalogue__filter-btn[data-cat="Amigurumi"]:hover {
-  background: var(--mint-pastel);
-  border-color: var(--mint);
-  color: #28a745;
-}
-
-.catalogue__filter-btn[data-cat="Clothing"].active,
-.catalogue__filter-btn[data-cat="Clothing"]:hover {
-  background: var(--blue-pastel);
-  border-color: var(--blue);
-  color: var(--blue);
-}
-
-.catalogue__filter-btn[data-cat="Accessories"].active,
-.catalogue__filter-btn[data-cat="Accessories"]:hover {
-  background: var(--yellow-pastel);
-  border-color: var(--yellow);
-  color: #8B6914;
-}
-
-.catalogue__filter-btn[data-cat="Home Decor"].active,
-.catalogue__filter-btn[data-cat="Home Decor"]:hover {
+.catalogue__filter-btn[data-cat="Clips"].active,
+.catalogue__filter-btn[data-cat="Clips"]:hover {
   background: var(--lavender-pastel);
   border-color: var(--lavender);
   color: #7b2fbe;
 }
 
-/* Product grid */
+.catalogue__filter-btn[data-cat="Crochet Beanie"].active,
+.catalogue__filter-btn[data-cat="Crochet Beanie"]:hover {
+  background: var(--blue-pastel);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.catalogue__filter-btn[data-cat="Dolls"].active,
+.catalogue__filter-btn[data-cat="Dolls"]:hover {
+  background: var(--yellow-pastel);
+  border-color: var(--yellow);
+  color: #8B6914;
+}
+
+.catalogue__filter-btn[data-cat="Earrings"].active,
+.catalogue__filter-btn[data-cat="Earrings"]:hover {
+  background: var(--coral-pastel);
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+.catalogue__filter-btn[data-cat="Flower Pots"].active,
+.catalogue__filter-btn[data-cat="Flower Pots"]:hover {
+  background: var(--mint-pastel);
+  border-color: var(--mint);
+  color: #28a745;
+}
+
+.catalogue__filter-btn[data-cat="Flowers & Bouquets"].active,
+.catalogue__filter-btn[data-cat="Flowers & Bouquets"]:hover {
+  background: #FFE8F4;
+  border-color: #FF6BA8;
+  color: #cc2475;
+}
+
+.catalogue__filter-btn[data-cat="Gajra"].active,
+.catalogue__filter-btn[data-cat="Gajra"]:hover {
+  background: var(--yellow-pastel);
+  border-color: var(--yellow);
+  color: #8B6914;
+}
+
+.catalogue__filter-btn[data-cat="Keychains"].active,
+.catalogue__filter-btn[data-cat="Keychains"]:hover {
+  background: var(--lavender-pastel);
+  border-color: var(--lavender);
+  color: #7b2fbe;
+}
+
+.catalogue__filter-btn[data-cat="Magnets"].active,
+.catalogue__filter-btn[data-cat="Magnets"]:hover {
+  background: var(--blue-pastel);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+.catalogue__filter-btn[data-cat="Sweater"].active,
+.catalogue__filter-btn[data-cat="Sweater"]:hover {
+  background: var(--mint-pastel);
+  border-color: var(--mint);
+  color: #28a745;
+}
+
+/* Photo grid — Instagram-style */
 .catalogue__grid {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
 }
 
 /* Empty state */
@@ -150,8 +192,7 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 960px) {
   .catalogue__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -161,8 +202,8 @@
   }
 
   .catalogue__grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
   }
 
   .catalogue__filter-btn {
