@@ -37,12 +37,12 @@ export default function About() {
           </h2>
 
           <p className="about__story">
-            <strong>ANMA Crochet</strong> was born in a cozy corner of a Chennai apartment, where
+            <strong>ANMA Crochet</strong> was born in a cozy corner of a Bangalore apartment, where
             Anma — a self-taught crocheter with an unstoppable love for colours and yarn — began
             crafting little creations that made everyone around her smile.
           </p>
           <p className="about__story">
-            What started as a late-night hobby quickly turned into a calling.{' '}
+            What started as a hobby quickly turned into a calling.{' '}
             <strong>Every blanket, every tiny bunny, every bucket hat</strong> you see here carries
             hours of careful work, love-loaded stitches, and Anma's signature warmth. She sources
             the softest, most vibrant yarns she can find and pours herself into every single piece.
