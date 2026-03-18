@@ -32,11 +32,17 @@ export default function Catalogue() {
             aria-pressed={activeCategory === cat}
           >
             {cat === 'All' && '✨ '}
-            {cat === 'Blankets' && '🌈 '}
-            {cat === 'Amigurumi' && '🐰 '}
-            {cat === 'Clothing' && '👗 '}
-            {cat === 'Accessories' && '👜 '}
-            {cat === 'Home Decor' && '🪴 '}
+            {cat === 'Bags' && '👜 '}
+            {cat === 'Clips' && '🎀 '}
+            {cat === 'Crochet Beanie' && '🧢 '}
+            {cat === 'Dolls' && '🧸 '}
+            {cat === 'Earrings' && '💎 '}
+            {cat === 'Flower Pots' && '🪴 '}
+            {cat === 'Flowers & Bouquets' && '💐 '}
+            {cat === 'Gajra' && '🌸 '}
+            {cat === 'Keychains' && '🔑 '}
+            {cat === 'Magnets' && '🧲 '}
+            {cat === 'Sweater' && '🧥 '}
             {cat}
           </button>
         ))}

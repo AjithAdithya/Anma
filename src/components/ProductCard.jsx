@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/ProductCard.css'
 
 export default function ProductCard({ product }) {
-  const { name, category, price, description, emoji, bgColor, accentColor } = product
+  const { name, category, price, description, accentColor, image } = product
 
   const handleOrder = () => {
     const contactSection = document.querySelector('#contact')
@@ -20,14 +20,13 @@ export default function ProductCard({ product }) {
         {category}
       </span>
 
-      {/* Emoji image placeholder */}
-      <div
-        className="product-card__image"
-        style={{ background: bgColor }}
-        aria-label={name}
-        role="img"
-      >
-        {emoji}
+      {/* Product image */}
+      <div className="product-card__image" aria-label={name}>
+        {image ? (
+          <img src={image} alt={name} className="product-card__img" />
+        ) : (
+          <span className="product-card__img-placeholder">🧶</span>
+        )}
       </div>
 
       {/* Card body */}

@@ -1,153 +1,78 @@
+// Glob imports — one array per category folder (HEIC excluded)
+const bagImages = Object.values(
+  import.meta.glob('../assets/Bags/*.jpg', { eager: true, import: 'default' })
+)
+const clipImages = Object.values(
+  import.meta.glob('../assets/Clips/*.jpg', { eager: true, import: 'default' })
+)
+const beanieImages = Object.values(
+  import.meta.glob('../assets/Crochet Beanie/*.jpg', { eager: true, import: 'default' })
+)
+const dollImages = Object.values(
+  import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
+)
+const earringImages = Object.values(
+  import.meta.glob('../assets/Earrings/*.jpg', { eager: true, import: 'default' })
+)
+const flowerPotImages = Object.values(
+  import.meta.glob('../assets/Flower Pots/*.jpg', { eager: true, import: 'default' })
+)
+const bouquetImages = Object.values(
+  import.meta.glob('../assets/Flowers & Bouquets/*.{jpg,png}', { eager: true, import: 'default' })
+)
+const gajraImages = Object.values(
+  import.meta.glob('../assets/Gajra/*.jpg', { eager: true, import: 'default' })
+)
+const keychainImages = Object.values(
+  import.meta.glob('../assets/Keychains/*.{jpg,webp}', { eager: true, import: 'default' })
+)
+const magnetImages = Object.values(
+  import.meta.glob('../assets/Magnets/*.jpg', { eager: true, import: 'default' })
+)
+const sweaterImages = Object.values(
+  import.meta.glob('../assets/Sweater/*.{jpg,png}', { eager: true, import: 'default' })
+)
+
+// Expand an image array into individual product entries
+let _id = 1
+function expand(category, images, price, description, bgColor, accentColor) {
+  return images.map((image) => ({
+    id: _id++,
+    name: category,
+    category,
+    price,
+    description,
+    bgColor,
+    accentColor,
+    image,
+  }))
+}
+
 export const products = [
-  // Blankets
-  {
-    id: 1,
-    name: 'Rainbow Baby Blanket',
-    category: 'Blankets',
-    price: 1200,
-    description: 'Soft, cheerful rainbow-striped blanket perfect for your little one. Made with 100% baby-safe yarn.',
-    emoji: '🌈',
-    bgColor: '#FFE8E8',
-    accentColor: '#FF6B6B',
-  },
-  {
-    id: 2,
-    name: 'Cozy Throw Blanket',
-    category: 'Blankets',
-    price: 2500,
-    description: 'Extra-large chunky throw blanket in earthy boho tones. Perfect for curling up on the couch.',
-    emoji: '🧸',
-    bgColor: '#FFF8DC',
-    accentColor: '#FFD93D',
-  },
-  {
-    id: 3,
-    name: 'Striped Lap Blanket',
-    category: 'Blankets',
-    price: 1800,
-    description: 'Lightweight multicolor striped lap blanket. Ideal for travel and picnics. Folds up neatly!',
-    emoji: '🎨',
-    bgColor: '#E8F4FF',
-    accentColor: '#4D96FF',
-  },
-
-  // Amigurumi
-  {
-    id: 4,
-    name: 'Bunny Plushie',
-    category: 'Amigurumi',
-    price: 450,
-    description: 'Adorable hand-crocheted bunny with floppy ears and a cotton candy nose. Great gift!',
-    emoji: '🐰',
-    bgColor: '#F5E8FF',
-    accentColor: '#C77DFF',
-  },
-  {
-    id: 5,
-    name: 'Bear Keychain',
-    category: 'Amigurumi',
-    price: 250,
-    description: 'Tiny crochet bear keychain in your choice of colour. Sturdy metal ring included.',
-    emoji: '🐻',
-    bgColor: '#FFF8DC',
-    accentColor: '#FFD93D',
-  },
-  {
-    id: 6,
-    name: 'Dinosaur Softie',
-    category: 'Amigurumi',
-    price: 550,
-    description: 'A lovable mini dinosaur plushie in vibrant green. Kid-tested and toddler-approved!',
-    emoji: '🦕',
-    bgColor: '#E8FFE8',
-    accentColor: '#6BCB77',
-  },
-
-  // Clothing
-  {
-    id: 7,
-    name: 'Crochet Crop Top',
-    category: 'Clothing',
-    price: 900,
-    description: 'Boho-chic crochet crop top in summery cotton. Breathable, stylish, and handmade.',
-    emoji: '👚',
-    bgColor: '#FFE8E8',
-    accentColor: '#FF6B6B',
-  },
-  {
-    id: 8,
-    name: 'Summer Cardigan',
-    category: 'Clothing',
-    price: 1500,
-    description: 'Open-weave lightweight cardigan perfect for breezy evenings. Available in multiple shades.',
-    emoji: '🧥',
-    bgColor: '#E8F4FF',
-    accentColor: '#4D96FF',
-  },
-  {
-    id: 9,
-    name: "Kids Sweater",
-    category: 'Clothing',
-    price: 800,
-    description: 'Soft and stretchy kids sweater with a fun embroidered design. Sizes 1–8 years.',
-    emoji: '🧒',
-    bgColor: '#F5E8FF',
-    accentColor: '#C77DFF',
-  },
-
-  // Accessories
-  {
-    id: 10,
-    name: 'Crochet Tote Bag',
-    category: 'Accessories',
-    price: 600,
-    description: 'Sturdy and stylish market tote bag with a relaxed open-weave design. Eco-friendly!',
-    emoji: '👜',
-    bgColor: '#E8FFE8',
-    accentColor: '#6BCB77',
-  },
-  {
-    id: 11,
-    name: 'Bucket Hat',
-    category: 'Accessories',
-    price: 500,
-    description: 'Trendy crochet bucket hat for beach days and summer outings. Fits most adults.',
-    emoji: '🎩',
-    bgColor: '#FFF8DC',
-    accentColor: '#FFD93D',
-  },
-  {
-    id: 12,
-    name: 'Hair Scrunchie Set',
-    category: 'Accessories',
-    price: 300,
-    description: 'Set of 4 colorful crochet scrunchies — mix of pastel and bold hues. Gentle on hair!',
-    emoji: '🎀',
-    bgColor: '#FFE8E8',
-    accentColor: '#FF6B6B',
-  },
-
-  // Home Decor
-  {
-    id: 13,
-    name: 'Boho Wall Hanging',
-    category: 'Home Decor',
-    price: 1100,
-    description: 'Handcrafted macramé-style crochet wall hanging with fringe details. Boho vibes only.',
-    emoji: '🖼️',
-    bgColor: '#F5E8FF',
-    accentColor: '#C77DFF',
-  },
-  {
-    id: 14,
-    name: 'Plant Hanger',
-    category: 'Home Decor',
-    price: 400,
-    description: 'Elegant crochet plant hanger for medium-sized pots. Adds a cozy touch to any corner.',
-    emoji: '🪴',
-    bgColor: '#E8FFE8',
-    accentColor: '#6BCB77',
-  },
+  ...expand('Bags',               bagImages,       800,  'Handcrafted crochet bag. Sturdy, stylish, and made with love.',                       '#FFE8E8', '#FF6B6B'),
+  ...expand('Clips',              clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF'),
+  ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF'),
+  ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D'),
+  ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
+  ...expand('Flower Pots',        flowerPotImages, 700,  'Crochet flower pot cover. Adds a cosy, handmade touch to your space.',                 '#E8FFE8', '#6BCB77'),
+  ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8'),
+  ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
+  ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF'),
+  ...expand('Magnets',            magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF'),
+  ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
-export const categories = ['All', 'Blankets', 'Amigurumi', 'Clothing', 'Accessories', 'Home Decor']
+export const categories = [
+  'All',
+  'Bags',
+  'Clips',
+  'Crochet Beanie',
+  'Dolls',
+  'Earrings',
+  'Flower Pots',
+  'Flowers & Bouquets',
+  'Gajra',
+  'Keychains',
+  'Magnets',
+  'Sweater',
+]
