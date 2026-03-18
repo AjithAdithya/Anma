@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Contact.css'
 
-const INSTAGRAM_HANDLE = 'anmacrochet'
+const INSTAGRAM_HANDLE = '_anma_crochet'
 const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`
 const INSTAGRAM_DM_URL = `https://ig.me/m/${INSTAGRAM_HANDLE}`
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/ProductModal.css'
 
-const INSTAGRAM_DM_URL = 'https://ig.me/m/anmacrochet'
+const INSTAGRAM_DM_URL = 'https://ig.me/m/_anma_crochet'
 
 export default function ProductModal({ product, onClose }) {
   const [copied, setCopied] = useState(false)
