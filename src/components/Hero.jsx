@@ -83,11 +83,11 @@ export default function Hero() {
             {/* Mini product cards */}
             <div className="hero__mini-card hero__mini-card--1">
               <span className="hero__mini-card-emoji">🌈</span>
-              <span className="hero__mini-card-text">Blankets</span>
+              <span className="hero__mini-card-text">Flowers</span>
             </div>
             <div className="hero__mini-card hero__mini-card--2">
               <span className="hero__mini-card-emoji">🐰</span>
-              <span className="hero__mini-card-text">Amigurumi</span>
+              <span className="hero__mini-card-text">Dolls</span>
             </div>
             <div className="hero__mini-card hero__mini-card--3">
               <span className="hero__mini-card-emoji">👜</span>
