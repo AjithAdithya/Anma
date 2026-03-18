@@ -125,6 +125,55 @@
   flex: 1;
 }
 
+/* DM copied toast */
+.modal__dm-toast {
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem 0.6rem;
+  border-radius: var(--radius-md);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  animation: toastSlideIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* Progress bar that drains over 3 seconds */
+.modal__dm-toast-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f09433, #dc2743, #bc1888);
+  width: 100%;
+  transform-origin: left;
+  animation: toastDrain 3s linear forwards;
+}
+
+@keyframes toastDrain {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
+
+/* Button disabled/counting state */
+.modal__btn--dm-counting {
+  opacity: 0.82;
+  cursor: default;
+  background: linear-gradient(135deg, #b0b0b0, #888);
+  box-shadow: none;
+}
+
+.modal__btn--dm-counting:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 /* Action buttons */
 .modal__actions {
   display: flex;

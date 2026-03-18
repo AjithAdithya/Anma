@@ -9,9 +9,12 @@ const INSTA_SVG = (
   </svg>
 )
 
+const REDIRECT_DELAY = 3000
+
 export default function ProductModal({ product, onClose }) {
   const [copied, setCopied] = useState(false)
   const [dmCopied, setDmCopied] = useState(false)
+  const [countdown, setCountdown] = useState(null)
 
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
@@ -41,6 +44,8 @@ export default function ProductModal({ product, onClose }) {
   }
 
   const handleDM = async () => {
+    if (countdown !== null) return // already counting down
+
     const message =
       `Hi! I'm interested in ordering this item from your crochet shop 🧶\n\n` +
       `Category: ${product.category}\n` +
@@ -58,9 +63,22 @@ export default function ProductModal({ product, onClose }) {
       document.execCommand('copy')
       document.body.removeChild(el)
     }
+
     setDmCopied(true)
-    setTimeout(() => setDmCopied(false), 4000)
-    window.open(INSTAGRAM_DM_URL, '_blank', 'noopener,noreferrer')
+    setCountdown(3)
+
+    const interval = setInterval(() => {
+      setCountdown((c) => {
+        if (c <= 1) { clearInterval(interval); return 0 }
+        return c - 1
+      })
+    }, 1000)
+
+    setTimeout(() => {
+      window.open(INSTAGRAM_DM_URL, '_blank', 'noopener,noreferrer')
+      setDmCopied(false)
+      setCountdown(null)
+    }, REDIRECT_DELAY)
   }
 
   return (
@@ -89,15 +107,23 @@ export default function ProductModal({ product, onClose }) {
           <p className="modal__desc">{product.description}</p>
 
           <div className="modal__actions">
-            <button className="modal__btn modal__btn--dm" onClick={handleDM}>
-              {INSTA_SVG}
-              Order via Instagram DM
-            </button>
             {dmCopied && (
-              <p className="modal__dm-hint">
-                📋 Message copied! Just paste it when the DM opens.
-              </p>
+              <div className="modal__dm-toast">
+                <span>📋 Message copied — paste it when the DM opens!</span>
+                <div className="modal__dm-toast-bar" />
+              </div>
             )}
+            <button
+              className={`modal__btn modal__btn--dm${countdown !== null ? ' modal__btn--dm-counting' : ''}`}
+              onClick={handleDM}
+              disabled={countdown !== null}
+            >
+              {INSTA_SVG}
+              {countdown !== null
+                ? `Opening Instagram in ${countdown}…`
+                : 'Order via Instagram DM'
+              }
+            </button>
             <button className="modal__btn modal__btn--share" onClick={handleCopy}>
               {copied ? '✅ Link Copied!' : '🔗 Copy Shareable Link'}
             </button>
