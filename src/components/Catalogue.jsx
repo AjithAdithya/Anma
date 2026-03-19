@@ -4,7 +4,7 @@ import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
 import '../styles/Catalogue.css'
 
-const PAGE_SIZE = 6
+const PAGE_SIZE = 10
 
 function sortProducts(list, sortBy) {
   const copy = [...list]

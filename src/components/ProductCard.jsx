@@ -32,7 +32,10 @@ export default function ProductCard({ product, onSelect }) {
             className="product-card__btn"
             onClick={(e) => { e.stopPropagation(); onSelect(product) }}
           >
-            Order Now 🛒
+            <span className="product-card__btn-full">Order Now 🛒</span>
+            <span className="product-card__btn-noicon">Order Now</span>
+            <span className="product-card__btn-short">Order</span>
+            <span className="product-card__btn-icon">🛒</span>
           </button>
         </div>
       </div>

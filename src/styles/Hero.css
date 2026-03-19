@@ -325,6 +325,7 @@
   font-weight: 800;
   font-size: 0.9rem;
   color: var(--dark);
+  align-items: left;
 }
 
 .hero__review-product {
