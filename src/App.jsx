@@ -1,29 +1,26 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import Marquee from './components/Marquee'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import Catalogue from './components/Catalogue'
-import About from './components/About'
-import Contact from './components/Contact'
-import Workshop from './components/Workshop'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import WorkshopPage from './pages/WorkshopPage'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Marquee />
       <Header />
       <main>
-        <Hero />
-        <Catalogue />
-        <About />
-        <Contact />
-        <Workshop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/workshop" element={<WorkshopPage />} />
+        </Routes>
       </main>
       <Footer />
       <Analytics />
-    </>
+    </BrowserRouter>
   )
 }
 

@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import '../styles/Header.css'
 import logo from '../assets/logo.png'
 import logo2 from '../assets/logo3.png'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'Catalogue', href: '#catalogue' },
-  { label: 'Workshop', href: '#workshop' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home',      href: '#home',      route: '/'          },
+  { label: 'Catalogue', href: '#catalogue', route: '/'          },
+  { label: 'Workshop',  href: null,         route: '/workshop'  },
+  { label: 'About',     href: '#about',     route: '/'          },
+  { label: 'Contact',   href: '#contact',   route: '/'          },
 ]
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [scrolled, setScrolled]   = useState(false)
+  const navigate  = useNavigate()
+  const location  = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -21,19 +24,45 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleNavClick = (e, href) => {
+  const handleNavClick = (e, link) => {
     e.preventDefault()
     setMenuOpen(false)
-    const target = document.querySelector(href)
-    if (target) target.scrollIntoView({ behavior: 'smooth' })
+
+    // Workshop — always navigate to its own route
+    if (!link.href) {
+      navigate(link.route)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+
+    // Hash link — if already on home, just scroll; otherwise go home first then scroll
+    if (location.pathname === '/') {
+      const target = document.querySelector(link.href)
+      if (target) target.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/')
+      setTimeout(() => {
+        const target = document.querySelector(link.href)
+        if (target) target.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    setMenuOpen(false)
+    if (location.pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } else {
+      navigate('/')
+    }
   }
 
   return (
     <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
       <div className="header__inner">
         {/* Logo */}
-        <a className="header__logo" href="#home" onClick={(e) => handleNavClick(e, '#home')}>
-          
+        <a className="header__logo" href="/" onClick={handleLogoClick}>
           <img src={logo2} alt="ANMA Crochet wordmark" className="header__logo-wordmark" />
         </a>
 
@@ -42,9 +71,9 @@ export default function Header() {
           {navLinks.map((link) => (
             <a
               key={link.label}
-              className="header__nav-link"
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
+              className={`header__nav-link${location.pathname === link.route && link.route === '/workshop' ? ' active' : ''}`}
+              href={link.href || link.route}
+              onClick={(e) => handleNavClick(e, link)}
             >
               {link.label}
             </a>
@@ -52,7 +81,7 @@ export default function Header() {
           <a
             className="header__nav-link header__nav-cta"
             href="#catalogue"
-            onClick={(e) => handleNavClick(e, '#catalogue')}
+            onClick={(e) => handleNavClick(e, { href: '#catalogue', route: '/' })}
           >
             Shop Now ✨
           </a>
@@ -76,8 +105,8 @@ export default function Header() {
           <a
             key={link.label}
             className="header__nav-link"
-            href={link.href}
-            onClick={(e) => handleNavClick(e, link.href)}
+            href={link.href || link.route}
+            onClick={(e) => handleNavClick(e, link)}
           >
             {link.label}
           </a>
@@ -85,7 +114,7 @@ export default function Header() {
         <a
           className="header__nav-link header__nav-cta"
           href="#catalogue"
-          onClick={(e) => handleNavClick(e, '#catalogue')}
+          onClick={(e) => handleNavClick(e, { href: '#catalogue', route: '/' })}
           style={{ textAlign: 'center', marginTop: '0.25rem' }}
         >
           Shop Now ✨
