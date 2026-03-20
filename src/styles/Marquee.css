@@ -1,0 +1,44 @@
+/* ===== MARQUEE BANNER ===== */
+.marquee-bar {
+  background: linear-gradient(135deg, var(--coral), #FF8E53);
+  color: var(--white);
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1001;
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-bar__track {
+  display: inline-flex;
+  align-items: center;
+  animation: marqueeScroll 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-bar:hover .marquee-bar__track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-bar__item {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  padding: 0 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  white-space: nowrap;
+}
+
+.marquee-bar__sep {
+  font-size: 0.45rem;
+  opacity: 0.7;
+}
