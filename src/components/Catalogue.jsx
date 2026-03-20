@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { track } from '@vercel/analytics'
 import { products, categories } from '../data/products'
 import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
@@ -32,6 +33,16 @@ export default function Catalogue() {
 
   // Reset to page 1 whenever filter or sort changes
   useEffect(() => { setPage(1) }, [activeCategory, sortBy])
+
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat)
+    track('category_filtered', { category: cat })
+  }
+
+  const handleSortChange = (sort) => {
+    setSortBy(sort)
+    track('sort_changed', { sort })
+  }
 
   const handleSelect = (product) => {
     setSelectedProduct(product)
@@ -85,7 +96,7 @@ export default function Catalogue() {
             key={cat}
             className={`catalogue__filter-btn${activeCategory === cat ? ' active' : ''}`}
             data-cat={cat}
-            onClick={() => setActiveCategory(cat)}
+            onClick={() => handleCategoryChange(cat)}
             aria-pressed={activeCategory === cat}
           >
             {cat === 'All' && '✨ '}
@@ -119,7 +130,7 @@ export default function Catalogue() {
             id="sort-select"
             className="catalogue__sort-select"
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+            onChange={(e) => handleSortChange(e.target.value)}
           >
             <option value="default">Default</option>
             <option value="price-asc">Price: Low to High</option>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { track } from '@vercel/analytics'
 import '../styles/ProductModal.css'
 
 const INSTAGRAM_DM_URL = 'https://ig.me/m/_anma_crochet'
@@ -15,6 +16,14 @@ export default function ProductModal({ product, onClose }) {
   const [copied, setCopied] = useState(false)
   const [dmCopied, setDmCopied] = useState(false)
   const [countdown, setCountdown] = useState(null)
+
+  useEffect(() => {
+    track('product_viewed', {
+      product_id: product.id,
+      product_name: product.name,
+      category: product.category,
+    })
+  }, [product.id])
 
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
@@ -39,12 +48,22 @@ export default function ProductModal({ product, onClose }) {
       document.execCommand('copy')
       document.body.removeChild(el)
     }
+    track('share_link_copied', {
+      product_id: product.id,
+      product_name: product.name,
+      category: product.category,
+    })
     setCopied(true)
     setTimeout(() => setCopied(false), 2200)
   }
 
   const handleDM = async () => {
     if (countdown !== null) return // already counting down
+    track('instagram_dm_clicked', {
+      product_id: product.id,
+      product_name: product.name,
+      category: product.category,
+    })
 
     const message =
       `Hi! I'm interested in ordering this item from your crochet shop 🧶\n\n` +
