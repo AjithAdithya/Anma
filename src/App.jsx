@@ -1,4 +1,5 @@
 import React from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Catalogue from './components/Catalogue'
@@ -17,6 +18,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <Analytics />
     </>
   )
 }
