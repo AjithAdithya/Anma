@@ -25,9 +25,9 @@ export default function ProductCard({ product, onSelect }) {
         <p className="product-card__desc">{description}</p>
 
         <div className="product-card__footer">
-          <span className="product-card__price" style={{ color: accentColor }}>
+          {/* <span className="product-card__price" style={{ color: accentColor }}>
             ₹{price.toLocaleString('en-IN')}
-          </span>
+          </span> */}
           <button
             className="product-card__btn"
             onClick={(e) => { e.stopPropagation(); onSelect(product) }}
