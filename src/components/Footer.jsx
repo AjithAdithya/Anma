@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { categories } from '../data/products'
 import '../styles/Footer.css'
+import logo from '../assets/logo.png'
+import logo2 from '../assets/logo3.png'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -10,20 +12,9 @@ const navLinks = [
 ]
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-
   const scrollTo = (href) => {
     const el = document.querySelector(href)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const handleSubscribe = (e) => {
-    e.preventDefault()
-    if (email) {
-      setSubscribed(true)
-      setEmail('')
-    }
   }
 
   return (
@@ -37,8 +28,8 @@ export default function Footer() {
         {/* Brand Column */}
         <div className="footer__brand">
           <div className="footer__logo">
-            <span className="footer__logo-emoji">🧶</span>
-            <span className="footer__logo-text">ANMA Crochet</span>
+            
+            <img src={logo2} alt="ANMA Crochet wordmark" className="footer__logo-wordmark" />
           </div>
 
           <p className="footer__tagline">
@@ -49,7 +40,7 @@ export default function Footer() {
           <div className="footer__socials">
             <a
               className="footer__social-link footer__social-link--insta"
-              href="https://instagram.com/anmacrochet"
+              href="https://instagram.com/_anma_crochet"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -104,62 +95,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div>
-          <h4 className="footer__col-title">Stay Updated ✨</h4>
-          <div className="footer__newsletter">
-            <p className="footer__newsletter-text">
-              Get notified about new designs, special offers, and crochet inspiration!
-            </p>
-
-            {!subscribed ? (
-              <form className="footer__newsletter-form" onSubmit={handleSubscribe}>
-                <input
-                  type="email"
-                  className="footer__newsletter-input"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  aria-label="Newsletter email"
-                />
-                <button type="submit" className="footer__newsletter-btn">
-                  Join 🎉
-                </button>
-              </form>
-            ) : (
-              <p style={{
-                fontSize: '0.88rem',
-                fontWeight: 700,
-                color: 'var(--mint)',
-                background: 'rgba(107,203,119,0.1)',
-                padding: '0.6rem 1rem',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid rgba(107,203,119,0.2)',
-              }}>
-                🎉 You're subscribed! Thanks for the love!
-              </p>
-            )}
-
-            <p style={{ fontSize: '0.75rem', color: '#666', fontWeight: 600 }}>
-              No spam, just crochet love. Unsubscribe anytime.
-            </p>
-          </div>
-        </div>
 
       </div>
 
       {/* Bottom Bar */}
       <div className="footer__bottom">
         <p className="footer__copyright">
-          © 2025 <span>ANMA Crochet</span>. All rights reserved. Made with{' '}
+          © 2024 <span>ANMA Crochet</span>. All rights reserved. Made with{' '}
           <span>❤️</span> in India.
         </p>
-        <div className="footer__bottom-links">
-          <span className="footer__bottom-link">Privacy Policy</span>
-          <span className="footer__bottom-link">Terms of Service</span>
-          <span className="footer__bottom-link">Shipping Info</span>
-        </div>
+        
       </div>
     </footer>
   )

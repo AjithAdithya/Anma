@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/Header.css'
+import logo from '../assets/logo.png'
+import logo2 from '../assets/logo3.png'
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -30,8 +32,8 @@ export default function Header() {
       <div className="header__inner">
         {/* Logo */}
         <a className="header__logo" href="#home" onClick={(e) => handleNavClick(e, '#home')}>
-          <span className="header__logo-emoji">🧶</span>
-          <span className="header__logo-text">ANMA Crochet</span>
+          
+          <img src={logo2} alt="ANMA Crochet wordmark" className="header__logo-wordmark" />
         </a>
 
         {/* Desktop Nav */}

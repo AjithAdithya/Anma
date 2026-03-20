@@ -43,29 +43,19 @@
   text-decoration: none;
 }
 
-.header__logo-emoji {
-  font-size: 2rem;
-  animation: spin 6s linear infinite;
-  display: inline-block;
-  line-height: 1;
+.header__logo-img {
+  height: 52px;
+  width: 52px;
+  object-fit: contain;
+  border-radius: 50%;
+  display: block;
+  flex-shrink: 0;
 }
 
-@keyframes spin {
-  0%   { transform: rotate(0deg); }
-  25%  { transform: rotate(15deg); }
-  50%  { transform: rotate(0deg); }
-  75%  { transform: rotate(-15deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.header__logo-text {
-  font-family: var(--font-heading);
-  font-size: 1.7rem;
-  background: linear-gradient(135deg, var(--coral), var(--lavender));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.2;
+.header__logo-wordmark {
+  height: 52px;
+  object-fit: contain;
+  display: block;
 }
 
 /* Navigation */
@@ -188,7 +178,8 @@
 }
 
 @media (max-width: 480px) {
-  .header__logo-text {
-    font-size: 1.4rem;
+  .header__logo-img {
+    height: 44px;
+    width: 44px;
   }
 }
