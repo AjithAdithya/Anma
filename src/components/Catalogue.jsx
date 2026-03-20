@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { track } from '@vercel/analytics'
+import { trackEvent } from '../analytics'
 import { products, categories } from '../data/products'
 import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
@@ -36,12 +36,12 @@ export default function Catalogue() {
 
   const handleCategoryChange = (cat) => {
     setActiveCategory(cat)
-    track('category_filtered', { category: cat })
+    trackEvent('category_filtered', { category: cat })
   }
 
   const handleSortChange = (sort) => {
     setSortBy(sort)
-    track('sort_changed', { sort })
+    trackEvent('sort_changed', { sort })
   }
 
   const handleSelect = (product) => {

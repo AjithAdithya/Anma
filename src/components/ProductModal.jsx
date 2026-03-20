@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { track } from '@vercel/analytics'
+import { trackEvent } from '../analytics'
 import '../styles/ProductModal.css'
 
 const INSTAGRAM_DM_URL = 'https://ig.me/m/_anma_crochet'
@@ -18,7 +18,7 @@ export default function ProductModal({ product, onClose }) {
   const [countdown, setCountdown] = useState(null)
 
   useEffect(() => {
-    track('product_viewed', {
+    trackEvent('product_viewed', {
       product_id: product.id,
       product_name: product.name,
       category: product.category,
@@ -48,7 +48,7 @@ export default function ProductModal({ product, onClose }) {
       document.execCommand('copy')
       document.body.removeChild(el)
     }
-    track('share_link_copied', {
+    trackEvent('share_link_copied', {
       product_id: product.id,
       product_name: product.name,
       category: product.category,
@@ -59,7 +59,7 @@ export default function ProductModal({ product, onClose }) {
 
   const handleDM = async () => {
     if (countdown !== null) return // already counting down
-    track('instagram_dm_clicked', {
+    trackEvent('instagram_dm_clicked', {
       product_id: product.id,
       product_name: product.name,
       category: product.category,
