@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { trackEvent } from '../analytics'
+import { useDMCountdown } from '../hooks/useDMCountdown'
 import '../styles/ProductModal.css'
-
-const INSTAGRAM_DM_URL = 'https://ig.me/m/_anma_crochet'
 
 const INSTA_SVG = (
   <svg className="modal__insta-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -10,12 +9,9 @@ const INSTA_SVG = (
   </svg>
 )
 
-const REDIRECT_DELAY = 3000
-
 export default function ProductModal({ product, onClose }) {
   const [copied, setCopied] = useState(false)
-  const [dmCopied, setDmCopied] = useState(false)
-  const [countdown, setCountdown] = useState(null)
+  const { dmCopied, countdown, trigger: triggerDM } = useDMCountdown()
 
   useEffect(() => {
     trackEvent('product_viewed', {
@@ -57,47 +53,18 @@ export default function ProductModal({ product, onClose }) {
     setTimeout(() => setCopied(false), 2200)
   }
 
-  const handleDM = async () => {
-    if (countdown !== null) return // already counting down
+  const handleDM = () => {
     trackEvent('instagram_dm_clicked', {
       product_id: product.id,
       product_name: product.name,
       category: product.category,
     })
-
     const message =
       `Hi! I'm interested in ordering this item from your crochet shop 🧶\n\n` +
       `Category: ${product.category}\n` +
-      `Price: ₹${product.price.toLocaleString('en-IN')}\n` +
       `Link: ${shareLink}\n\n` +
       `Could you share more details on availability? Thank you! 😊`
-
-    try {
-      await navigator.clipboard.writeText(message)
-    } catch {
-      const el = document.createElement('textarea')
-      el.value = message
-      document.body.appendChild(el)
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
-    }
-
-    setDmCopied(true)
-    setCountdown(3)
-
-    const interval = setInterval(() => {
-      setCountdown((c) => {
-        if (c <= 1) { clearInterval(interval); return 0 }
-        return c - 1
-      })
-    }, 1000)
-
-    setTimeout(() => {
-      window.open(INSTAGRAM_DM_URL, '_blank', 'noopener,noreferrer')
-      setDmCopied(false)
-      setCountdown(null)
-    }, REDIRECT_DELAY)
+    triggerDM(message)
   }
 
   return (
@@ -120,9 +87,9 @@ export default function ProductModal({ product, onClose }) {
             {product.category}
           </span>
           <h2 className="modal__name">{product.name}</h2>
-          <p className="modal__price" style={{ color: product.accentColor }}>
+          {/* <p className="modal__price" style={{ color: product.accentColor }}>
             ₹{product.price.toLocaleString('en-IN')}
-          </p>
+          </p> */}
           <p className="modal__desc">{product.description}</p>
 
           <div className="modal__actions">

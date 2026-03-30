@@ -1,66 +1,96 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { useDMCountdown } from '../hooks/useDMCountdown'
 import '../styles/Workshop.css'
 
-const modules = [
+const levels = [
   {
-    icon: '🧶',
-    title: 'Starting from Scratch',
-    desc: 'Learn to hold the hook, make a slip knot, and chain stitch. The foundation of every crochet project.',
+    icon: '🌱',
+    label: 'Beginner',
+    desc: 'No experience needed. Learn to hold the hook, chain stitch, and build your very first piece from scratch.',
   },
   {
-    icon: '🔄',
-    title: 'Magic Loop Mastery',
-    desc: 'Say goodbye to gaps! Master the magic loop — the cleanest start for all your circular amigurumi projects.',
+    icon: '🌿',
+    label: 'Intermediate',
+    desc: 'Know the basics? Level up with more complex stitches, pattern reading, and shaping techniques.',
   },
   {
-    icon: '📖',
-    title: 'Reading Crochet Patterns',
-    desc: 'Decode abbreviations, stitch counts, and repeats. Turn any pattern into a clear, step-by-step guide.',
-  },
-  {
-    icon: '💐',
-    title: 'Flowers & Bouquets',
-    desc: 'Craft beautiful crochet flowers that last forever. Build a full bouquet from individual petals.',
-  },
-  {
-    icon: '🧸',
-    title: 'Amigurumi Basics',
-    desc: 'Shape, stuff, and assemble your first crochet doll. Learn safety eyes, invisible decrease, and finishing.',
-  },
-  {
-    icon: '🎀',
-    title: 'Finishing & Gifting',
-    desc: 'Weave in ends neatly, block your pieces, and package your handmade creations beautifully.',
+    icon: '🌸',
+    label: 'Advanced',
+    desc: 'Master amigurumi, intricate colour work, and finishing techniques that make your pieces stand out.',
   },
 ]
+
+const whatYouLearn = [
+  { icon: '🧶', text: 'Learn crochet basics step-by-step at your own level' },
+  { icon: '💪', text: 'Gain the confidence to start projects on your own' },
+  { icon: '🎁', text: 'Begin creating your very first handmade piece' },
+]
+
+const languages = ['Tamil', 'Telugu', 'English', 'Hindi']
 
 const faqs = [
   {
-    q: 'Do I need to bring my own supplies?',
-    a: 'No! A starter kit (yarn + hook) is included in your workshop entry. Just bring your hands and a happy heart.',
+    q: 'Do I need to buy my own supplies?',
+    a: 'Yes — students are required to purchase their own crochet kit and yarn before the class. We have linked the exact ones we recommend below so you can order them in advance.',
   },
   {
-    q: 'Is this suitable for complete beginners?',
-    a: 'Absolutely. We start from the very first stitch. If you can hold a pen, you can crochet.',
+    q: 'I have never crocheted before. Is this for me?',
+    a: 'Absolutely! The beginner session is designed for complete newcomers. If you can hold a pen, you can crochet. We start from the very first stitch.',
   },
   {
-    q: 'What will I make by the end?',
-    a: 'You will leave with a finished crochet flower bouquet and the foundations to start your own amigurumi doll.',
+    q: 'How long is each session?',
+    a: 'Each session is 1 to 1.5 hours — focused and hands-on so you actually make progress without feeling overwhelmed.',
   },
   {
-    q: 'How many people are in each batch?',
-    a: 'We keep batches small — maximum 10 people — so every student gets personal attention.',
+    q: 'What languages are the classes taught in?',
+    a: 'Classes are available in Tamil, Telugu, English, and Hindi — whichever is most comfortable for you.',
+  },
+  {
+    q: 'How do I book a slot?',
+    a: 'Slots fill up quickly since we keep batches small for personal attention. DM us on Instagram to reserve your spot.',
   },
 ]
 
+const DM_MESSAGES = {
+  general:
+    `Hi! 🧶 I'm interested in your online crochet workshop!\n\n` +
+    `Could you share details on the next available slot and how to reserve my seat?\n\n` +
+    `Thank you! 😊`,
+  Beginner:
+    `Hi! 🌱 I'm a complete beginner and I'd love to join your beginner crochet workshop!\n\n` +
+    `Could you let me know the next available slot and how to confirm my seat?\n\n` +
+    `Thank you! 😊`,
+  Intermediate:
+    `Hi! 🌿 I know the crochet basics and I'd love to join your intermediate crochet workshop!\n\n` +
+    `Could you share details on what's covered and the next available batch?\n\n` +
+    `Thank you! 😊`,
+  Advanced:
+    `Hi! 🌸 I have crochet experience and I'd love to join your advanced crochet workshop!\n\n` +
+    `Could you share details on what's covered and the next available slot?\n\n` +
+    `Thank you! 😊`,
+}
+
+function DMToast({ dmCopied }) {
+  if (!dmCopied) return null
+  return (
+    <div className="workshop__dm-toast">
+      <span>📋 Message copied — paste it when the DM opens!</span>
+      <div className="workshop__dm-toast-bar" />
+    </div>
+  )
+}
+
 export default function Workshop() {
   const [openFaq, setOpenFaq] = useState(null)
-  const [form, setForm] = useState({ name: '', email: '' })
-  const [submitted, setSubmitted] = useState(false)
+  const [activeLevel, setActiveLevel] = useState(null)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (form.name && form.email) setSubmitted(true)
+  const heroDM  = useDMCountdown()
+  const levelDM = useDMCountdown()
+  const bookDM  = useDMCountdown()
+
+  const handleLevelDM = (label) => {
+    setActiveLevel(label)
+    levelDM.trigger(DM_MESSAGES[label])
   }
 
   return (
@@ -73,219 +103,200 @@ export default function Workshop() {
 
         <div className="workshop__hero-inner">
           <div className="workshop__hero-text">
-            <span className="workshop__level-badge">🌱 Level: Total Beginner</span>
+            <span className="workshop__level-badge">🧵 @_anma_crochet</span>
 
             <h1 className="workshop__hero-title">
-              Master the <span>Magic Loop</span>
+              Learn Crochet <span>from Home</span>
             </h1>
 
             <p className="workshop__hero-desc">
-              Stop struggling with holes in your projects. Learn the professional secret to starting
-              perfect amigurumi, hats, and coasters — in a single hands-on session. 🧶
+              Always wanted to learn crochet but didn't know where to start?
+              This is your sign to begin 💙
             </p>
 
             <div className="workshop__hero-ctas">
-              <a className="workshop__btn-primary" href="#workshop-entry">
-                Reserve Your Hook 🪝
-              </a>
-              <a className="workshop__btn-secondary" href="#workshop-modules">
-                View Syllabus →
+              <div className="workshop__dm-wrap">
+                <DMToast dmCopied={heroDM.dmCopied} />
+                <button
+                  className={`workshop__btn-primary${heroDM.countdown !== null ? ' workshop__btn--counting' : ''}`}
+                  onClick={() => heroDM.trigger(DM_MESSAGES.general)}
+                  disabled={heroDM.countdown !== null}
+                >
+
+                  {heroDM.countdown !== null ? `Opening Instagram in ${heroDM.countdown}…` : 'DM to Reserve Your Slot'}
+                </button>
+              </div>
+              <a className="workshop__btn-secondary" href="#workshop-levels">
+                View Levels →
               </a>
             </div>
 
             <div className="workshop__hero-pills">
-              <span className="workshop__pill">📅 Every Weekend</span>
-              <span className="workshop__pill">👥 Max 10 Seats</span>
-              <span className="workshop__pill">⏱ 4 Hours</span>
+              <span className="workshop__pill">⏱ 1 – 1.5 hrs / class</span>
+              <span className="workshop__pill">💰 ₹300 per class</span>
+              <span className="workshop__pill">🌿 Limited Slots</span>
             </div>
           </div>
 
           <div className="workshop__hero-visual">
             <div className="workshop__hero-card workshop__hero-card--main">
               <span className="workshop__hero-card-emoji">🧶</span>
-              <p className="workshop__hero-card-label">Live Hands-On Session</p>
+              <p className="workshop__hero-card-label">Live Guided Session</p>
             </div>
             <div className="workshop__hero-card workshop__hero-card--sm workshop__hero-card--top">
-              <span>💐</span>
-              <p>Flowers</p>
+              <span>🌱</span>
+              <p>Beginner</p>
             </div>
             <div className="workshop__hero-card workshop__hero-card--sm workshop__hero-card--bot">
-              <span>🧸</span>
-              <p>Amigurumi</p>
+              <span>🌸</span>
+              <p>Advanced</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── WHAT'S INSIDE ── */}
-      <div className="workshop__inside" id="workshop-modules">
+      {/* ── WHAT YOU'LL LEARN ── */}
+      <div className="workshop__learn">
         <div className="workshop__section-header">
-          <h2 className="section-title">What's Inside the Workshop?</h2>
-          <p className="section-subtitle">Four hours of focused, whimsical learning.</p>
+          <h2 className="section-title">What You'll Learn</h2>
+          <p className="section-subtitle">Focused, beginner-friendly learning from the comfort of home.</p>
         </div>
 
-        <div className="workshop__inside-layout">
-          <div className="workshop__modules-grid">
-            {modules.map((m) => (
-              <div className="workshop__module-card" key={m.title}>
-                <span className="workshop__module-icon">{m.icon}</span>
-                <div>
-                  <h4 className="workshop__module-title">{m.title}</h4>
-                  <p className="workshop__module-desc">{m.desc}</p>
+        <div className="workshop__learn-grid">
+          {whatYouLearn.map((item) => (
+            <div className="workshop__learn-card" key={item.text}>
+              <span className="workshop__learn-icon">{item.icon}</span>
+              <p className="workshop__learn-text">{item.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="workshop__languages">
+          <span className="workshop__languages-label">🌐 Classes available in:</span>
+          {languages.map((lang) => (
+            <span className="workshop__lang-pill" key={lang}>{lang}</span>
+          ))}
+        </div>
+      </div>
+
+      {/* ── LEVELS ── */}
+      <div className="workshop__levels" id="workshop-levels">
+        <div className="workshop__section-header">
+          <h2 className="section-title">Pick Your Level</h2>
+          <p className="section-subtitle">Beginner, intermediate, and advanced — we meet you where you are.</p>
+        </div>
+
+        <div className="workshop__levels-grid">
+          {levels.map((lvl) => {
+            const isActive = activeLevel === lvl.label && levelDM.countdown !== null
+            return (
+              <div className="workshop__level-card" key={lvl.label}>
+                <span className="workshop__level-icon">{lvl.icon}</span>
+                <h4 className="workshop__level-title">{lvl.label}</h4>
+                <p className="workshop__level-desc">{lvl.desc}</p>
+                <div className="workshop__dm-wrap">
+                  <DMToast dmCopied={activeLevel === lvl.label && levelDM.dmCopied} />
+                  <button
+                    className={`workshop__level-btn${isActive ? ' workshop__btn--counting' : ''}`}
+                    onClick={() => handleLevelDM(lvl.label)}
+                    disabled={isActive}
+                  >
+  
+                    {isActive ? `Opening Instagram in ${levelDM.countdown}…` : 'Book this Level →'}
+                  </button>
                 </div>
               </div>
-            ))}
-          </div>
+            )
+          })}
+        </div>
+      </div>
 
-          <div className="workshop__meta-card">
+      {/* ── MATERIALS ── */}
+      <div className="workshop__materials">
+        <div className="workshop__materials-inner">
+          <div className="workshop__materials-text">
+            <h2 className="workshop__materials-title">Materials You'll Need</h2>
+            <p className="workshop__materials-desc">
+              Students are required to purchase their own kit before the class.
+              Here are the exact products we recommend — tried and tested:
+            </p>
+            <div className="workshop__materials-links">
+              <a
+                className="workshop__material-btn"
+                href="https://amzn.in/d/0halSOyQ"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🪝 Crochet Starter Kit → Amazon
+              </a>
+              <a
+                className="workshop__material-btn workshop__material-btn--secondary"
+                href="https://magicneedles.in/products/aran-kotton-6-ply-yarn-by-hobby-store-light-cream-545"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🧶 Recommended Yarn → Magic Needles
+              </a>
+            </div>
+          </div>
+          <div className="workshop__materials-card">
             <div className="workshop__meta-item">
               <span className="workshop__meta-label">Duration</span>
-              <span className="workshop__meta-value">4 Hours</span>
+              <span className="workshop__meta-value">1 – 1.5 Hours</span>
             </div>
             <div className="workshop__meta-divider" />
             <div className="workshop__meta-item">
-              <span className="workshop__meta-label">Level</span>
-              <span className="workshop__meta-value">Beginner</span>
+              <span className="workshop__meta-label">Price</span>
+              <span className="workshop__meta-value">₹300 / class</span>
             </div>
             <div className="workshop__meta-divider" />
             <div className="workshop__meta-item">
               <span className="workshop__meta-label">Format</span>
-              <span className="workshop__meta-value">In-Person</span>
+              <span className="workshop__meta-value">Online 🏠</span>
             </div>
             <div className="workshop__meta-divider" />
             <div className="workshop__meta-item">
-              <span className="workshop__meta-label">Kit</span>
-              <span className="workshop__meta-value">Included ✅</span>
+              <span className="workshop__meta-label">Slots</span>
+              <span className="workshop__meta-value">Limited ⚡</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── MASTERPIECE ── */}
-      <div className="workshop__masterpiece">
-        <div className="workshop__masterpiece-text">
-          <h2 className="workshop__masterpiece-title">Your Final Masterpiece</h2>
-          <p className="workshop__masterpiece-desc">
-            Walk away with a finished crochet flower bouquet and the foundations to build
-            your very own amigurumi — created entirely from scratch, by you. 🌸
-          </p>
-          <ul className="workshop__masterpiece-list">
-            <li>✅ Crochet flower bouquet (take home)</li>
-            <li>✅ Amigurumi starter — ready to finish at home</li>
-            <li>✅ Printed pattern booklet</li>
-            <li>✅ Lifetime access to our stitch video library</li>
-          </ul>
-        </div>
-
-        <div className="workshop__masterpiece-gallery">
-          <div className="workshop__gallery-card workshop__gallery-card--lg">
-            <span>💐</span>
-            <p>Crochet Bouquet</p>
+      {/* ── BOOK ── */}
+      <div className="workshop__book" id="workshop-entry">
+        <div className="workshop__book-inner">
+          <div className="workshop__book-text">
+            <span className="workshop__book-tag">⚡ First few students only</span>
+            <h2 className="workshop__book-title">Ready to Start Your Crochet Journey?</h2>
+            <p className="workshop__book-desc">
+              Batches fill up quickly — we keep them small so every student gets personal attention.
+              DM us on Instagram to check availability and reserve your slot.
+            </p>
+            <ul className="workshop__book-list">
+              <li>✅ Beginner-friendly — no experience needed</li>
+              <li>✅ 1 – 1.5 hour guided live session</li>
+              <li>✅ Available in Tamil, Telugu, English & Hindi</li>
+              <li>✅ Personal attention in every batch</li>
+            </ul>
           </div>
-          <div className="workshop__gallery-card">
-            <span>🧸</span>
-            <p>Amigurumi Doll</p>
-          </div>
-          <div className="workshop__gallery-card">
-            <span>🪴</span>
-            <p>Pot Cover</p>
-          </div>
-        </div>
-      </div>
 
-      {/* ── INSTRUCTOR ── */}
-      <div className="workshop__instructor">
-        <div className="workshop__instructor-avatar">
-          <span className="workshop__instructor-emoji">👩‍🎨</span>
-          <div className="workshop__instructor-badge">10+ Years Crafting</div>
-        </div>
-
-        <div className="workshop__instructor-bio">
-          <span className="workshop__instructor-tag">Meet Your Instructor</span>
-          <h2 className="workshop__instructor-name">The ANMA Crochet Studio</h2>
-          <p className="workshop__instructor-desc">
-            ANMA Crochet was born from a love of yarn, color, and the joy of making something
-            beautiful from scratch. With over a decade of crocheting experience and hundreds of
-            happy customers, we now bring our craft to life in hands-on workshops — one stitch
-            at a time. 🌈
-          </p>
-          <p className="workshop__instructor-quote">
-            "Crochet isn't just a hobby; it's a way of weaving patience and love into something
-            tangible. We can't wait to help you start your journey!"
-          </p>
-          <div className="workshop__instructor-stats">
-            <div className="workshop__instructor-stat">
-              <span>500+</span><p>Students</p>
+          <div className="workshop__book-cta">
+            <div className="workshop__book-price">
+              ₹300 <span>per class</span>
             </div>
-            <div className="workshop__instructor-stat">
-              <span>50+</span><p>Designs</p>
-            </div>
-            <div className="workshop__instructor-stat">
-              <span>5★</span><p>Rated</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── ENTRY + FORM ── */}
-      <div className="workshop__entry" id="workshop-entry">
-        <div className="workshop__pricing-card">
-          <h3 className="workshop__pricing-title">Workshop Entry</h3>
-          <p className="workshop__pricing-sub">Everything you need to master the loom</p>
-          <div className="workshop__pricing-amount">₹999 <span>/ seat</span></div>
-
-          <ul className="workshop__pricing-list">
-            <li>✅ 4 hours of live, in-person instruction</li>
-            <li>✅ Complete crochet starter kit (Yarn + Hook)</li>
-            <li>✅ Printed pattern booklet</li>
-            <li>✅ Lifetime access to video stitch library</li>
-            <li>✅ Certificate of completion</li>
-          </ul>
-
-          <div className="workshop__pricing-next">
-            📅 Next Class: <strong>Saturday @ 10:00 AM</strong>
-          </div>
-        </div>
-
-        <div className="workshop__form-card">
-          <h3 className="workshop__form-title">Secure Your Spot</h3>
-
-          {!submitted ? (
-            <form className="workshop__form" onSubmit={handleSubmit}>
-              <div className="workshop__field">
-                <label className="workshop__label">Full Name</label>
-                <input
-                  className="workshop__input"
-                  type="text"
-                  placeholder="Your creative name"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  required
-                />
-              </div>
-              <div className="workshop__field">
-                <label className="workshop__label">Email Address</label>
-                <input
-                  className="workshop__input"
-                  type="email"
-                  placeholder="crafty@example.com"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  required
-                />
-              </div>
-              <button type="submit" className="workshop__form-btn">
-                Confirm Registration 🎉
+            <div className="workshop__dm-wrap workshop__dm-wrap--full">
+              <DMToast dmCopied={bookDM.dmCopied} />
+              <button
+                className={`workshop__book-btn${bookDM.countdown !== null ? ' workshop__btn--counting' : ''}`}
+                onClick={() => bookDM.trigger(DM_MESSAGES.general)}
+                disabled={bookDM.countdown !== null}
+              >
+                {bookDM.countdown !== null ? `Opening Instagram in ${bookDM.countdown}…` : 'DM us on Instagram'}
               </button>
-              <p className="workshop__form-note">Limited to 10 participants per session.</p>
-            </form>
-          ) : (
-            <div className="workshop__form-success">
-              <span>🎉</span>
-              <h4>You're registered!</h4>
-              <p>We'll send your confirmation and class details to <strong>{form.email}</strong> shortly.</p>
             </div>
-          )}
+            <p className="workshop__book-note">@_anma_crochet · Limited slots available</p>
+          </div>
         </div>
       </div>
 
