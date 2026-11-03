@@ -81,6 +81,20 @@
   color: var(--coral);
 }
 
+.catalogue__filter-btn[data-cat="Bangles"].active,
+.catalogue__filter-btn[data-cat="Bangles"]:hover {
+  background: #FFE8F4;
+  border-color: #FF6BA8;
+  color: #cc2475;
+}
+
+.catalogue__filter-btn[data-cat="Chains"].active,
+.catalogue__filter-btn[data-cat="Chains"]:hover {
+  background: var(--yellow-pastel);
+  border-color: var(--yellow);
+  color: #8B6914;
+}
+
 .catalogue__filter-btn[data-cat="Clips"].active,
 .catalogue__filter-btn[data-cat="Clips"]:hover {
   background: var(--lavender-pastel);

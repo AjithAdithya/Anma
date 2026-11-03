@@ -2,6 +2,12 @@
 const bagImages = Object.values(
   import.meta.glob('../assets/Bags/*.jpg', { eager: true, import: 'default' })
 )
+const bangleImages = Object.values(
+  import.meta.glob('../assets/Bangles/*.{jpg,png,webp}', { eager: true, import: 'default' })
+)
+const chainImages = Object.values(
+  import.meta.glob('../assets/Chains/*.{jpg,png,webp}', { eager: true, import: 'default' })
+)
 const clipImages = Object.values(
   import.meta.glob('../assets/Clips/*.jpg', { eager: true, import: 'default' })
 )
@@ -50,7 +56,9 @@ function expand(category, images, price, description, bgColor, accentColor) {
 
 export const products = [
   ...expand('Bags',               bagImages,       800,  'Handcrafted crochet bag. Sturdy, stylish, and made with love.',                       '#FFE8E8', '#FF6B6B'),
-  ...expand('Clips',              clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF'),
+  ...expand('Bangles',            bangleImages,    300,  'Handmade crochet bangles — colourful, comfy, and perfect for stacking.',                '#FFE8F4', '#FF6BA8'),
+  ...expand('Chains',             chainImages,     350,  'Delicate handmade crochet chain — a unique accessory to dress up any outfit.',          '#FFF8DC', '#FFD93D'),
+  ...expand('Clips',             clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF'),
   ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF'),
   ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D'),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
@@ -65,6 +73,8 @@ export const products = [
 export const categories = [
   'All',
   'Bags',
+  'Bangles',
+  'Chains',
   'Clips',
   'Crochet Beanie',
   'Dolls',
