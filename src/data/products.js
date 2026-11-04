@@ -17,8 +17,10 @@ const beanieImages = Object.values(
 const dollImages = Object.values(
   import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
 )
-// Earring images removed from the page (files remain in src/assets/Earrings)
-const earringImages = []
+// Only the new earring-*.png photos are shown (old .jpg files are ignored)
+const earringImages = Object.values(
+  import.meta.glob('../assets/Earrings/*.png', { eager: true, import: 'default' })
+)
 const flowerPotImages = Object.values(
   import.meta.glob('../assets/Flower Pots/*.jpg', { eager: true, import: 'default' })
 )
