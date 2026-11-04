@@ -17,9 +17,8 @@ const beanieImages = Object.values(
 const dollImages = Object.values(
   import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
 )
-const earringImages = Object.values(
-  import.meta.glob('../assets/Earrings/*.jpg', { eager: true, import: 'default' })
-)
+// Earring images removed from the page (files remain in src/assets/Earrings)
+const earringImages = []
 const flowerPotImages = Object.values(
   import.meta.glob('../assets/Flower Pots/*.jpg', { eager: true, import: 'default' })
 )
