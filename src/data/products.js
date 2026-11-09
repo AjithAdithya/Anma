@@ -21,16 +21,18 @@ const dollImages = Object.values(
 const earringFiles = Object.entries(
   import.meta.glob('../assets/Earrings/*.png', { eager: true, import: 'default' })
 )
-// Heart earrings are grouped into one product with colour variants
-const heartColours = { blue: '#6F95DD', pink: '#F58FA3', red: '#D61F3B' }
-const heartVariants = earringFiles
-  .filter(([path]) => path.includes('-heart'))
+// Earrings sold in several colours are grouped into one product with variants
+const colourHex = { blue: '#6F95DD', pink: '#F58FA3', red: '#D61F3B', purple: '#B58CE0' }
+const groupFiles = (marker) => earringFiles
+  .filter(([path]) => path.includes(marker))
   .map(([path, image]) => {
-    const key = Object.keys(heartColours).find((c) => path.includes(`-${c}-`))
-    return { label: key[0].toUpperCase() + key.slice(1), color: heartColours[key], image }
+    const key = Object.keys(colourHex).find((c) => path.includes(`-${c}-`))
+    return { label: key === 'purple' ? 'Violet' : key[0].toUpperCase() + key.slice(1), color: colourHex[key], image }
   })
+const heartVariants = groupFiles('-heart')
+const flowerVariants = groupFiles('-puff-flower')
 const earringImages = earringFiles
-  .filter(([path]) => !path.includes('-heart'))
+  .filter(([path]) => !path.includes('-heart') && !path.includes('-puff-flower'))
   .map(([, image]) => image)
 const flowerPotImages = Object.values(
   import.meta.glob('../assets/Flower Pots/*.jpg', { eager: true, import: 'default' })
@@ -84,6 +86,17 @@ export const products = [
     accentColor: '#FF6B6B',
     image: heartVariants[0]?.image,
     variants: heartVariants,
+  },
+  {
+    id: _id++,
+    name: 'Flower Earrings',
+    category: 'Earrings',
+    price: 250,
+    description: 'Puffy crochet flower earrings with a golden bead, available in violet and pink.',
+    bgColor: '#FFE8E8',
+    accentColor: '#FF6B6B',
+    image: flowerVariants[0]?.image,
+    variants: flowerVariants,
   },
   ...expand('Flower Pots',       flowerPotImages, 700,  'Crochet flower pot cover. Adds a cosy, handmade touch to your space.',                 '#E8FFE8', '#6BCB77'),
   ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8'),
