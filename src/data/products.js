@@ -18,9 +18,20 @@ const dollImages = Object.values(
   import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
 )
 // Only the new earring-*.png photos are shown (old .jpg files are ignored)
-const earringImages = Object.values(
+const earringFiles = Object.entries(
   import.meta.glob('../assets/Earrings/*.png', { eager: true, import: 'default' })
 )
+// Heart earrings are grouped into one product with colour variants
+const heartColours = { blue: '#6F95DD', pink: '#F58FA3', red: '#D61F3B' }
+const heartVariants = earringFiles
+  .filter(([path]) => path.includes('-heart'))
+  .map(([path, image]) => {
+    const key = Object.keys(heartColours).find((c) => path.includes(`-${c}-`))
+    return { label: key[0].toUpperCase() + key.slice(1), color: heartColours[key], image }
+  })
+const earringImages = earringFiles
+  .filter(([path]) => !path.includes('-heart'))
+  .map(([, image]) => image)
 const flowerPotImages = Object.values(
   import.meta.glob('../assets/Flower Pots/*.jpg', { eager: true, import: 'default' })
 )
@@ -63,7 +74,18 @@ export const products = [
   ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF'),
   ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D'),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
-  ...expand('Flower Pots',        flowerPotImages, 700,  'Crochet flower pot cover. Adds a cosy, handmade touch to your space.',                 '#E8FFE8', '#6BCB77'),
+  {
+    id: _id++,
+    name: 'Heart Earrings',
+    category: 'Earrings',
+    price: 250,
+    description: 'Sweet crochet heart earrings, available in blue, pink and red.',
+    bgColor: '#FFE8E8',
+    accentColor: '#FF6B6B',
+    image: heartVariants[0]?.image,
+    variants: heartVariants,
+  },
+  ...expand('Flower Pots',       flowerPotImages, 700,  'Crochet flower pot cover. Adds a cosy, handmade touch to your space.',                 '#E8FFE8', '#6BCB77'),
   ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8'),
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
   ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF'),

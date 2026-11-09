@@ -11,6 +11,8 @@ const INSTA_SVG = (
 
 export default function ProductModal({ product, onClose }) {
   const [copied, setCopied] = useState(false)
+  const [variantIndex, setVariantIndex] = useState(0)
+  const activeVariant = product.variants?.[variantIndex]
   const { dmCopied, countdown, trigger: triggerDM } = useDMCountdown()
 
   useEffect(() => {
@@ -75,8 +77,8 @@ export default function ProductModal({ product, onClose }) {
 
         {/* Image */}
         <div className="modal__image-wrap">
-          {product.image
-            ? <img src={product.image} alt={product.name} className="modal__image" />
+          {(activeVariant?.image || product.image)
+            ? <img src={activeVariant?.image || product.image} alt={product.name} className="modal__image" />
             : <div className="modal__image-placeholder">🧶</div>
           }
         </div>
@@ -91,6 +93,25 @@ export default function ProductModal({ product, onClose }) {
             ₹{product.price.toLocaleString('en-IN')}
           </p> */}
           <p className="modal__desc">{product.description}</p>
+
+          {product.variants?.length > 0 && (
+            <div className="modal__variants">
+              <span className="modal__variants-label">Colour: <strong>{activeVariant.label}</strong></span>
+              <div className="modal__variants-list">
+                {product.variants.map((v, i) => (
+                  <button
+                    key={v.label}
+                    className={`modal__variant${i === variantIndex ? ' active' : ''}`}
+                    onClick={() => setVariantIndex(i)}
+                    aria-label={v.label}
+                    aria-pressed={i === variantIndex}
+                  >
+                    <img src={v.image} alt={v.label} />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="modal__actions">
             {dmCopied && (
