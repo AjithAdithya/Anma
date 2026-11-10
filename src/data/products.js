@@ -210,7 +210,7 @@ const earringNames = {
   'earring-mandala': 'Mandala Earrings',
   'earring-pearl-stud': 'Pearl Earring',
   'earring-red-poppy': 'Red Poppy Earrings',
-  'earring-red-puff-stud': 'Red Flower Studs',
+  'earring-red-puff-stud': 'Puffy Flower Stud',
   'earring-red-rose': 'Red Rose Earrings',
   'earring-rose-leaf': 'Rose Earring',
   'earring-strawberry': 'Strawberry Earrings',
@@ -343,7 +343,7 @@ export const products = [
   },
   {
     id: _id++,
-    name: 'Flower Earrings',
+    name: 'Puffy Flower Earring',
     category: 'Earrings',
     price: 250,
     description: 'Puffy crochet flower earrings with a golden bead, available in violet and pink.',
