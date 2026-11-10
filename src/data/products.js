@@ -29,12 +29,9 @@ const bangleImages = Object.values(
 const chainImages = Object.values(
   import.meta.glob('../assets/Chains/*.{jpg,png,webp}', { eager: true, import: 'default' })
 )
-const clipImages = Object.values(
-  import.meta.glob('../assets/Clips/*.jpg', { eager: true, import: 'default' })
-)
-const beanieImages = Object.values(
-  import.meta.glob('../assets/Crochet Beanie/*.jpg', { eager: true, import: 'default' })
-)
+// Clip and beanie images removed from the page (files remain in src/assets)
+const clipImages = []
+const beanieImages = []
 const dollImages = Object.values(
   import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
 )
