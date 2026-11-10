@@ -23,9 +23,20 @@ const bagImages = bagFiles
     const key = Object.keys(bagNames).find((k) => path.includes(k))
     return { image, name: key ? bagNames[key] : undefined }
   })
-const bangleImages = Object.values(
+const bangleAll = Object.entries(
   import.meta.glob('../assets/Bangles/*.{jpg,png,webp}', { eager: true, import: 'default' })
 )
+const bangleImageFor = (key) => bangleAll.find(([path]) => path.includes(`bangle-${key}.`))?.[1]
+// Plain and multicolour bangles are sets with a colour picker
+const plainBangleVariants = [['blue', 'Blue'], ['pink', 'Pink'], ['red', 'Red']]
+  .map(([k, label]) => ({ label, image: bangleImageFor(k) }))
+const multiBangleVariants = [['lavender-green', 'Lavender & Green'], ['pink-green', 'Pink & Green'], ['red-green', 'Red & Green']]
+  .map(([k, label]) => ({ label, image: bangleImageFor(k) }))
+const bangleNames = { 'sunflower-yellow': 'Sunflower Bangle', 'daisy-white': 'Daisy Bangle' }
+const bangleSingles = Object.entries(bangleNames)
+  .map(([k, name]) => ({ image: bangleImageFor(k), name }))
+  .filter((b) => b.image)
+const bangleImages = bangleSingles.map((b) => b.image)
 const chainNames = {
   'pearl-blossom-set': 'Pearl Blossom Choker Set',
   'rose-pendant': 'Rose Pendant Chain',
@@ -191,8 +202,19 @@ const groupFiles = (marker) => earringFiles
 const heartVariants = groupFiles('-heart')
 const flowerVariants = groupFiles('-puff-flower')
 const earringNames = {
-  'earring-rose-leaf': 'Rose Earring',
+  'earring-butterfly': 'Butterfly Earrings',
+  'earring-cherry': 'Cherry Earrings',
+  'earring-daisy-white-card': 'Daisy Earrings',
+  'earring-granny-square': 'Granny Square Earrings',
+  'earring-jhumka-flower': 'Jhumka Earrings',
+  'earring-mandala': 'Mandala Earrings',
   'earring-pearl-stud': 'Pearl Earring',
+  'earring-red-poppy': 'Red Poppy Earrings',
+  'earring-red-puff-stud': 'Red Flower Studs',
+  'earring-red-rose': 'Red Rose Earrings',
+  'earring-rose-leaf': 'Rose Earring',
+  'earring-strawberry': 'Strawberry Earrings',
+  'earring-sunflower': 'Sunflower Earrings',
 }
 const earringSingles = earringFiles
   .filter(([path]) => !path.includes('-heart') && !path.includes('-puff-flower'))
@@ -249,7 +271,30 @@ export const products = [
     image: slingVariants[0]?.image,
     variants: slingVariants,
   },
-  ...expand('Bangles',           bangleImages,    300,  'Handmade crochet bangles — colourful, comfy, and perfect for stacking.',                '#FFE8F4', '#FF6BA8'),
+  ...expand('Bangles',           bangleImages,    300,  'Handmade crochet bangles — colourful, comfy, and perfect for stacking.',                '#FFE8F4', '#FF6BA8')
+    .map((p, i) => ({ ...p, name: bangleSingles[i].name })),
+  {
+    id: _id++,
+    name: 'Plain Bangle Set',
+    category: 'Bangles',
+    price: 300,
+    description: 'Plain crochet bangles in blue, pink and red — sold as a set.',
+    bgColor: '#FFE8F4',
+    accentColor: '#FF6BA8',
+    image: plainBangleVariants[0].image,
+    variants: plainBangleVariants,
+  },
+  {
+    id: _id++,
+    name: 'Multicolour Bangle Set',
+    category: 'Bangles',
+    price: 300,
+    description: 'Two-tone crochet bangles in lavender & green, pink & green and red & green — sold as a set.',
+    bgColor: '#FFE8F4',
+    accentColor: '#FF6BA8',
+    image: multiBangleVariants[0].image,
+    variants: multiBangleVariants,
+  },
   ...expand('Chains',             chainImages,     350,  'Delicate handmade crochet chain — a unique accessory to dress up any outfit.',          '#FFF8DC', '#FFD93D')
     .map((p, i) => ({ ...p, name: chainFiles[i].name ?? p.name })),
   ...expand('Clips',             clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF')
