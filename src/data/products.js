@@ -40,11 +40,17 @@ const clipNames = {
 const clipAll = Object.entries(
   import.meta.glob('../assets/Clips/*.png', { eager: true, import: 'default' })
 )
+const clawNames = {
+  'pink-flower-claw': 'Pink Flower Claw Clip',
+  'lavender-flower-claw': 'Lavender Flower Claw Clip',
+  'baby-pink-daisy-claw': 'Baby Pink Daisy Claw Clip',
+  'blue-flower-claw': 'Blue Flower Claw Clip',
+}
+// Snap clips and the individual claw clips all show in the Clips section
 const clipFiles = clipAll
-  .filter(([path]) => !path.includes('-claw'))
   .map(([path, image]) => {
-    const key = Object.keys(clipNames).find((k) => path.includes(`clip-${k}`))
-    return { image, name: key ? clipNames[key] : undefined }
+    const hit = Object.entries({ ...clipNames, ...clawNames }).find(([k]) => path.includes(`clip-${k}`))
+    return { image, name: hit ? hit[1] : undefined }
   })
 const clipImages = clipFiles.map((c) => c.image)
 // Claw clips: one "Daisy Claw Clips" product with colour variants
