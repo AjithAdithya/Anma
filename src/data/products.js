@@ -83,9 +83,12 @@ const beanieFiles = Object.entries(
   return { image, name: hit ? hit[1] : undefined }
 })
 const beanieImages = beanieFiles.map((b) => b.image)
-const dollImages = Object.values(
+// Only the parrot (20240324_143112) and Batman (20240509_202629) dolls are shown
+const dollImages = Object.entries(
   import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
 )
+  .filter(([path]) => path.includes('20240324_143112') || path.includes('20240509_202629'))
+  .map(([, image]) => image)
 // Only the new earring-*.png photos are shown (old .jpg files are ignored)
 const earringFiles = Object.entries(
   import.meta.glob('../assets/Earrings/*.png', { eager: true, import: 'default' })
