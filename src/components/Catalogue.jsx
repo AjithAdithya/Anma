@@ -104,6 +104,7 @@ export default function Catalogue() {
             {cat === 'Bangles' && '📿 '}
             {cat === 'Chains' && '⛓️ '}
             {cat === 'Clips' && '🎀 '}
+            {cat === 'Claw Clips' && '🦋 '}
             {cat === 'Crochet Beanie' && '🧢 '}
             {cat === 'Dolls' && '🧸 '}
             {cat === 'Earrings' && '💎 '}

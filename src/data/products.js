@@ -29,8 +29,36 @@ const bangleImages = Object.values(
 const chainImages = Object.values(
   import.meta.glob('../assets/Chains/*.{jpg,png,webp}', { eager: true, import: 'default' })
 )
-// Clip and beanie images removed from the page (files remain in src/assets)
-const clipImages = []
+// Only the new clip-*.png photos are shown (old .jpg files are ignored)
+const clipNames = {
+  'daisy-snap': 'Daisy Snap Clips',
+  'kitty-snap': 'Kitty Snap Clips',
+  'frog-snap': 'Froggy Snap Clips',
+  'rose-snap': 'Rose Snap Clips',
+  'panda-snap': 'Panda Snap Clips',
+}
+const clipAll = Object.entries(
+  import.meta.glob('../assets/Clips/*.png', { eager: true, import: 'default' })
+)
+const clipFiles = clipAll
+  .filter(([path]) => !path.includes('-claw'))
+  .map(([path, image]) => {
+    const key = Object.keys(clipNames).find((k) => path.includes(`clip-${k}`))
+    return { image, name: key ? clipNames[key] : undefined }
+  })
+const clipImages = clipFiles.map((c) => c.image)
+// Claw clips: one "Daisy Claw Clips" product with colour variants
+const clawColours = {
+  'pink-flower-claw': { label: 'Pink', color: '#E86FC0' },
+  'lavender-flower-claw': { label: 'Lavender', color: '#B58CE0' },
+  'baby-pink-daisy-claw': { label: 'Baby Pink', color: '#F4B6CF' },
+  'blue-flower-claw': { label: 'Blue', color: '#2A93B8' },
+}
+const clawVariants = Object.keys(clawColours).flatMap((k) => {
+  const hit = clipAll.find(([path]) => path.includes(`clip-${k}`))
+  return hit ? [{ ...clawColours[k], image: hit[1] }] : []
+})
+// Beanie images removed from the page (files remain in src/assets/Crochet Beanie)
 const beanieImages = []
 const dollImages = Object.values(
   import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
@@ -102,7 +130,19 @@ export const products = [
   },
   ...expand('Bangles',           bangleImages,    300,  'Handmade crochet bangles — colourful, comfy, and perfect for stacking.',                '#FFE8F4', '#FF6BA8'),
   ...expand('Chains',             chainImages,     350,  'Delicate handmade crochet chain — a unique accessory to dress up any outfit.',          '#FFF8DC', '#FFD93D'),
-  ...expand('Clips',             clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF'),
+  ...expand('Clips',             clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF')
+    .map((p, i) => ({ ...p, name: clipFiles[i].name ?? p.name })),
+  {
+    id: _id++,
+    name: 'Daisy Claw Clips',
+    category: 'Claw Clips',
+    price: 250,
+    description: 'Handmade crochet daisy claw clips, available in pink, lavender, baby pink and blue.',
+    bgColor: '#F5E8FF',
+    accentColor: '#C77DFF',
+    image: clawVariants[0]?.image,
+    variants: clawVariants,
+  },
   ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF'),
   ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D'),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
@@ -142,6 +182,7 @@ export const categories = [
   'Bangles',
   'Chains',
   'Clips',
+  'Claw Clips',
   'Crochet Beanie',
   'Dolls',
   'Earrings',
