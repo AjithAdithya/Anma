@@ -83,12 +83,48 @@ const beanieFiles = Object.entries(
   return { image, name: hit ? hit[1] : undefined }
 })
 const beanieImages = beanieFiles.map((b) => b.image)
-// Only the parrot (20240324_143112) and Batman (20240509_202629) dolls are shown
-const dollImages = Object.entries(
-  import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
+// Dolls shown: the old parrot + Batman photos and the new doll-NN.png photos
+const dollNames = {
+  '20240324_143112': 'Parrot',
+  '20240509_202629': 'Classic Batman',
+  'doll-40': 'Penguin with Heart',
+  'doll-41': 'Marshall Fire Pup',
+  'doll-42': 'Marshall Fire Pup Duo',
+  'doll-43': 'Bunny Girl Doll',
+  'doll-44': 'Kung Fu Panda',
+  'doll-45': 'Batman Doll',
+  'doll-46': 'Stacked Minions',
+  'doll-47': 'Teletubbies Stack',
+  'doll-48': 'Dora Doll',
+  'doll-49': 'Luffy Straw Hat Doll',
+  'doll-50': 'Teletubbies Set',
+  'doll-51': 'Captain America',
+  'doll-52': 'Jerry Mouse',
+  'doll-53': 'Flying Ace Snoopy',
+  'doll-54': 'Chhota Bheem',
+  'doll-55': 'Minion Pair',
+  'doll-56': 'Luffy Doll',
+  'doll-57': 'Marshall Fire Pup Side Pose',
+  'doll-58': 'Minion Buddies',
+  'doll-59': 'Zoro Doll',
+  'doll-60': 'Pilot Doll',
+  'doll-61': 'Sadness Doll',
+  'doll-62': 'Gojo Satoru Doll',
+  'doll-63': 'Tom Cat Doll',
+  'doll-64': 'Purple Dress Anime Doll',
+  'doll-65': 'Tom & Jerry Set',
+  'doll-66': 'Squirrel with Acorn',
+  'doll-67': 'Mini Minion',
+}
+const dollFiles = Object.entries(
+  import.meta.glob('../assets/Dolls/*.{jpg,png}', { eager: true, import: 'default' })
 )
-  .filter(([path]) => path.includes('20240324_143112') || path.includes('20240509_202629'))
-  .map(([, image]) => image)
+  .map(([path, image]) => {
+    const hit = Object.entries(dollNames).find(([k]) => path.includes(k + '.') )
+    return hit ? { image, name: hit[1] } : null
+  })
+  .filter(Boolean)
+const dollImages = dollFiles.map((d) => d.image)
 // Only the new earring-*.png photos are shown (old .jpg files are ignored)
 const earringFiles = Object.entries(
   import.meta.glob('../assets/Earrings/*.png', { eager: true, import: 'default' })
@@ -172,7 +208,8 @@ export const products = [
   },
   ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF')
     .map((p, i) => ({ ...p, name: beanieFiles[i].name ?? p.name })),
-  ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D'),
+  ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D')
+    .map((p, i) => ({ ...p, name: dollFiles[i].name ?? p.name })),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
   {
     id: _id++,
