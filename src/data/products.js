@@ -190,9 +190,17 @@ const groupFiles = (marker) => earringFiles
   })
 const heartVariants = groupFiles('-heart')
 const flowerVariants = groupFiles('-puff-flower')
-const earringImages = earringFiles
+const earringNames = {
+  'earring-rose-leaf': 'Rose Earring',
+  'earring-pearl-stud': 'Pearl Earring',
+}
+const earringSingles = earringFiles
   .filter(([path]) => !path.includes('-heart') && !path.includes('-puff-flower'))
-  .map(([, image]) => image)
+  .map(([path, image]) => {
+    const hit = Object.entries(earringNames).find(([k]) => path.includes(k))
+    return { image, name: hit ? hit[1] : undefined }
+  })
+const earringImages = earringSingles.map((e) => e.image)
 const flowerPotImages = Object.values(
   import.meta.glob('../assets/Flower Pots/*.jpg', { eager: true, import: 'default' })
 )
@@ -275,7 +283,8 @@ export const products = [
   })),
   ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D')
     .map((p, i) => ({ ...p, name: dollFiles[i].name ?? p.name, subcategory: dollSubOf(dollFiles[i].key) })),
-  ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
+  ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B')
+    .map((p, i) => ({ ...p, name: earringSingles[i].name ?? p.name })),
   {
     id: _id++,
     name: 'Heart Earrings',
