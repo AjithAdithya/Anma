@@ -68,8 +68,21 @@ const clawVariants = Object.keys(clawColours).flatMap((k) => {
   const hit = clipAll.find(([path]) => path.includes(`clip-${k}`))
   return hit ? [{ ...clawColours[k], image: hit[1] }] : []
 })
-// Beanie images removed from the page (files remain in src/assets/Crochet Beanie)
-const beanieImages = []
+// Only the new beanie-*.png photos are shown (old .jpg files are ignored)
+const beanieNames = {
+  'lilac-ribbed': 'Lilac Ribbed Pom Beanie',
+  'grey-braided': 'Grey Braided Pom Beanie',
+  'rust-chenille': 'Rust Chenille Pom Beanie',
+  'blue-pom-ribbed': 'Sky Blue Pom Beanie',
+  'cream-ribbed': 'Cream Ribbed Pom Beanie',
+}
+const beanieFiles = Object.entries(
+  import.meta.glob('../assets/Crochet Beanie/*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(beanieNames).find(([k]) => path.includes(`beanie-${k}`))
+  return { image, name: hit ? hit[1] : undefined }
+})
+const beanieImages = beanieFiles.map((b) => b.image)
 const dollImages = Object.values(
   import.meta.glob('../assets/Dolls/*.jpg', { eager: true, import: 'default' })
 )
@@ -154,7 +167,8 @@ export const products = [
     image: clawVariants[0]?.image,
     variants: clawVariants,
   },
-  ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF'),
+  ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF')
+    .map((p, i) => ({ ...p, name: beanieFiles[i].name ?? p.name })),
   ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D'),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
   {
