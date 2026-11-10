@@ -1,7 +1,6 @@
 // Glob imports — one array per category folder (HEIC excluded)
-const bagImages = Object.values(
-  import.meta.glob('../assets/Bags/*.jpg', { eager: true, import: 'default' })
-)
+// Bag images removed from the page (files remain in src/assets/Bags)
+const bagImages = []
 const bangleImages = Object.values(
   import.meta.glob('../assets/Bangles/*.{jpg,png,webp}', { eager: true, import: 'default' })
 )
