@@ -1,6 +1,24 @@
 // Glob imports — one array per category folder (HEIC excluded)
-// Bag images removed from the page (files remain in src/assets/Bags)
-const bagImages = []
+// Only the new bag-*.png photos are shown (old .jpg files are ignored)
+const bagFiles = Object.entries(
+  import.meta.glob('../assets/Bags/*.png', { eager: true, import: 'default' })
+)
+// Sling bag is one product with brown / grey colour variants
+const slingColours = { brown: '#5A3A2A', blue: '#4A6078' }
+const slingLabels = { brown: 'Brown', blue: 'Grey' }
+const slingVariants = bagFiles
+  .filter(([path]) => path.includes('-flap-crossbody'))
+  .map(([path, image]) => {
+    const key = Object.keys(slingColours).find((c) => path.includes(`-${c}-`))
+    return { label: slingLabels[key], color: slingColours[key], image }
+  })
+const bagNames = { 'brown-flower-bucket': 'Brown Motif Bucket Bag' }
+const bagImages = bagFiles
+  .filter(([path]) => !path.includes('-flap-crossbody'))
+  .map(([path, image]) => {
+    const key = Object.keys(bagNames).find((k) => path.includes(k))
+    return { image, name: key ? bagNames[key] : undefined }
+  })
 const bangleImages = Object.values(
   import.meta.glob('../assets/Bangles/*.{jpg,png,webp}', { eager: true, import: 'default' })
 )
@@ -68,8 +86,20 @@ function expand(category, images, price, description, bgColor, accentColor) {
 }
 
 export const products = [
-  ...expand('Bags',               bagImages,       800,  'Handcrafted crochet bag. Sturdy, stylish, and made with love.',                       '#FFE8E8', '#FF6B6B'),
-  ...expand('Bangles',            bangleImages,    300,  'Handmade crochet bangles — colourful, comfy, and perfect for stacking.',                '#FFE8F4', '#FF6BA8'),
+  ...expand('Bags',               bagImages.map((b) => b.image),     800,  'Handcrafted crochet bag. Sturdy, stylish, and made with love.',                       '#FFE8E8', '#FF6B6B')
+    .map((p, i) => ({ ...p, name: bagImages[i].name ?? p.name })),
+  {
+    id: _id++,
+    name: 'Sling Bag',
+    category: 'Bags',
+    price: 800,
+    description: 'Chunky ribbed crochet sling bag with a flap and long strap, available in brown and grey.',
+    bgColor: '#FFE8E8',
+    accentColor: '#FF6B6B',
+    image: slingVariants[0]?.image,
+    variants: slingVariants,
+  },
+  ...expand('Bangles',           bangleImages,    300,  'Handmade crochet bangles — colourful, comfy, and perfect for stacking.',                '#FFE8F4', '#FF6BA8'),
   ...expand('Chains',             chainImages,     350,  'Delicate handmade crochet chain — a unique accessory to dress up any outfit.',          '#FFF8DC', '#FFD93D'),
   ...expand('Clips',             clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF'),
   ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF'),
