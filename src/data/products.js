@@ -127,16 +127,19 @@ const dollImageFor = (key) => dollAll.find(([path]) => path.includes(key + '.'))
 const dollGroups = [
   {
     name: 'Marshall Fire Pup Set',
+    sub: 'Paw Patrol',
     description: 'Handmade crochet Marshall fire pup — see the straight pose, side pose and duo.',
     items: [['doll-41', 'Straight'], ['doll-57', 'Side'], ['doll-42', 'Duo']],
   },
   {
     name: 'Teletubbies Set',
+    sub: 'Teletubbies',
     description: 'Handmade crochet Teletubbies — see the full set and the stack.',
     items: [['doll-50', 'Set'], ['doll-47', 'Stack']],
   },
   {
     name: 'Minion Set',
+    sub: 'Minions',
     description: 'Handmade crochet minions — see the pair, the stacked minions and the buddies.',
     items: [['doll-55', 'Pair'], ['doll-46', 'Stacked'], ['doll-58', 'Buddies']],
   },
@@ -159,6 +162,15 @@ const dollFiles = [
   ...dollRest.slice(6),
 ]
 const dollImages = dollFiles.map((d) => d.image)
+// Subsections inside the Dolls category (anything not listed is "Normal")
+export const dollSubcategories = ['All', 'Marvel', 'DC', 'Tom & Jerry', 'Anime', 'Paw Patrol', 'Teletubbies', 'Minions', 'Normal']
+const dollSubByKey = {
+  '20240509_202629': 'DC', 'doll-45': 'DC', 'doll-51': 'Marvel',
+  'doll-68': 'Tom & Jerry', 'doll-63': 'Tom & Jerry', 'doll-52': 'Tom & Jerry', 'doll-65': 'Tom & Jerry',
+  'doll-56': 'Anime', 'doll-59': 'Anime', 'doll-62': 'Anime', 'doll-64': 'Anime',
+  'doll-67': 'Minions',
+}
+const dollSubOf = (key) => dollSubByKey[key] ?? 'Normal'
 const dollGroupProducts = dollGroups.map((g) => {
   const variants = g.items.map(([k, label]) => ({ label, image: dollImageFor(k) }))
   return { ...g, variants }
@@ -258,9 +270,10 @@ export const products = [
     image: g.variants[0].image,
     variants: g.variants,
     variantLabel: 'View',
+    subcategory: g.sub,
   })),
   ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D')
-    .map((p, i) => ({ ...p, name: dollFiles[i].name ?? p.name })),
+    .map((p, i) => ({ ...p, name: dollFiles[i].name ?? p.name, subcategory: dollSubOf(dollFiles[i].key) })),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
   {
     id: _id++,

@@ -353,3 +353,37 @@
     padding: 0 0.7rem;
   }
 }
+
+/* Dolls subsections */
+.catalogue__subfilters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: -1.8rem 0 2.2rem;
+}
+
+.catalogue__sub-btn {
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-xl);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 2px solid var(--lavender, #C77DFF);
+  background: var(--white);
+  color: #7b2fbe;
+  transition: var(--transition);
+}
+
+.catalogue__sub-btn:hover,
+.catalogue__sub-btn.active {
+  background: var(--lavender-pastel, #F5E8FF);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.catalogue__sub-btn.active {
+  background: #7b2fbe;
+  color: #fff;
+}

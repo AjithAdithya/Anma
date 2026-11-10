@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { trackEvent } from '../analytics'
-import { products, categories } from '../data/products'
+import { products, categories, dollSubcategories } from '../data/products'
 import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
 import '../styles/Catalogue.css'
@@ -20,6 +20,7 @@ export default function Catalogue() {
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [sortBy, setSortBy] = useState('default')
   const [page, setPage] = useState(1)
+  const [subCategory, setSubCategory] = useState('All')
 
   // Open product from ?item=ID on page load
   useEffect(() => {
@@ -32,10 +33,11 @@ export default function Catalogue() {
   }, [])
 
   // Reset to page 1 whenever filter or sort changes
-  useEffect(() => { setPage(1) }, [activeCategory, sortBy])
+  useEffect(() => { setPage(1) }, [activeCategory, sortBy, subCategory])
 
   const handleCategoryChange = (cat) => {
     setActiveCategory(cat)
+    setSubCategory('All')
     trackEvent('category_filtered', { category: cat })
   }
 
@@ -65,8 +67,11 @@ export default function Catalogue() {
 
   const filtered   = activeCategory === 'All'
     ? products
-    : products.filter((p) => p.category === activeCategory)
-  const sorted     = sortProducts(filtered, sortBy)
+    : products.filter((p) =>
+        p.category === activeCategory &&
+        (activeCategory !== 'Dolls' || subCategory === 'All' || p.subcategory === subCategory)
+      )
+  const sorted    = sortProducts(filtered, sortBy)
   const totalPages = Math.ceil(sorted.length / PAGE_SIZE)
   const paginated  = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
   const rangeStart = (page - 1) * PAGE_SIZE + 1
@@ -117,6 +122,22 @@ export default function Catalogue() {
           </button>
         ))}
       </div>
+
+      {/* Dolls subsections */}
+      {activeCategory === 'Dolls' && (
+        <div className="catalogue__subfilters" role="group" aria-label="Filter dolls by type">
+          {dollSubcategories.map((sub) => (
+            <button
+              key={sub}
+              className={`catalogue__sub-btn${subCategory === sub ? ' active' : ''}`}
+              onClick={() => { setSubCategory(sub); trackEvent('doll_subcategory_filtered', { subcategory: sub }) }}
+              aria-pressed={subCategory === sub}
+            >
+              {sub}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Controls: count + sort */}
       <div className="catalogue__controls">
