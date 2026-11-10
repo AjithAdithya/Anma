@@ -111,20 +111,46 @@ const dollNames = {
   'doll-61': 'Sadness Doll',
   'doll-62': 'Gojo Satoru Doll',
   'doll-63': 'Tom Cat Doll',
-  'doll-64': 'Purple Dress Anime Doll',
+  'doll-64': 'Choro Doll',
   'doll-65': 'Tom & Jerry Set',
   'doll-66': 'Squirrel with Acorn',
   'doll-67': 'Mini Minion',
 }
-const dollFiles = Object.entries(
+const dollAll = Object.entries(
   import.meta.glob('../assets/Dolls/*.{jpg,png}', { eager: true, import: 'default' })
 )
+const dollImageFor = (key) => dollAll.find(([path]) => path.includes(key + '.'))?.[1]
+// Dolls with several photos are grouped into one product with a photo picker
+const dollGroups = [
+  {
+    name: 'Minion Set',
+    description: 'Handmade crochet minions — see the pair, the stacked minions and the buddies.',
+    items: [['doll-55', 'Pair'], ['doll-46', 'Stacked'], ['doll-58', 'Buddies']],
+  },
+  {
+    name: 'Marshall Fire Pup Set',
+    description: 'Handmade crochet Marshall fire pup — see the straight pose, side pose and duo.',
+    items: [['doll-41', 'Straight'], ['doll-57', 'Side'], ['doll-42', 'Duo']],
+  },
+  {
+    name: 'Teletubbies Set',
+    description: 'Handmade crochet Teletubbies — see the stack and the full set.',
+    items: [['doll-47', 'Stack'], ['doll-50', 'Set']],
+  },
+]
+const groupedDollKeys = dollGroups.flatMap((g) => g.items.map(([k]) => k))
+const hiddenDollKeys = ['doll-49'] // Luffy straw hat doll removed
+const dollFiles = dollAll
   .map(([path, image]) => {
-    const hit = Object.entries(dollNames).find(([k]) => path.includes(k + '.') )
-    return hit ? { image, name: hit[1] } : null
+    const hit = Object.entries(dollNames).find(([k]) => path.includes(k + '.'))
+    return hit ? { key: hit[0], image, name: hit[1] } : null
   })
-  .filter(Boolean)
+  .filter((d) => d && !groupedDollKeys.includes(d.key) && !hiddenDollKeys.includes(d.key))
 const dollImages = dollFiles.map((d) => d.image)
+const dollGroupProducts = dollGroups.map((g) => {
+  const variants = g.items.map(([k, label]) => ({ label, image: dollImageFor(k) }))
+  return { ...g, variants }
+})
 // Only the new earring-*.png photos are shown (old .jpg files are ignored)
 const earringFiles = Object.entries(
   import.meta.glob('../assets/Earrings/*.png', { eager: true, import: 'default' })
@@ -210,6 +236,18 @@ export const products = [
     .map((p, i) => ({ ...p, name: beanieFiles[i].name ?? p.name })),
   ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D')
     .map((p, i) => ({ ...p, name: dollFiles[i].name ?? p.name })),
+  ...dollGroupProducts.map((g) => ({
+    id: _id++,
+    name: g.name,
+    category: 'Dolls',
+    price: 450,
+    description: g.description,
+    bgColor: '#FFF8DC',
+    accentColor: '#FFD93D',
+    image: g.variants[0].image,
+    variants: g.variants,
+    variantLabel: 'View',
+  })),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
   {
     id: _id++,

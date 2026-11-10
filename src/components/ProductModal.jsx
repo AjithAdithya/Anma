@@ -96,7 +96,7 @@ export default function ProductModal({ product, onClose }) {
 
           {product.variants?.length > 0 && (
             <div className="modal__variants">
-              <span className="modal__variants-label">Colour: <strong>{activeVariant.label}</strong></span>
+              <span className="modal__variants-label">{product.variantLabel || 'Colour'}: <strong>{activeVariant.label}</strong></span>
               <div className="modal__variants-list">
                 {product.variants.map((v, i) => (
                   <button
