@@ -115,6 +115,9 @@ const dollNames = {
   'doll-65': 'Tom & Jerry Set',
   'doll-66': 'Squirrel with Acorn',
   'doll-67': 'Mini Minion',
+  'doll-68': 'Tom',
+  'doll-69': 'Hug Doll',
+  'doll-70': 'Noddy',
 }
 const dollAll = Object.entries(
   import.meta.glob('../assets/Dolls/*.{jpg,png}', { eager: true, import: 'default' })
@@ -122,11 +125,6 @@ const dollAll = Object.entries(
 const dollImageFor = (key) => dollAll.find(([path]) => path.includes(key + '.'))?.[1]
 // Dolls with several photos are grouped into one product with a photo picker
 const dollGroups = [
-  {
-    name: 'Minion Set',
-    description: 'Handmade crochet minions — see the pair, the stacked minions and the buddies.',
-    items: [['doll-55', 'Pair'], ['doll-46', 'Stacked'], ['doll-58', 'Buddies']],
-  },
   {
     name: 'Marshall Fire Pup Set',
     description: 'Handmade crochet Marshall fire pup — see the straight pose, side pose and duo.',
@@ -137,6 +135,11 @@ const dollGroups = [
     description: 'Handmade crochet Teletubbies — see the full set and the stack.',
     items: [['doll-50', 'Set'], ['doll-47', 'Stack']],
   },
+  {
+    name: 'Minion Set',
+    description: 'Handmade crochet minions — see the pair, the stacked minions and the buddies.',
+    items: [['doll-55', 'Pair'], ['doll-46', 'Stacked'], ['doll-58', 'Buddies']],
+  },
 ]
 const groupedDollKeys = dollGroups.flatMap((g) => g.items.map(([k]) => k))
 const hiddenDollKeys = ['doll-49'] // Luffy straw hat doll removed
@@ -146,6 +149,7 @@ const dollFiles = dollAll
     return hit ? { key: hit[0], image, name: hit[1] } : null
   })
   .filter((d) => d && !groupedDollKeys.includes(d.key) && !hiddenDollKeys.includes(d.key))
+  .sort((a, b) => (b.key === 'doll-65') - (a.key === 'doll-65')) // Tom & Jerry Set first
 const dollImages = dollFiles.map((d) => d.image)
 const dollGroupProducts = dollGroups.map((g) => {
   const variants = g.items.map(([k, label]) => ({ label, image: dollImageFor(k) }))
@@ -234,8 +238,7 @@ export const products = [
   },
   ...expand('Crochet Beanie',     beanieImages,    500,  'Cosy handmade beanie in a range of colours. Warm, soft, and made with love.',          '#E8F4FF', '#4D96FF')
     .map((p, i) => ({ ...p, name: beanieFiles[i].name ?? p.name })),
-  ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D')
-    .map((p, i) => ({ ...p, name: dollFiles[i].name ?? p.name })),
+  // Sets first (Marshall, Teletubbies, Minion), then Tom & Jerry Set, then the rest
   ...dollGroupProducts.map((g) => ({
     id: _id++,
     name: g.name,
@@ -248,6 +251,8 @@ export const products = [
     variants: g.variants,
     variantLabel: 'View',
   })),
+  ...expand('Dolls',              dollImages,      450,  'Charming hand-crocheted doll. A perfect gift or keepsake.',                            '#FFF8DC', '#FFD93D')
+    .map((p, i) => ({ ...p, name: dollFiles[i].name ?? p.name })),
   ...expand('Earrings',           earringImages,   250,  'Lightweight crochet earrings — a unique handmade accessory for every outfit.',         '#FFE8E8', '#FF6B6B'),
   {
     id: _id++,
