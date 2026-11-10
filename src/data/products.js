@@ -143,13 +143,21 @@ const dollGroups = [
 ]
 const groupedDollKeys = dollGroups.flatMap((g) => g.items.map(([k]) => k))
 const hiddenDollKeys = ['doll-49'] // Luffy straw hat doll removed
-const dollFiles = dollAll
+const dollFiles0 = dollAll
   .map(([path, image]) => {
     const hit = Object.entries(dollNames).find(([k]) => path.includes(k + '.'))
     return hit ? { key: hit[0], image, name: hit[1] } : null
   })
   .filter((d) => d && !groupedDollKeys.includes(d.key) && !hiddenDollKeys.includes(d.key))
-  .sort((a, b) => (b.key === 'doll-65') - (a.key === 'doll-65')) // Tom & Jerry Set first
+const dollPage2Keys = ['doll-68', 'doll-52', 'doll-63', 'doll-45'] // Tom, Jerry, Tom Cat, Batman
+const dollRest = dollFiles0.filter((d) => d.key !== 'doll-65' && !dollPage2Keys.includes(d.key))
+// Page size is 10: 3 sets + Tom & Jerry Set + 6 others on page 1, then page 2 starts with the four above
+const dollFiles = [
+  ...dollFiles0.filter((d) => d.key === 'doll-65'),
+  ...dollRest.slice(0, 6),
+  ...dollPage2Keys.map((k) => dollFiles0.find((d) => d.key === k)).filter(Boolean),
+  ...dollRest.slice(6),
+]
 const dollImages = dollFiles.map((d) => d.image)
 const dollGroupProducts = dollGroups.map((g) => {
   const variants = g.items.map(([k, label]) => ({ label, image: dollImageFor(k) }))
