@@ -12,7 +12,11 @@ const slingVariants = bagFiles
     const key = Object.keys(slingColours).find((c) => path.includes(`-${c}-`))
     return { label: slingLabels[key], color: slingColours[key], image }
   })
-const bagNames = { 'brown-flower-bucket': 'Brown Motif Bucket Bag' }
+const bagNames = {
+  'brown-flower-bucket': 'Brown Motif Bucket Bag',
+  'sunflower-sling': 'Sunflower Sling Bag',
+  'pink-yellow-flap': 'Daisy Sling Bag',
+}
 const bagImages = bagFiles
   .filter(([path]) => !path.includes('-flap-crossbody'))
   .map(([path, image]) => {
