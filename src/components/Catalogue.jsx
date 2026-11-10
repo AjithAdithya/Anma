@@ -65,7 +65,10 @@ export default function Catalogue() {
 
   const filtered   = activeCategory === 'All'
     ? products
-    : products.filter((p) => p.category === activeCategory)
+    : products.filter((p) =>
+        p.category === activeCategory ||
+        (activeCategory === 'Clips' && p.category === 'Claw Clips')
+      )
   const sorted     = sortProducts(filtered, sortBy)
   const totalPages = Math.ceil(sorted.length / PAGE_SIZE)
   const paginated  = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
