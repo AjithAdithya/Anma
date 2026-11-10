@@ -134,8 +134,8 @@ const dollGroups = [
   },
   {
     name: 'Teletubbies Set',
-    description: 'Handmade crochet Teletubbies — see the stack and the full set.',
-    items: [['doll-47', 'Stack'], ['doll-50', 'Set']],
+    description: 'Handmade crochet Teletubbies — see the full set and the stack.',
+    items: [['doll-50', 'Set'], ['doll-47', 'Stack']],
   },
 ]
 const groupedDollKeys = dollGroups.flatMap((g) => g.items.map(([k]) => k))
