@@ -26,9 +26,18 @@ const bagImages = bagFiles
 const bangleImages = Object.values(
   import.meta.glob('../assets/Bangles/*.{jpg,png,webp}', { eager: true, import: 'default' })
 )
-const chainImages = Object.values(
+const chainNames = {
+  'pearl-blossom-set': 'Pearl Blossom Choker Set',
+  'rose-pendant': 'Rose Pendant Chain',
+  'rose-set': 'Rose Necklace & Earrings Set',
+}
+const chainFiles = Object.entries(
   import.meta.glob('../assets/Chains/*.{jpg,png,webp}', { eager: true, import: 'default' })
-)
+).map(([path, image]) => {
+  const hit = Object.entries(chainNames).find(([k]) => path.includes(`chain-${k}`))
+  return { image, name: hit ? hit[1] : undefined }
+})
+const chainImages = chainFiles.map((c) => c.image)
 // Only the new clip-*.png photos are shown (old .jpg files are ignored)
 const clipNames = {
   'daisy-snap': 'Daisy Snap Clips',
@@ -130,7 +139,8 @@ export const products = [
     variants: slingVariants,
   },
   ...expand('Bangles',           bangleImages,    300,  'Handmade crochet bangles — colourful, comfy, and perfect for stacking.',                '#FFE8F4', '#FF6BA8'),
-  ...expand('Chains',             chainImages,     350,  'Delicate handmade crochet chain — a unique accessory to dress up any outfit.',          '#FFF8DC', '#FFD93D'),
+  ...expand('Chains',             chainImages,     350,  'Delicate handmade crochet chain — a unique accessory to dress up any outfit.',          '#FFF8DC', '#FFD93D')
+    .map((p, i) => ({ ...p, name: chainFiles[i].name ?? p.name })),
   ...expand('Clips',             clipImages,      200,  'Adorable crochet hair clip to add a handmade charm to any hairstyle.',                '#F5E8FF', '#C77DFF')
     .map((p, i) => ({ ...p, name: clipFiles[i].name ?? p.name })),
   {
