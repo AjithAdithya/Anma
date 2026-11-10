@@ -65,10 +65,7 @@ export default function Catalogue() {
 
   const filtered   = activeCategory === 'All'
     ? products
-    : products.filter((p) =>
-        p.category === activeCategory ||
-        (activeCategory === 'Clips' && p.category === 'Claw Clips')
-      )
+    : products.filter((p) => p.category === activeCategory)
   const sorted     = sortProducts(filtered, sortBy)
   const totalPages = Math.ceil(sorted.length / PAGE_SIZE)
   const paginated  = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
@@ -107,7 +104,6 @@ export default function Catalogue() {
             {cat === 'Bangles' && '📿 '}
             {cat === 'Chains' && '⛓️ '}
             {cat === 'Clips' && '🎀 '}
-            {cat === 'Claw Clips' && '🦋 '}
             {cat === 'Crochet Beanie' && '🧢 '}
             {cat === 'Dolls' && '🧸 '}
             {cat === 'Earrings' && '💎 '}

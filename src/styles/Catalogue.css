@@ -96,8 +96,6 @@
 }
 
 .catalogue__filter-btn[data-cat="Clips"].active,
-.catalogue__filter-btn[data-cat="Claw Clips"].active,
-.catalogue__filter-btn[data-cat="Claw Clips"]:hover,
 .catalogue__filter-btn[data-cat="Clips"]:hover {
   background: var(--lavender-pastel);
   border-color: var(--lavender);

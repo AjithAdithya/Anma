@@ -136,7 +136,7 @@ export const products = [
   {
     id: _id++,
     name: 'Daisy Claw Clips',
-    category: 'Claw Clips',
+    category: 'Clips',
     price: 250,
     description: 'Handmade crochet daisy claw clips, available in pink, lavender, baby pink and blue.',
     bgColor: '#F5E8FF',
@@ -183,7 +183,6 @@ export const categories = [
   'Bangles',
   'Chains',
   'Clips',
-  'Claw Clips',
   'Crochet Beanie',
   'Dolls',
   'Earrings',
