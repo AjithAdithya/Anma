@@ -163,12 +163,13 @@ const dollFiles = [
 ]
 const dollImages = dollFiles.map((d) => d.image)
 // Subsections inside the Dolls category (anything not listed is "Normal")
-export const dollSubcategories = ['All', 'Marvel', 'DC', 'Tom & Jerry', 'Anime', 'Paw Patrol', 'Teletubbies', 'Minions', 'Normal']
+export const dollSubcategories = ['All', 'Marvel', 'DC', 'Tom & Jerry', 'Anime', 'Inside Out', 'Paw Patrol', 'Teletubbies', 'Minions', 'Normal']
 const dollSubByKey = {
   '20240509_202629': 'DC', 'doll-45': 'DC', 'doll-51': 'Marvel',
   'doll-68': 'Tom & Jerry', 'doll-63': 'Tom & Jerry', 'doll-52': 'Tom & Jerry', 'doll-65': 'Tom & Jerry',
   'doll-56': 'Anime', 'doll-59': 'Anime', 'doll-62': 'Anime', 'doll-64': 'Anime',
   'doll-67': 'Minions',
+  'doll-61': 'Inside Out',
 }
 const dollSubOf = (key) => dollSubByKey[key] ?? 'Normal'
 const dollGroupProducts = dollGroups.map((g) => {
