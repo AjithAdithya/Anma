@@ -129,6 +129,7 @@ const dollNames = {
   'doll-68': 'Tom',
   'doll-69': 'Hug Doll',
   'doll-70': 'Noddy',
+  'doll-109': 'Heart Teddy',
 }
 const dollAll = Object.entries(
   import.meta.glob('../assets/Dolls/*.{jpg,png}', { eager: true, import: 'default' })
@@ -224,59 +225,52 @@ const earringSingles = earringFiles
   })
 const earringImages = earringSingles.map((e) => e.image)
 // Flower Pots: old page-4 photos (items 31-39 of the .jpg files) + new pot-NN.png photos
-const flowerPotImages = Object.values(
+const oldPotFiles = Object.entries(
   import.meta.glob('../assets/Flower Pots/*.jpg', { eager: true, import: 'default' })
 ).slice(30)
+const oldPotImg = (key) => oldPotFiles.find(([path]) => path.includes(key))?.[1]
 const potAll = Object.entries(
   import.meta.glob('../assets/Flower Pots/*.png', { eager: true, import: 'default' })
 )
 const potImg = (n) => potAll.find(([path]) => path.includes(`pot-${n}.`))?.[1]
 const potVariants = (items) => items.map(([n, label, fit]) => ({ label, image: potImg(n), ...(fit ? { fit } : {}) }))
-// Sets with a colour/photo picker
-const potSets = [
-  {
-    name: 'Tulip Pot Set',
-    description: 'Handmade crochet tulip pots in many colours — pick your favourite.',
-    variants: potVariants([
-      [113, 'Pink'],
-      [77, 'Royal Blue'], [87, 'Sky Blue'], [86, 'Yellow'],
-      [112, 'White'], [103, 'Lavender'], [95, 'Peach'], [96, 'Light Peach'],
-    ]),
-  },
-  {
-    name: 'Daisy Pot Set',
-    description: 'Handmade crochet daisy pots in red, purple, pink and white.',
-    variants: potVariants([[76, 'Red'], [90, 'Purple'], [101, 'Pink'], [121, 'White']]),
-  },
-  {
-    name: 'Puffy Flower Pot Set',
-    description: 'Puffy crochet flower pots — pick your colour.',
-    variants: potVariants([
-      [118, 'Purple', 'contain'], [119, 'Yellow', 'contain'], [117, 'Plum', 'contain'], [115, 'Light Pink', 'contain'], [116, 'Pink', 'contain'], [120, 'Red'],
-    ]),
-  },
-  {
-    name: 'Smiley Sunflower & Daisy Pot',
-    description: 'A cheerful smiling pot with a sunflower and a daisy.',
-    variants: potVariants([[73, 'Light Pot'], [84, 'Tan Pot']]),
-    variantLabel: 'View',
-  },
-]
-const potNames = {
-  74: 'Sunflower Grey Pot', 110: 'Pale Sunflower Grey Pot', 100: 'Sunflower Brown Pot',
-  99: 'Sunflower Keychain Pots', 108: 'Hanging Sunflower Pot',
-  91: 'Pink Lily Pot', 97: 'Blush Lily Pot', 93: 'Yellow Lily Pot',
-  82: 'Red Heart Pot with Blue Ribbon', 85: 'Red Heart Plant Pot', 89: 'Blue Heart Pot',
-  83: 'Rose Keychain Pots', 102: 'Red Rose Pot',
-  104: 'Mixed Flower Bouquet Pot', 88: 'Pastel Daisy Bouquet Pot', 92: 'Mini Daisy Pot Set',
-  106: 'Puffy Flower Pot Row',
-  78: 'Triple Tulip Pot', 94: 'White & Purple Tulip Pot', 114: 'Tulip Bouquet Pot with Hearts',
-  80: 'Pink Petal Tulip Pot', 105: 'Radish Pot with Blue Tulip',
-  107: 'Cactus Pot', 109: 'Heart Teddy',
-}
-const potSingles = Object.entries(potNames)
-  .map(([n, name]) => ({ image: potImg(n), name }))
-  .filter((p) => p.image)
+// Each pot card: single photo (image) or a set (variants with a picker). Array order = display order.
+const potSet = (name, description, variants, variantLabel) => ({ name, description, variants, variantLabel })
+const pot = (n, name, fit) => ({ name, image: potImg(n), fit })
+const potCards = [
+  // ---- page 1 ----
+  potSet('Tulip Pot Set', 'Handmade crochet tulip pots in many colours — pick your favourite.',
+    potVariants([[113, 'Pink'], [77, 'Royal Blue'], [87, 'Sky Blue'], [86, 'Yellow'], [112, 'White'], [103, 'Lavender'], [95, 'Peach'], [96, 'Light Peach']])),
+  potSet('Daisy Pot Set', 'Handmade crochet daisy pots in white, red, purple and pink.',
+    potVariants([[121, 'White'], [76, 'Red'], [90, 'Purple'], [101, 'Pink']])),
+  potSet('Puffy Flower Pot Set', 'Puffy crochet flower pots — pick your colour.',
+    potVariants([[118, 'Purple', 'contain'], [119, 'Yellow', 'contain'], [117, 'Plum', 'contain'], [115, 'Light Pink', 'contain'], [116, 'Pink', 'contain'], [120, 'Red']])),
+  potSet('Smiley Sunflower & Daisy Pot', 'A cheerful smiling pot with a sunflower and a daisy.',
+    potVariants([[73, 'Light Pot'], [84, 'Tan Pot']]), 'View'),
+  pot(106, 'Puffy Flower Pot Row'),
+  pot(100, 'Sunflower Brown Pot'),
+  pot(102, 'Red Rose Pot'),
+  pot(107, 'Cactus Pot'),
+  { name: 'Egg Friends Pot', image: oldPotImg('IMG-20260102-WA0011') },
+  pot(85, 'Red Heart Plant Pot', 'contain'),
+  // ---- rest ----
+  pot(74, 'Sunflower Grey Pot'), pot(110, 'Pale Sunflower Grey Pot'),
+  pot(99, 'Sunflower Keychain Pots'), pot(108, 'Hanging Sunflower Pot'),
+  pot(91, 'Pink Lily Pot'), pot(97, 'Blush Lily Pot'), pot(93, 'Yellow Lily Pot'),
+  pot(82, 'Red Heart Pot with Blue Ribbon', 'contain'), pot(89, 'Blue Heart Pot'),
+  pot(83, 'Rose Keychain Pots'),
+  pot(104, 'Mixed Flower Bouquet Pot'), pot(88, 'Pastel Daisy Bouquet Pot'), pot(92, 'Mini Daisy Pot Set'),
+  pot(78, 'Triple Tulip Pot'), pot(94, 'White & Purple Tulip Pot'), pot(114, 'Tulip Bouquet Pot with Hearts'),
+  pot(80, 'Pink Petal Tulip Pot'), pot(105, 'Radish Pot with Blue Tulip'),
+  potSet('Lotus Pot Set', 'Handmade crochet lotus pots — see every angle.',
+    [['20260315_214117', 'Photo 1'], ['20260316_092751', 'Photo 2'], ['20260316_092829', 'Photo 3']]
+      .map(([k, label]) => ({ label, image: oldPotImg(k) })), 'View'),
+  { name: 'Flower Pot', image: oldPotImg('20260107_185836') },
+  { name: 'Rose Pot Row', image: oldPotImg('20260109_224608') },
+  { name: 'Puffy Flower Pots Row', image: oldPotImg('20260110_193014') },
+  { name: 'Pink Puffy Flower Pots', image: oldPotImg('20260206_224434') },
+  { name: 'Rose Pot', image: oldPotImg('20260307_155413') },
+].filter((c) => c.image || c.variants)
 const bouquetImages = Object.values(
   import.meta.glob('../assets/Flowers & Bouquets/*.{jpg,png}', { eager: true, import: 'default' })
 )
@@ -403,30 +397,19 @@ export const products = [
     image: flowerVariants[0]?.image,
     variants: flowerVariants,
   },
-  ...potSets.map((s) => ({
+  ...potCards.map((c) => ({
     id: _id++,
-    name: s.name,
+    name: c.name,
     category: 'Flower Pots',
     price: 700,
-    description: s.description,
+    description: c.description || 'Handmade crochet flower pot. Adds a cosy, handmade touch to your space.',
     bgColor: '#E8FFE8',
     accentColor: '#6BCB77',
-    image: s.variants[0].image,
-    imageFit: s.variants[0].fit,
-    variants: s.variants,
-    ...(s.variantLabel ? { variantLabel: s.variantLabel } : {}),
+    image: c.variants ? c.variants[0].image : c.image,
+    imageFit: c.variants ? c.variants[0].fit : c.fit,
+    ...(c.variants ? { variants: c.variants } : {}),
+    ...(c.variantLabel ? { variantLabel: c.variantLabel } : {}),
   })),
-  ...potSingles.map((p) => ({
-    id: _id++,
-    name: p.name,
-    category: 'Flower Pots',
-    price: 700,
-    description: 'Handmade crochet flower pot. Adds a cosy, handmade touch to your space.',
-    bgColor: '#E8FFE8',
-    accentColor: '#6BCB77',
-    image: p.image,
-  })),
-  ...expand('Flower Pots',       flowerPotImages, 700,  'Crochet flower pot cover. Adds a cosy, handmade touch to your space.',                 '#E8FFE8', '#6BCB77'),
   ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8'),
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
   ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF'),
