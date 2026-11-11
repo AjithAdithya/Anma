@@ -247,7 +247,6 @@ const potCards = [
     potVariants([[118, 'Purple', 'contain'], [119, 'Yellow', 'contain'], [117, 'Plum', 'contain'], [115, 'Light Pink', 'contain'], [116, 'Pink', 'contain'], [120, 'Red']])),
   potSet('Smiley Sunflower & Daisy Pot', 'A cheerful smiling pot with a sunflower and a daisy.',
     potVariants([[73, 'Light Pot'], [84, 'Tan Pot']]), 'View'),
-  pot(106, 'Puffy Flower Pot Row'),
   pot(100, 'Sunflower Brown Pot'),
   pot(102, 'Red Rose Pot'),
   pot(107, 'Cactus Pot'),
@@ -256,7 +255,8 @@ const potCards = [
   // ---- rest ----
   pot(74, 'Sunflower Grey Pot'), pot(110, 'Pale Sunflower Grey Pot'),
   pot(99, 'Sunflower Keychain Pots'), pot(108, 'Hanging Sunflower Pot'),
-  pot(91, 'Pink Lily Pot'), pot(97, 'Blush Lily Pot'), pot(93, 'Yellow Lily Pot'),
+  potSet('Lily Pot Set', 'Handmade crochet lily pots in pink, yellow and red — pick your colour.',
+    potVariants([[91, 'Pink'], [97, 'Light Pink'], [93, 'Yellow'], [122, 'Red']])),
   pot(82, 'Red Heart Pot with Blue Ribbon', 'contain'), pot(89, 'Blue Heart Pot'),
   pot(83, 'Rose Keychain Pots'),
   pot(104, 'Mixed Flower Bouquet Pot'), pot(88, 'Pastel Daisy Bouquet Pot'), pot(92, 'Mini Daisy Pot Set'),
@@ -270,6 +270,7 @@ const potCards = [
   { name: 'Puffy Flower Pots Row', image: oldPotImg('20260110_193014') },
   { name: 'Pink Puffy Flower Pots', image: oldPotImg('20260206_224434') },
   { name: 'Rose Pot', image: oldPotImg('20260307_155413') },
+  pot(106, 'Puffy Flower Pot Row'),
 ].filter((c) => c.image || c.variants)
 const bouquetImages = Object.values(
   import.meta.glob('../assets/Flowers & Bouquets/*.{jpg,png}', { eager: true, import: 'default' })
