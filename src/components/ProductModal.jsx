@@ -78,7 +78,7 @@ export default function ProductModal({ product, onClose }) {
         {/* Image */}
         <div className="modal__image-wrap">
           {(activeVariant?.image || product.image)
-            ? <img src={activeVariant?.image || product.image} alt={product.name} className="modal__image" />
+            ? <img src={activeVariant?.image || product.image} alt={product.name} className="modal__image" style={(activeVariant ? activeVariant.fit : product.imageFit) ? { objectFit: activeVariant ? activeVariant.fit : product.imageFit } : undefined} />
             : <div className="modal__image-placeholder">🧶</div>
           }
         </div>
@@ -106,7 +106,7 @@ export default function ProductModal({ product, onClose }) {
                     aria-label={v.label}
                     aria-pressed={i === variantIndex}
                   >
-                    <img src={v.image} alt={v.label} />
+                    <img src={v.image} alt={v.label} style={v.fit ? { objectFit: v.fit } : undefined} />
                   </button>
                 ))}
               </div>

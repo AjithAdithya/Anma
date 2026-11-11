@@ -231,28 +231,28 @@ const potAll = Object.entries(
   import.meta.glob('../assets/Flower Pots/*.png', { eager: true, import: 'default' })
 )
 const potImg = (n) => potAll.find(([path]) => path.includes(`pot-${n}.`))?.[1]
-const potVariants = (items) => items.map(([n, label]) => ({ label, image: potImg(n) }))
+const potVariants = (items) => items.map(([n, label, fit]) => ({ label, image: potImg(n), ...(fit ? { fit } : {}) }))
 // Sets with a colour/photo picker
 const potSets = [
   {
     name: 'Tulip Pot Set',
     description: 'Handmade crochet tulip pots in many colours — pick your favourite.',
     variants: potVariants([
-      [113, 'Pink'], [98, 'Pink (Cream Pot)'], [79, 'Pink (Jute Pot)'],
-      [77, 'Royal Blue'], [87, 'Sky Blue'], [86, 'Yellow'], [111, 'Light Yellow'],
+      [113, 'Pink'],
+      [77, 'Royal Blue'], [87, 'Sky Blue'], [86, 'Yellow'],
       [112, 'White'], [103, 'Lavender'], [95, 'Peach'], [96, 'Light Peach'],
     ]),
   },
   {
     name: 'Daisy Pot Set',
-    description: 'Handmade crochet daisy pots in red, purple and pink.',
-    variants: potVariants([[76, 'Red'], [90, 'Purple'], [101, 'Pink']]),
+    description: 'Handmade crochet daisy pots in red, purple, pink and white.',
+    variants: potVariants([[76, 'Red'], [90, 'Purple'], [101, 'Pink'], [121, 'White']]),
   },
   {
     name: 'Puffy Flower Pot Set',
-    description: 'Puffy crochet flower pots — see the whole row or pick a colour.',
+    description: 'Puffy crochet flower pots — pick your colour.',
     variants: potVariants([
-      [106, 'All'], [118, 'Purple'], [119, 'Yellow'], [117, 'Plum'], [115, 'Light Pink'], [116, 'Pink'],
+      [118, 'Purple', 'contain'], [119, 'Yellow', 'contain'], [117, 'Plum', 'contain'], [115, 'Light Pink', 'contain'], [116, 'Pink', 'contain'], [120, 'Red'],
     ]),
   },
   {
@@ -269,6 +269,7 @@ const potNames = {
   82: 'Red Heart Pot with Blue Ribbon', 85: 'Red Heart Plant Pot', 89: 'Blue Heart Pot',
   83: 'Rose Keychain Pots', 102: 'Red Rose Pot',
   104: 'Mixed Flower Bouquet Pot', 88: 'Pastel Daisy Bouquet Pot', 92: 'Mini Daisy Pot Set',
+  106: 'Puffy Flower Pot Row',
   78: 'Triple Tulip Pot', 94: 'White & Purple Tulip Pot', 114: 'Tulip Bouquet Pot with Hearts',
   80: 'Pink Petal Tulip Pot', 105: 'Radish Pot with Blue Tulip',
   107: 'Cactus Pot', 109: 'Heart Teddy',
@@ -411,6 +412,7 @@ export const products = [
     bgColor: '#E8FFE8',
     accentColor: '#6BCB77',
     image: s.variants[0].image,
+    imageFit: s.variants[0].fit,
     variants: s.variants,
     ...(s.variantLabel ? { variantLabel: s.variantLabel } : {}),
   })),
