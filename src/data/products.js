@@ -265,10 +265,6 @@ const potCards = [
   potSet('Lotus Pot Set', 'Handmade crochet lotus pots — see every angle.',
     [['20260315_214117', 'Photo 1'], ['20260316_092751', 'Photo 2'], ['20260316_092829', 'Photo 3']]
       .map(([k, label]) => ({ label, image: oldPotImg(k) })), 'View'),
-  { name: 'Flower Pot', image: oldPotImg('20260107_185836') },
-  { name: 'Rose Pot Row', image: oldPotImg('20260109_224608') },
-  { name: 'Puffy Flower Pots Row', image: oldPotImg('20260110_193014') },
-  { name: 'Pink Puffy Flower Pots', image: oldPotImg('20260206_224434') },
   { name: 'Rose Pot', image: oldPotImg('20260307_155413') },
   pot(106, 'Puffy Flower Pot Row'),
 ].filter((c) => c.image || c.variants)
