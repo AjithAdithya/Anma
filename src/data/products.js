@@ -347,7 +347,8 @@ const glassNames = {
 }
 const glassFiles = Object.entries(
   import.meta.glob('../assets/Glass Holders/*.png', { eager: true, import: 'default' })
-).map(([path, image]) => {
+).filter(([path]) => !path.endsWith('glass-rainbow-sling.png')) // Rainbow Sling Glass Holder removed
+  .map(([path, image]) => {
   const hit = Object.entries(glassNames).find(([k]) => path.endsWith(`glass-${k}.png`))
   return { image, name: hit ? hit[1] : undefined }
 })
