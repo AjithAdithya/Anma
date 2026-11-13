@@ -159,3 +159,7 @@
   .product-card__btn-short { display: none; }
   .product-card__btn-icon  { display: inline; }
 }
+
+/* Photos shown whole (contain): no hover zoom so nothing gets cropped */
+.product-card__img--contain { background: var(--off-white, #fff8f0); padding: 4px; box-sizing: border-box; }
+.product-card:hover .product-card__img--contain { transform: none; }

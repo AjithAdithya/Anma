@@ -14,7 +14,7 @@ export default function ProductCard({ product, onSelect }) {
       {/* Product image */}
       <div className="product-card__image" aria-label={name}>
         {image
-          ? <img src={image} alt={name} className="product-card__img" loading="lazy" decoding="async" style={product.imageFit ? { objectFit: product.imageFit } : undefined} />
+          ? <img src={image} alt={name} className={`product-card__img${product.imageFit === 'contain' ? ' product-card__img--contain' : ''}`} loading="lazy" decoding="async" style={product.imageFit ? { objectFit: product.imageFit } : undefined} />
           : <span className="product-card__img-placeholder">🧶</span>
         }
       </div>
