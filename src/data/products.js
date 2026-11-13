@@ -95,42 +95,26 @@ const beanieFiles = Object.entries(
   return { image, name: hit ? hit[1] : undefined }
 })
 const beanieImages = beanieFiles.map((b) => b.image)
-// Dolls shown: the old parrot + Batman photos and the new doll-NN.png photos
+// Dolls: only the parrot (old photo) + the doll-129..188.png photos are shown
 const dollNames = {
   '20240324_143112': 'Parrot',
-  '20240509_202629': 'Classic Batman',
-  'doll-40': 'Penguin with Heart',
-  'doll-41': 'Marshall Fire Pup',
-  'doll-42': 'Marshall Fire Pup Duo',
-  'doll-43': 'Bunny Girl Doll',
-  'doll-44': 'Kung Fu Panda',
-  'doll-45': 'Batman Doll',
-  'doll-46': 'Stacked Minions',
-  'doll-47': 'Teletubbies Stack',
-  'doll-48': 'Dora Doll',
-  'doll-49': 'Luffy Straw Hat Doll',
-  'doll-50': 'Teletubbies Set',
-  'doll-51': 'Captain America',
-  'doll-52': 'Jerry Mouse',
-  'doll-53': 'Flying Ace Snoopy',
-  'doll-54': 'Chhota Bheem',
-  'doll-55': 'Minion Pair',
-  'doll-56': 'Luffy Doll',
-  'doll-57': 'Marshall Fire Pup Side Pose',
-  'doll-58': 'Minion Buddies',
-  'doll-59': 'Zoro Doll',
-  'doll-60': 'Pilot Doll',
-  'doll-61': 'Sadness Doll',
-  'doll-62': 'Gojo Satoru Doll',
-  'doll-63': 'Tom Cat Doll',
-  'doll-64': 'Choro Doll',
-  'doll-65': 'Tom & Jerry Set',
-  'doll-66': 'Squirrel with Acorn',
-  'doll-67': 'Mini Minion',
-  'doll-68': 'Tom',
-  'doll-69': 'Hug Doll',
-  'doll-70': 'Noddy',
-  'doll-109': 'Heart Teddy',
+  'doll-129': 'Penguin with Heart', 'doll-130': 'Pucca Doll', 'doll-132': 'Tom',
+  'doll-133': 'Batman Doll', 'doll-135': 'Bunny Girl Doll', 'doll-136': 'Teddy Bear Head',
+  'doll-137': 'Hug Doll', 'doll-138': 'Kung Fu Panda', 'doll-139': 'Little Fox',
+  'doll-140': 'Mario', 'doll-141': 'Pooh & Hello Kitty Pair', 'doll-142': 'Chibi Batman',
+  'doll-145': 'Harry Potter', 'doll-146': 'Shinchan Doll', 'doll-147': 'Deadpool (Back View)',
+  'doll-148': 'Winnie the Pooh', 'doll-149': 'Hello Kitty', 'doll-150': 'Dora Doll',
+  'doll-151': 'Blue Teddy Bear', 'doll-152': 'Blue Pikachu', 'doll-153': 'Luffy Doll',
+  'doll-155': 'Captain America', 'doll-156': 'Jerry', 'doll-157': 'Love Teddy Bear',
+  'doll-158': 'Jerry Keychain', 'doll-160': 'Itachi', 'doll-161': 'Blue Penguin',
+  'doll-162': 'Flying Ace Snoopy', 'doll-163': 'Chhota Bheem', 'doll-164': 'Horse in Basket',
+  'doll-166': 'SKZ Bunny Doll', 'doll-167': 'Luffy Straw Hat Doll', 'doll-169': 'Heart Teddy',
+  'doll-171': 'Deadpool', 'doll-172': 'Zoro Doll', 'doll-173': 'Pilot Doll',
+  'doll-174': 'Sadness Doll', 'doll-175': 'Singer Doll', 'doll-176': 'Itachi (Back View)',
+  'doll-177': 'Gojo Satoru Doll', 'doll-178': 'Tall Tom Doll', 'doll-179': 'Joy Doll',
+  'doll-180': 'Harry Potter (Back View)', 'doll-181': 'Noddy', 'doll-182': 'Purple Penguin',
+  'doll-183': 'Puppy Plush', 'doll-184': 'Choro Doll', 'doll-185': 'Blue Pikachu (Back View)',
+  'doll-186': 'Tom & Jerry Set', 'doll-187': 'Squirrel with Acorn', 'doll-188': 'Mini Minion',
 }
 const dollAll = Object.entries(
   import.meta.glob('../assets/Dolls/*.{jpg,png}', { eager: true, import: 'default' })
@@ -139,56 +123,49 @@ const dollImageFor = (key) => dollAll.find(([path]) => path.includes(key + '.'))
 // Dolls with several photos are grouped into one product with a photo picker
 const dollGroups = [
   {
-    name: 'Marshall Fire Pup Set',
-    sub: 'Paw Patrol',
-    description: 'Handmade crochet Marshall fire pup — see the straight pose, side pose and duo.',
-    items: [['doll-41', 'Straight'], ['doll-57', 'Side'], ['doll-42', 'Duo']],
+    name: 'Marshall Fire Pup Set', sub: 'Paw Patrol',
+    description: 'Handmade crochet Marshall fire pup — see the front, side and duo.',
+    items: [['doll-131', 'Front'], ['doll-168', 'Side'], ['doll-134', 'Duo']],
   },
   {
-    name: 'Teletubbies Set',
-    sub: 'Teletubbies',
-    description: 'Handmade crochet Teletubbies — see the full set and the stack.',
-    items: [['doll-50', 'Set'], ['doll-47', 'Stack']],
+    name: 'Teletubbies Set', sub: 'Teletubbies',
+    description: 'Handmade crochet Teletubbies — see them standing together and stacked.',
+    items: [['doll-154', 'Standing'], ['doll-144', 'Stacked']],
   },
   {
-    name: 'Minion Set',
-    sub: 'Minions',
-    description: 'Handmade crochet minions — see the pair, the stacked minions and the buddies.',
-    items: [['doll-55', 'Pair'], ['doll-46', 'Stacked'], ['doll-58', 'Buddies']],
+    name: 'Minion Pair Set', sub: 'Minions',
+    description: 'Handmade crochet minion pair — see the pair and the stacked minions.',
+    items: [['doll-165', 'Pair'], ['doll-170', 'Garden'], ['doll-143', 'Stacked']],
   },
 ]
 const groupedDollKeys = dollGroups.flatMap((g) => g.items.map(([k]) => k))
-const hiddenDollKeys = ['doll-49'] // Luffy straw hat doll removed
 const dollFiles0 = dollAll
   .map(([path, image]) => {
     const hit = Object.entries(dollNames).find(([k]) => path.includes(k + '.'))
     return hit ? { key: hit[0], image, name: hit[1] } : null
   })
-  .filter((d) => d && !groupedDollKeys.includes(d.key) && !hiddenDollKeys.includes(d.key))
-const dollPage2Keys = ['doll-68', 'doll-52', 'doll-63', 'doll-45'] // Tom, Jerry, Tom Cat, Batman
-const dollRest = dollFiles0.filter((d) => d.key !== 'doll-65' && !dollPage2Keys.includes(d.key))
-// Page size is 10: 3 sets + Tom & Jerry Set + 6 others on page 1, then page 2 starts with the four above
+  .filter((d) => d && !groupedDollKeys.includes(d.key))
+// Tom & Jerry Set first among the single dolls
 const dollFiles = [
-  ...dollFiles0.filter((d) => d.key === 'doll-65'),
-  ...dollRest.slice(0, 6),
-  ...dollPage2Keys.map((k) => dollFiles0.find((d) => d.key === k)).filter(Boolean),
-  ...dollRest.slice(6),
+  ...dollFiles0.filter((d) => d.key === 'doll-186'),
+  ...dollFiles0.filter((d) => d.key !== 'doll-186'),
 ]
 const dollImages = dollFiles.map((d) => d.image)
 // Subsections inside the Dolls category (anything not listed is "Normal")
 export const dollSubcategories = ['All', 'Marvel', 'DC', 'Tom & Jerry', 'Anime', 'Inside Out', 'Paw Patrol', 'Teletubbies', 'Minions', 'Normal']
 const dollSubByKey = {
-  '20240509_202629': 'DC', 'doll-45': 'DC', 'doll-51': 'Marvel',
-  'doll-68': 'Tom & Jerry', 'doll-63': 'Tom & Jerry', 'doll-52': 'Tom & Jerry', 'doll-65': 'Tom & Jerry',
-  'doll-56': 'Anime', 'doll-59': 'Anime', 'doll-62': 'Anime', 'doll-64': 'Anime',
-  'doll-67': 'Minions',
-  'doll-61': 'Inside Out',
+  'doll-155': 'Marvel', 'doll-147': 'Marvel', 'doll-171': 'Marvel',
+  'doll-133': 'DC', 'doll-142': 'DC',
+  'doll-132': 'Tom & Jerry', 'doll-178': 'Tom & Jerry', 'doll-156': 'Tom & Jerry', 'doll-158': 'Tom & Jerry', 'doll-186': 'Tom & Jerry',
+  'doll-153': 'Anime', 'doll-167': 'Anime', 'doll-172': 'Anime', 'doll-177': 'Anime', 'doll-160': 'Anime', 'doll-176': 'Anime', 'doll-146': 'Anime', 'doll-184': 'Anime',
+  'doll-174': 'Inside Out', 'doll-179': 'Inside Out',
+  'doll-188': 'Minions',
 }
 const dollSubOf = (key) => dollSubByKey[key] ?? 'Normal'
-const dollGroupProducts = dollGroups.map((g) => {
-  const variants = g.items.map(([k, label]) => ({ label, image: dollImageFor(k) }))
-  return { ...g, variants }
-})
+const dollGroupProducts = dollGroups.map((g) => ({
+  ...g,
+  variants: g.items.map(([k, label]) => ({ label, image: dollImageFor(k) })),
+}))
 // Only the new earring-*.png photos are shown (old .jpg files are ignored)
 const earringFiles = Object.entries(
   import.meta.glob('../assets/Earrings/*.png', { eager: true, import: 'default' })
