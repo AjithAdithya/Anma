@@ -353,6 +353,13 @@ const glassFiles = Object.entries(
   return { image, name: hit ? hit[1] : undefined }
 })
 const owlGlassVariants = [['owl-cream', 'Cream'], ['owl-pink', 'Pink']].map(([k, label]) => ({  label, fit: 'contain',  image: Object.entries(import.meta.glob('../assets/Glass Holders/glass-owl-*.png', { eager: true, import: 'default' })).find(([p]) => p.includes('glass-' + k))?.[1],}))
+const carNames = { 'car-spiderman': 'Spiderman Car Hanging', 'car-sunflower-pot': 'Sunflower Pot Car Hanging' }
+const carFiles = Object.entries(
+  import.meta.glob('../assets/Car Hangings/*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(carNames).find(([k]) => path.endsWith(`${k}.png`))
+  return { image, name: hit ? hit[1] : undefined }
+})
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -510,6 +517,8 @@ export const products = [
   ...expand('Glass Holders', glassFiles.map((g) => g.image), 350, 'Handmade crochet glass holder — keeps your spectacles safe in style.', '#E8F4FF', '#4D96FF')
     .map((p, i) => ({ ...p, name: glassFiles[i].name ?? p.name })),
   { id: _id++, name: 'Owl Glass Holder', category: 'Glass Holders', price: 350, description: 'Handmade crochet owl glass holder, available in cream and pink.', bgColor: '#E8F4FF', accentColor: '#4D96FF', image: owlGlassVariants[0].image, imageFit: 'contain', variants: owlGlassVariants },
+  ...expand('Car Hangings', carFiles.map((c) => c.image), 300, 'Handmade crochet car hanging — a cute charm for your rear-view mirror.', '#FFE8E8', '#FF6B6B')
+    .map((p, i) => ({ ...p, name: carFiles[i].name ?? p.name })),
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -531,4 +540,5 @@ export const categories = [
   'Airpod Cases',
   'Appliques',
   'Glass Holders',
+  'Car Hangings',
 ]

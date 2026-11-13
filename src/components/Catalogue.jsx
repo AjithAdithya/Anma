@@ -121,6 +121,7 @@ export default function Catalogue() {
             {cat === 'Airpod Cases' && '🎧 '}
             {cat === 'Appliques' && '⭐ '}
             {cat === 'Glass Holders' && '👓 '}
+            {cat === 'Car Hangings' && '🚗 '}
             {cat}
           </button>
         ))}
