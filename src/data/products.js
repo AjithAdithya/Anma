@@ -337,6 +337,20 @@ const appliqueFiles = Object.entries(
   const hit = Object.entries(appliqueNames).find(([k]) => path.includes(`applique-${k}`))
   return { image, name: hit ? hit[1] : undefined }
 })
+const glassNames = {
+  'orange': 'Orange Slice Glass Holder', 'rainbow-sling': 'Rainbow Sling Glass Holder',
+  'sunflower-sling': 'Sunflower Sling Glass Holder', 'red-blue': 'Red & Blue Glass Holder',
+  'strawberry': 'Strawberry Glass Holder', 'blue-white': 'Blue & White Glass Holder',
+  'rainbow-loop': 'Rainbow Glass Holder', 'evil-eye': 'Evil Eye Glass Holder',
+  'owl-cream': 'Cream Owl Glass Holder', 'kiwi': 'Kiwi Glass Holder',
+  'owl-pink': 'Pink Owl Glass Holder', 'daisy-sling': 'Daisy Sling Glass Holder',
+}
+const glassFiles = Object.entries(
+  import.meta.glob('../assets/Glass Holders/*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(glassNames).find(([k]) => path.endsWith(`glass-${k}.png`))
+  return { image, name: hit ? hit[1] : undefined }
+})
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -491,6 +505,8 @@ export const products = [
   },
   ...expand('Appliques', appliqueFiles.map((a) => a.image), 100, 'Handmade crochet applique — sew or stick it on to add a cute touch.', '#FFF8DC', '#FFD93D')
     .map((p, i) => ({ ...p, name: appliqueFiles[i].name ?? p.name })),
+  ...expand('Glass Holders', glassFiles.map((g) => g.image), 350, 'Handmade crochet glass holder — keeps your spectacles safe in style.', '#E8F4FF', '#4D96FF')
+    .map((p, i) => ({ ...p, name: glassFiles[i].name ?? p.name })),
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -511,4 +527,5 @@ export const categories = [
   'Sweater',
   'Airpod Cases',
   'Appliques',
+  'Glass Holders',
 ]
