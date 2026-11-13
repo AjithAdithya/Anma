@@ -151,8 +151,8 @@
   color: #7b2fbe;
 }
 
-.catalogue__filter-btn[data-cat="Magnets"].active,
-.catalogue__filter-btn[data-cat="Magnets"]:hover {
+.catalogue__filter-btn[data-cat="Fridge Magnets"].active,
+.catalogue__filter-btn[data-cat="Fridge Magnets"]:hover {
   background: var(--blue-pastel);
   border-color: var(--blue);
   color: var(--blue);

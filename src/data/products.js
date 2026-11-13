@@ -303,9 +303,23 @@ const gajraImages = Object.values(
 const keychainImages = Object.values(
   import.meta.glob('../assets/Keychains/*.{jpg,webp}', { eager: true, import: 'default' })
 )
-const magnetImages = Object.values(
-  import.meta.glob('../assets/Magnets/*.jpg', { eager: true, import: 'default' })
-)
+// Only the new magnet-*.png photos are shown (old .jpg magnets are hidden)
+const magnetNames = {
+  'magnet-sunflower.': 'Sunflower Fridge Magnet',
+  'magnet-daisy.': 'Daisy Fridge Magnet',
+  'magnet-heart-lollipop': 'Heart Fridge Magnet',
+  'magnet-sunflower-2': 'Classic Sunflower Fridge Magnet',
+  'magnet-goddess': 'Goddess Fridge Magnet',
+  'magnet-daisy-sunflower-pair': 'Daisy & Sunflower Magnet Set',
+  'magnet-bee-pair': 'Bee Fridge Magnets',
+}
+const magnetFiles = Object.entries(
+  import.meta.glob('../assets/Magnets/magnet-*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(magnetNames).find(([k]) => path.includes(k))
+  return { image, name: hit ? hit[1] : undefined }
+})
+const magnetImages = magnetFiles.map((m) => m.image)
 const sweaterImages = Object.values(
   import.meta.glob('../assets/Sweater/*.{jpg,png}', { eager: true, import: 'default' })
 )
@@ -460,7 +474,8 @@ export const products = [
     .map((p, i) => ({ ...p, name: bouquetFiles[i].name ?? p.name })),
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
   ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF'),
-  ...expand('Magnets',            magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF'),
+  ...expand('Fridge Magnets',          magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF')
+    .map((p, i) => ({ ...p, name: magnetFiles[i].name ?? p.name })),
   {
     id: _id++,
     name: 'Earth Airpod Case',
@@ -491,7 +506,7 @@ export const categories = [
   'Flowers & Bouquets',
   'Gajra',
   'Keychains',
-  'Magnets',
+  'Fridge Magnets',
   'Sweater',
   'Airpod Cases',
   'Appliques',

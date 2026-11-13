@@ -116,7 +116,7 @@ export default function Catalogue() {
             {cat === 'Flowers & Bouquets' && '💐 '}
             {cat === 'Gajra' && '🌸 '}
             {cat === 'Keychains' && '🔑 '}
-            {cat === 'Magnets' && '🧲 '}
+            {cat === 'Fridge Magnets' && '🧲 '}
             {cat === 'Sweater' && '🧥 '}
             {cat === 'Airpod Cases' && '🎧 '}
             {cat === 'Appliques' && '⭐ '}
