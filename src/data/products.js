@@ -288,7 +288,7 @@ const sweaterImages = Object.values(
 const airpodImg = (key) => Object.entries(
   import.meta.glob('../assets/Airpod Cases/*.png', { eager: true, import: 'default' })
 ).find(([path]) => path.includes(key))?.[1]
-const earthAirpodVariants = [['earth-closed', 'Closed'], ['earth-open', 'Open']]
+const earthAirpodVariants = [['earth-open', 'Open'], ['earth-closed', 'Closed']]
   .map(([k, label]) => ({ label, image: airpodImg(k) }))
 const appliqueNames = { starfish: 'Starfish Applique', turtle: 'Turtle Applique', 'blue-fish': 'Blue Fish Applique' }
 const appliqueFiles = Object.entries(
@@ -429,7 +429,7 @@ export const products = [
     name: 'Earth Airpod Case',
     category: 'Airpod Cases',
     price: 400,
-    description: 'Handmade crochet earth-pattern airpod case — see it closed and open.',
+    description: 'Handmade crochet earth-pattern airpod case — see it open and closed.',
     bgColor: '#E8F4FF',
     accentColor: '#4D96FF',
     image: earthAirpodVariants[0].image,
