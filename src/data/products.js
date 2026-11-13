@@ -374,6 +374,16 @@ const curtainFiles = Object.entries(
   const hit = Object.entries(curtainNames).find(([k]) => path.endsWith(`curtain-${k}.png`))
   return { image, name: hit ? hit[1] : undefined }
 })
+const godAll = Object.entries(
+  import.meta.glob('../assets/God Dolls/*.png', { eager: true, import: 'default' })
+)
+const godImg = (k) => godAll.find(([p]) => p.endsWith(`god-${k}.png`))?.[1]
+const godNames = {
+  'green-murugar': 'Green Murugar Doll', 'murugar-pair': 'Murugar & Valli Dolls',
+  'hanuman': 'Hanuman Doll', 'shiva': 'Baby Shiva Doll', 'krishna': 'Baby Krishna Doll',
+}
+const godSingles = Object.entries(godNames).map(([k, name]) => ({ name, image: godImg(k) })).filter((g) => g.image)
+const redMurugarVariants = [['red-murugar-front', 'Front'], ['red-murugar-back', 'Back']].map(([k, label]) => ({ label, image: godImg(k) }))
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -537,6 +547,8 @@ export const products = [
     .map((p, i) => ({ ...p, name: coasterFiles[i].name ?? p.name })),
   ...expand('Curtain Hangings', curtainFiles.map((c) => c.image), 300, 'Handmade crochet curtain hanging — a cheerful tie-back for your curtains.', '#E8FFE8', '#6BCB77')
     .map((p, i) => ({ ...p, name: curtainFiles[i].name ?? p.name })),
+  { id: _id++, name: 'Red Murugar Doll', category: 'God Dolls', price: 600, description: 'Handmade crochet Murugar doll in red — see the front and back.', bgColor: '#FFF8DC', accentColor: '#FFD93D', image: redMurugarVariants[0].image, variants: redMurugarVariants, variantLabel: 'View' },
+  ...godSingles.map((g) => ({ id: _id++, name: g.name, category: 'God Dolls', price: 600, description: 'Handmade crochet god doll — a lovely keepsake for your home.', bgColor: '#FFF8DC', accentColor: '#FFD93D', image: g.image })),
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -561,4 +573,5 @@ export const categories = [
   'Car Hangings',
   'Coasters',
   'Curtain Hangings',
+  'God Dolls',
 ]
