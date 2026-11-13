@@ -309,13 +309,14 @@ const magnetNames = {
   'magnet-daisy.': 'Daisy Fridge Magnet',
   'magnet-heart-lollipop': 'Heart Fridge Magnet',
   'magnet-sunflower-2': 'Classic Sunflower Fridge Magnet',
-  'magnet-goddess': 'Goddess Fridge Magnet',
+  'magnet-goddess': 'Murugar Fridge Magnet',
   'magnet-daisy-sunflower-pair': 'Daisy & Sunflower Magnet Set',
   'magnet-bee-pair': 'Bee Fridge Magnets',
 }
 const magnetFiles = Object.entries(
   import.meta.glob('../assets/Magnets/magnet-*.png', { eager: true, import: 'default' })
-).map(([path, image]) => {
+).filter(([path]) => !path.includes('magnet-sunflower.png')) // Sunflower Fridge Magnet removed
+  .map(([path, image]) => {
   const hit = Object.entries(magnetNames).find(([k]) => path.includes(k))
   return { image, name: hit ? hit[1] : undefined }
 })
