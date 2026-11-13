@@ -118,6 +118,8 @@ export default function Catalogue() {
             {cat === 'Keychains' && '🔑 '}
             {cat === 'Magnets' && '🧲 '}
             {cat === 'Sweater' && '🧥 '}
+            {cat === 'Airpod Cases' && '🎧 '}
+            {cat === 'Appliques' && '⭐ '}
             {cat}
           </button>
         ))}

@@ -41,6 +41,7 @@ const chainNames = {
   'pearl-blossom-set': 'Pearl Blossom Choker Set',
   'rose-pendant': 'Rose Pendant Chain',
   'rose-set': 'Rose Necklace & Earrings Set',
+  'pink-pearl-blossom-set': 'Pink Pearl Blossom Necklace Set',
 }
 const chainFiles = Object.entries(
   import.meta.glob('../assets/Chains/*.{jpg,png,webp}', { eager: true, import: 'default' })
@@ -284,6 +285,18 @@ const sweaterImages = Object.values(
   import.meta.glob('../assets/Sweater/*.{jpg,png}', { eager: true, import: 'default' })
 )
 
+const airpodImg = (key) => Object.entries(
+  import.meta.glob('../assets/Airpod Cases/*.png', { eager: true, import: 'default' })
+).find(([path]) => path.includes(key))?.[1]
+const earthAirpodVariants = [['earth-closed', 'Closed'], ['earth-open', 'Open']]
+  .map(([k, label]) => ({ label, image: airpodImg(k) }))
+const appliqueNames = { starfish: 'Starfish Applique', turtle: 'Turtle Applique', 'blue-fish': 'Blue Fish Applique' }
+const appliqueFiles = Object.entries(
+  import.meta.glob('../assets/Appliques/*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(appliqueNames).find(([k]) => path.includes(`applique-${k}`))
+  return { image, name: hit ? hit[1] : undefined }
+})
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -411,6 +424,20 @@ export const products = [
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
   ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF'),
   ...expand('Magnets',            magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF'),
+  {
+    id: _id++,
+    name: 'Earth Airpod Case',
+    category: 'Airpod Cases',
+    price: 400,
+    description: 'Handmade crochet earth-pattern airpod case — see it closed and open.',
+    bgColor: '#E8F4FF',
+    accentColor: '#4D96FF',
+    image: earthAirpodVariants[0].image,
+    variants: earthAirpodVariants,
+    variantLabel: 'View',
+  },
+  ...expand('Appliques', appliqueFiles.map((a) => a.image), 100, 'Handmade crochet applique — sew or stick it on to add a cute touch.', '#FFF8DC', '#FFD93D')
+    .map((p, i) => ({ ...p, name: appliqueFiles[i].name ?? p.name })),
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -429,4 +456,6 @@ export const categories = [
   'Keychains',
   'Magnets',
   'Sweater',
+  'Airpod Cases',
+  'Appliques',
 ]
