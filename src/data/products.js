@@ -108,9 +108,9 @@ const dollNames = {
   'doll-155': 'Captain America', 'doll-156': 'Jerry', 'doll-157': 'Love Teddy Bear',
   'doll-158': 'Jerry Keychain', 'doll-160': 'Itachi', 'doll-161': 'Blue Penguin',
   'doll-162': 'Flying Ace Snoopy', 'doll-163': 'Chhota Bheem', 'doll-164': 'Horse in Basket',
-  'doll-166': 'SKZ Bunny Doll', 'doll-167': 'Luffy Straw Hat Doll', 'doll-169': 'Heart Teddy',
+  'doll-166': 'SKZ Bunny Doll', 'doll-167': 'Luffy Doll', 'doll-169': 'Heart Teddy',
   'doll-171': 'Deadpool', 'doll-172': 'Zoro Doll', 'doll-173': 'Pilot Doll',
-  'doll-174': 'Sadness Doll', 'doll-175': 'Singer Doll', 'doll-176': 'Itachi (Back View)',
+  'doll-174': 'Sadness Doll', 'doll-175': 'Human Keepsake', 'doll-176': 'Itachi (Back View)',
   'doll-177': 'Gojo Satoru Doll', 'doll-178': 'Tall Tom Doll', 'doll-179': 'Joy Doll',
   'doll-180': 'Harry Potter (Back View)', 'doll-181': 'Noddy', 'doll-182': 'Purple Penguin',
   'doll-183': 'Puppy Plush', 'doll-184': 'Choro Doll', 'doll-185': 'Blue Pikachu (Back View)',
@@ -164,7 +164,7 @@ const dollFiles0 = dollAll
     const hit = Object.entries(dollNames).find(([k]) => path.includes(k + '.'))
     return hit ? { key: hit[0], image, name: hit[1] } : null
   })
-  .filter((d) => d && !groupedDollKeys.includes(d.key))
+  .filter((d) => d && !groupedDollKeys.includes(d.key) && !['doll-158', 'doll-153'].includes(d.key)) // Jerry Keychain + old Luffy Doll removed
 // Tom & Jerry Set first among the single dolls
 const dollFiles = [
   ...dollFiles0.filter((d) => d.key === 'doll-186'),
@@ -200,6 +200,8 @@ const groupFiles = (marker) => earringFiles
   })
 const heartVariants = groupFiles('-heart')
 const flowerVariants = groupFiles('-puff-flower')
+const pearlImg = (key) => earringFiles.find(([path]) => path.includes(key))?.[1]
+const pearlVariants = [['earring-pearl-stud', 'Cream Flower', '#F3E9D8'], ['earring-pearl-pink', 'Pink Flower', '#F58FA3']]  .map(([k, label, color]) => ({ label, color, image: pearlImg(k) }))
 const earringNames = {
   'earring-butterfly': 'Butterfly Earrings',
   'earring-cherry': 'Cherry Earrings',
@@ -216,7 +218,7 @@ const earringNames = {
   'earring-sunflower': 'Sunflower Earrings',
 }
 const earringSingles = earringFiles
-  .filter(([path]) => !path.includes('-heart') && !path.includes('-puff-flower'))
+  .filter(([path]) => !path.includes('-heart') && !path.includes('-puff-flower') && !path.includes('-pearl-'))
   .map(([path, image]) => {
     const hit = Object.entries(earringNames).find(([k]) => path.includes(k))
     return { image, name: hit ? hit[1] : undefined }
@@ -429,6 +431,17 @@ export const products = [
     accentColor: '#FF6B6B',
     image: flowerVariants[0]?.image,
     variants: flowerVariants,
+  },
+  {
+    id: _id++,
+    name: 'Pearl Earring',
+    category: 'Earrings',
+    price: 250,
+    description: 'Crochet flower studs with a pearl centre, available in cream and pink.',
+    bgColor: '#FFE8E8',
+    accentColor: '#FF6B6B',
+    image: pearlVariants[0]?.image,
+    variants: pearlVariants,
   },
   ...potCards.map((c) => ({
     id: _id++,
