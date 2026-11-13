@@ -367,6 +367,13 @@ const coasterFiles = Object.entries(
   const hit = Object.entries(coasterNames).find(([k]) => path.endsWith(`coaster-${k}.png`))
   return { image, name: hit ? hit[1] : undefined }
 })
+const curtainNames = { 'daisy': 'Daisy Curtain Hanging', 'sunflower-tie': 'Sunflower Tie-Back Curtain Hanging', 'sunflower': 'Sunflower Curtain Hanging' }
+const curtainFiles = Object.entries(
+  import.meta.glob('../assets/Curtain Hangings/*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(curtainNames).find(([k]) => path.endsWith(`curtain-${k}.png`))
+  return { image, name: hit ? hit[1] : undefined }
+})
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -528,6 +535,8 @@ export const products = [
     .map((p, i) => ({ ...p, name: carFiles[i].name ?? p.name })),
   ...expand('Coasters', coasterFiles.map((c) => c.image), 250, 'Handmade crochet coaster — a cute, cosy touch for your table.', '#FFF8DC', '#FFD93D')
     .map((p, i) => ({ ...p, name: coasterFiles[i].name ?? p.name })),
+  ...expand('Curtain Hangings', curtainFiles.map((c) => c.image), 300, 'Handmade crochet curtain hanging — a cheerful tie-back for your curtains.', '#E8FFE8', '#6BCB77')
+    .map((p, i) => ({ ...p, name: curtainFiles[i].name ?? p.name })),
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -551,4 +560,5 @@ export const categories = [
   'Glass Holders',
   'Car Hangings',
   'Coasters',
+  'Curtain Hangings',
 ]
