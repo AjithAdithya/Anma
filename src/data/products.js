@@ -99,8 +99,8 @@ const beanieImages = beanieFiles.map((b) => b.image)
 const dollNames = {
   '20240324_143112': 'Parrot',
   'doll-129': 'Penguin with Heart', 'doll-130': 'Pucca Doll', 'doll-132': 'Tom',
-  'doll-133': 'Batman Doll', 'doll-135': 'Bunny Girl Doll', 'doll-136': 'Teddy Bear Head',
-  'doll-137': 'Hug Doll', 'doll-138': 'Kung Fu Panda', 'doll-139': 'Little Fox',
+  'doll-133': 'Batman Doll', 'doll-135': 'Bunny Girl Doll', 'doll-136': 'Teddy Bear',
+  'doll-137': 'Hug Doll', 'doll-138': 'Kung Fu Panda', 'doll-139': 'Squirrel',
   'doll-140': 'Mario', 'doll-141': 'Pooh & Hello Kitty Pair', 'doll-142': 'Chibi Batman',
   'doll-145': 'Harry Potter', 'doll-146': 'Shinchan Doll', 'doll-147': 'Deadpool (Back View)',
   'doll-148': 'Winnie the Pooh', 'doll-149': 'Hello Kitty', 'doll-150': 'Dora Doll',
@@ -136,6 +136,26 @@ const dollGroups = [
     name: 'Minion Pair Set', sub: 'Minions',
     description: 'Handmade crochet minion pair — see the pair and the stacked minions.',
     items: [['doll-165', 'Pair'], ['doll-170', 'Garden'], ['doll-143', 'Stacked']],
+  },
+  {
+    name: 'Harry Potter Set', sub: 'Normal',
+    description: 'Handmade crochet Harry Potter — see the front and back.',
+    items: [['doll-145', 'Front'], ['doll-180', 'Back']],
+  },
+  {
+    name: 'Deadpool Set', sub: 'Marvel',
+    description: 'Handmade crochet Deadpool — see the front and back.',
+    items: [['doll-171', 'Front'], ['doll-147', 'Back']],
+  },
+  {
+    name: 'Blue Pikachu Set', sub: 'Normal',
+    description: 'Handmade crochet blue Pikachu — see the front and back.',
+    items: [['doll-152', 'Front'], ['doll-185', 'Back']],
+  },
+  {
+    name: 'Itachi Set', sub: 'Anime',
+    description: 'Handmade crochet Itachi — see the front and back.',
+    items: [['doll-160', 'Front'], ['doll-176', 'Back']],
   },
 ]
 const groupedDollKeys = dollGroups.flatMap((g) => g.items.map(([k]) => k))
