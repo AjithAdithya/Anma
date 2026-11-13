@@ -246,9 +246,35 @@ const potCards = [
   { name: 'Rose Pot', image: oldPotImg('20260307_155413') },
   pot(106, 'Puffy Flower Pot Row'),
 ].filter((c) => c.image || c.variants)
-const bouquetImages = Object.values(
-  import.meta.glob('../assets/Flowers & Bouquets/*.{jpg,png}', { eager: true, import: 'default' })
-)
+// Only the new bouquet-NNN.png photos are shown (older bouquet photos are hidden)
+const bouquetNames = {
+  189: 'Blue Teddy Heart Bouquet', 190: 'Bee & Penguin Flower Bouquet', 191: 'Sunflower Lily Heart Bouquet',
+  192: 'White Tulip Bouquet', 193: 'Daisy Rose Tulip Blue Bouquet', 194: 'Pink Lotus Bouquet',
+  195: 'Sunflower Rose Duo Hand Bouquet', 196: 'Red Rose Duo Bouquet', 197: 'Sunflower Rose Royal Blue Bouquet',
+  198: 'Rose Tulip Daisy Bouquet', 199: 'Rainbow Tulip Rose Bouquet', 200: 'Purple Tulip & Daisy Bouquet',
+  201: 'White Lily Bouquet', 202: 'Sunflower & Roses Cream Bouquet', 203: 'Five Red Roses Bouquet',
+  204: 'Red Roses Black Wrap Bouquet', 205: 'Heart Petal Flower Bouquet', 206: 'Lilac & White Lily Bouquet',
+  207: 'Tulip Mix Burlap Bouquet', 208: 'Black & White Rose Bouquet', 209: 'Lilac Tulip & Rose Bouquet',
+  210: 'Five Sunflowers Bouquet', 211: 'Blue Bloom Bouquet', 212: 'Sunflower Lilac Tulip Bouquet',
+  213: 'Red Rosebud Bouquet', 214: 'Daisy Tulip Rose Pink Bouquet', 215: 'Sunflower Purple Wrap Bouquet',
+  216: 'Sunflower & Daisy Bouquet', 217: 'Black & White Glow Bouquet', 218: 'Mini Tulip & Sunflower Bouquet',
+  219: 'Twin Red Hearts Bouquet', 220: 'Sunflower Rose Lilac Ribbon Bouquet', 221: 'Sunflower Pink Wrap Bouquet',
+  222: 'Mauve Tulip Duo Bouquet', 223: 'Piggy Sunflower Bouquet', 224: 'Red Hearts Bouquet',
+  225: 'Black & White Heart Bouquet', 226: 'Lily Garden Bouquet', 227: 'Colourful Daisy Trio Bouquet',
+  228: 'Blue Lily Bouquet', 229: 'White Daisy Burlap Bouquet', 230: 'Sunflower & Pink Rose Bouquet',
+  231: 'Single White Tulip', 232: 'Orange Rose Duo Bouquet', 233: 'Purple Rose Duo Bouquet',
+  234: 'Nine Daisies Bouquet', 235: 'Pink & Lilac Tulip Bouquet', 236: 'White & Lilac Tulip Bouquet',
+  237: 'Blue & White Hearts Bouquet', 238: 'Sunflower Duo Bouquet', 239: 'Sunflower in Glass Vase',
+  240: 'White Plumeria Bouquet', 241: 'Grand Mixed Flower Bouquet', 242: 'Sunflower Rose Daisy Bouquet',
+  243: 'Pink Rose & Sunflower Bouquet',
+}
+const bouquetFiles = Object.entries(
+  import.meta.glob('../assets/Flowers & Bouquets/bouquet-*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const n = path.match(/bouquet-(\d+)\.png/)?.[1]
+  return { image, name: bouquetNames[n] }
+})
+const bouquetImages = bouquetFiles.map((b) => b.image)
 const gajraImages = Object.values(
   import.meta.glob('../assets/Gajra/*.jpg', { eager: true, import: 'default' })
 )
@@ -397,7 +423,8 @@ export const products = [
     ...(c.variants ? { variants: c.variants } : {}),
     ...(c.variantLabel ? { variantLabel: c.variantLabel } : {}),
   })),
-  ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8'),
+  ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8')
+    .map((p, i) => ({ ...p, name: bouquetFiles[i].name ?? p.name })),
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
   ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF'),
   ...expand('Magnets',            magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF'),
