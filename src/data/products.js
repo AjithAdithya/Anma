@@ -302,9 +302,8 @@ const bouquetImages = bouquetFiles.map((b) => b.image)
 const gajraImages = Object.values(
   import.meta.glob('../assets/Gajra/*.jpg', { eager: true, import: 'default' })
 )
-const keychainImages = Object.values(
-  import.meta.glob('../assets/Keychains/*.{jpg,webp}', { eager: true, import: 'default' })
-)
+// Keychain images removed from the page (files remain in src/assets/Keychains)
+const keychainImages = []
 // Only the new magnet-*.png photos are shown (old .jpg magnets are hidden)
 const magnetNames = {
   'magnet-sunflower.': 'Sunflower Fridge Magnet',
