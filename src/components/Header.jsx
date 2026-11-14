@@ -64,6 +64,7 @@ export default function Header() {
         {/* Logo */}
         <a className="header__logo" href="/" onClick={handleLogoClick}>
           <img src={logo2} alt="ANMA Crochet wordmark" className="header__logo-wordmark" />
+          <span className="header__tagline">Dream it, We will Crochet it!</span>
         </a>
 
         {/* Desktop Nav */}
