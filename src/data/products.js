@@ -386,6 +386,20 @@ const godNames = {
 }
 const godSingles = Object.entries(godNames).map(([k, name]) => ({ name, image: godImg(k) })).filter((g) => g.image)
 const murugarVariants = [['green-murugar', 'Green'], ['red-murugar-front', 'Red (Front)'], ['red-murugar-back', 'Red (Back)'], ['murugar-pair', 'With Valli']].map(([k, label]) => ({ label, fit: 'contain', image: godImg(k) }))
+const pouchNames = {
+  'mickey': 'Mickey Pouch', 'tulip-drawstring': 'Tulip Drawstring Pouch', 'pooh': 'Pooh Pouch',
+  'panda': 'Panda Pouch', 'cat': 'Black Cat Pouch', 'polar-bear': 'Polar Bear Pouch',
+  'magnetic-flap': 'Magnetic Flap Pouch', 'striped-panda': 'Striped Panda Pouch',
+  'sunflower-drawstring': 'Sunflower Drawstring Pouch', 'toast': 'Toast Pouch', 'teddy': 'Teddy Bear Pouch',
+}
+const pouchFiles = Object.entries(
+  import.meta.glob('../assets/Pouches/*.png', { eager: true, import: 'default' })
+).filter(([path]) => !path.endsWith('pouch-toast.png') && !path.endsWith('pouch-magnetic-flap.png')) // grouped into Bread Pouch set
+  .map(([path, image]) => {
+  const hit = Object.entries(pouchNames).find(([k]) => path.endsWith(`pouch-${k}.png`))
+  return { image, name: hit ? hit[1] : undefined }
+})
+const breadPouchVariants = [['toast', 'Front'], ['magnetic-flap', 'Back']].map(([k, label]) => ({ label, fit: 'contain', image: Object.entries(import.meta.glob('../assets/Pouches/*.png', { eager: true, import: 'default' })).find(([p]) => p.endsWith('pouch-' + k + '.png'))?.[1] }))
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -551,6 +565,9 @@ export const products = [
     .map((p, i) => ({ ...p, name: curtainFiles[i].name ?? p.name })),
   { id: _id++, name: 'Murugar Doll', category: 'God Dolls', price: 600, description: 'Handmade crochet Murugar doll — pick green, red (front and back) or Murugar with Valli.', bgColor: '#FFF8DC', accentColor: '#FFD93D', image: murugarVariants[0].image, imageFit: 'contain', variants: murugarVariants },
   ...godSingles.map((g) => ({ id: _id++, name: g.name, category: 'God Dolls', price: 600, description: 'Handmade crochet god doll — a lovely keepsake for your home.', bgColor: '#FFF8DC', accentColor: '#FFD93D', image: g.image, imageFit: 'contain' })),
+  ...expand('Pouches', pouchFiles.map((p) => p.image), 250, 'Handmade crochet pouch — a cute little carry-all for your essentials.', '#F5E8FF', '#C77DFF')
+    .map((p, i) => ({ ...p, name: pouchFiles[i].name ?? p.name, imageFit: 'contain' })),
+  { id: _id++, name: 'Bread Pouch', category: 'Pouches', price: 250, description: 'Handmade crochet bread pouch — see the front and back.', bgColor: '#F5E8FF', accentColor: '#C77DFF', image: breadPouchVariants[0].image, imageFit: 'contain', variants: breadPouchVariants, variantLabel: 'View' },
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -576,4 +593,5 @@ export const categories = [
   'Coasters',
   'Curtain Hangings',
   'God Dolls',
+  'Pouches',
 ]
