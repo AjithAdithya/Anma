@@ -250,6 +250,8 @@ const potCards = [
   pot(100, 'Sunflower Brown Pot'),
   pot(102, 'Red Rose Pot'),
   pot(107, 'Cactus Pot'),
+  pot(280, 'Twin Heart Flower Pot'),
+  pot(281, 'Sunflower Terracotta Pot'),
   { name: 'Egg Friends Pot', image: oldPotImg('IMG-20260102-WA0011') },
   pot(85, 'Red Heart Plant Pot', 'contain'),
   // ---- rest ----

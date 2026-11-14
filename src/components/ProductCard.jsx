@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/ProductCard.css'
 
 export default function ProductCard({ product, onSelect }) {
   const { name, category, price, description, accentColor, image } = product
+  // Tall or wide photos are shown whole instead of being cropped to a square
+  const [autoContain, setAutoContain] = useState(false)
+  const fit = product.imageFit || (autoContain ? 'contain' : undefined)
 
   return (
     <article className="product-card" onClick={() => onSelect(product)}>
@@ -14,7 +17,7 @@ export default function ProductCard({ product, onSelect }) {
       {/* Product image */}
       <div className="product-card__image" aria-label={name}>
         {image
-          ? <img src={image} alt={name} className={`product-card__img${product.imageFit === 'contain' ? ' product-card__img--contain' : ''}`} loading="lazy" decoding="async" style={product.imageFit ? { objectFit: product.imageFit } : undefined} />
+          ? <img src={image} alt={name} className={`product-card__img${fit === 'contain' ? ' product-card__img--contain' : ''}`} loading="lazy" decoding="async" style={fit ? { objectFit: fit } : undefined} onLoad={(e) => { const r = e.target.naturalHeight / e.target.naturalWidth; if (r > 1.2 || r < 0.83) setAutoContain(true) }} />
           : <span className="product-card__img-placeholder">🧶</span>
         }
       </div>

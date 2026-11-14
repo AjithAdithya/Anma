@@ -13,6 +13,7 @@ export default function ProductModal({ product, onClose }) {
   const [copied, setCopied] = useState(false)
   const [variantIndex, setVariantIndex] = useState(0)
   const activeVariant = product.variants?.[variantIndex]
+  const [autoContain, setAutoContain] = useState(false)
   const { dmCopied, countdown, trigger: triggerDM } = useDMCountdown()
 
   useEffect(() => {
@@ -78,7 +79,7 @@ export default function ProductModal({ product, onClose }) {
         {/* Image */}
         <div className="modal__image-wrap">
           {(activeVariant?.image || product.image)
-            ? <img src={activeVariant?.image || product.image} alt={product.name} className="modal__image" style={(activeVariant ? activeVariant.fit : product.imageFit) ? { objectFit: activeVariant ? activeVariant.fit : product.imageFit } : undefined} />
+            ? <img src={activeVariant?.image || product.image} alt={product.name} className="modal__image" style={{ objectFit: (activeVariant ? activeVariant.fit : product.imageFit) || (autoContain ? 'contain' : 'cover') }} onLoad={(e) => { const r = e.target.naturalHeight / e.target.naturalWidth; setAutoContain(r > 1.2 || r < 0.83) }} />
             : <div className="modal__image-placeholder">🧶</div>
           }
         </div>
