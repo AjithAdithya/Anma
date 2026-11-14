@@ -407,6 +407,17 @@ const bandFiles = Object.entries(
   const hit = Object.entries(bandNames).find(([k]) => path.endsWith(`band-${k}.png`))
   return { image, name: hit ? hit[1] : undefined }
 })
+const heartNames = {
+  'pink-bubble': 'Pink Heart Plushie', 'cream-popcorn': 'Cream Popcorn Heart Plushie',
+  'polka-bow': 'Magenta Heart Plushie with Polka Bow', 'pastel-pink': 'Pastel Pink Heart Plushie',
+  'white-pair': 'White Heart Plushie Pair',
+}
+const heartFiles = Object.entries(
+  import.meta.glob('../assets/Heart Plushies/*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(heartNames).find(([k]) => path.endsWith(`heart-${k}.png`))
+  return { image, name: hit ? hit[1] : undefined }
+})
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -577,6 +588,8 @@ export const products = [
   { id: _id++, name: 'Bread Pouch', category: 'Pouches', price: 250, description: 'Handmade crochet bread pouch — see the front and back.', bgColor: '#F5E8FF', accentColor: '#C77DFF', image: breadPouchVariants[0].image, imageFit: 'contain', variants: breadPouchVariants, variantLabel: 'View' },
   ...expand('Rubber Bands', bandFiles.map((b) => b.image), 150, 'Handmade crochet hair rubber band — a sweet accessory for any hairstyle.', '#FFE8E8', '#FF6B6B')
     .map((p, i) => ({ ...p, name: bandFiles[i].name ?? p.name, imageFit: 'contain' })),
+  ...expand('Heart Plushies', heartFiles.map((h) => h.image), 500, 'Soft handmade crochet heart plushie — a cuddly gift full of love.', '#FFE8F4', '#FF6BA8')
+    .map((p, i) => ({ ...p, name: heartFiles[i].name ?? p.name, imageFit: 'contain' })),
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -604,4 +617,5 @@ export const categories = [
   'God Dolls',
   'Pouches',
   'Rubber Bands',
+  'Heart Plushies',
 ]
