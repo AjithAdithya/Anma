@@ -4,7 +4,17 @@ import keychainImg  from '../assets/Keychains/20240712_120255.jpg'
 import bagImg       from '../assets/Bags/20231113_230941.jpg'
 import flowerPotImg from '../assets/Flower Pots/20260307_155413.jpg'
 
+import heartImg     from '../assets/Heart Plushies/heart-pink-bubble.png'
+
 export const reviews = [
+  {
+    id: 6,
+    name: 'Happy Customer',
+    product: 'Pink Heart Plushie',
+    rating: 5,
+    text: "The heart crochet is super cute, Madhu! 😍😍😍 Very plushy and soft ❤️ Love it! ❤️❤️❤️❤️ Can see the hard work and perfection in every detail!!",
+    image: heartImg,
+  },
   {
     id: 1,
     name: 'Priya S.',
