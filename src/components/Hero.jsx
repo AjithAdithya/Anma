@@ -114,16 +114,13 @@ export default function Hero() {
 
           <div className="hero__stats">
             <div className="hero__stat">
-              <span className="hero__stat-num">200+</span>
-              <span className="hero__stat-label">Happy Customers</span>
+              <span className="hero__stat-label">Loved by 200+ customers</span>
             </div>
             <div className="hero__stat">
-              <span className="hero__stat-num" style={{ color: 'var(--mint)' }}>300+</span>
-              <span className="hero__stat-label">Unique Designs</span>
+              <span className="hero__stat-label">300+ unique creations</span>
             </div>
             <div className="hero__stat">
-              <span className="hero__stat-num" style={{ color: 'var(--lavender)' }}>5★</span>
-              <span className="hero__stat-label">Rated Handmade</span>
+              <span className="hero__stat-label">5★ customer-rated</span>
             </div>
           </div>
         </div>

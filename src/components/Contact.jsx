@@ -40,6 +40,18 @@ export default function Contact() {
             </div>
 
             <div className="contact__info-card">
+              <div className="contact__info-icon contact__info-icon--insta">💬</div>
+              <div>
+                <p className="contact__info-label">WhatsApp</p>
+                <p className="contact__info-value">
+                  <a href="https://wa.me/918438355257" target="_blank" rel="noopener noreferrer">
+                    +91 84383 55257
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div className="contact__info-card">
               <div className="contact__info-icon contact__info-icon--hours">⏰</div>
               <div>
                 <p className="contact__info-label">Response Hours</p>
