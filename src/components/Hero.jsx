@@ -118,7 +118,7 @@ export default function Hero() {
               <span className="hero__stat-label">Happy Customers</span>
             </div>
             <div className="hero__stat">
-              <span className="hero__stat-num" style={{ color: 'var(--mint)' }}>352</span>
+              <span className="hero__stat-num" style={{ color: 'var(--mint)' }}>300+</span>
               <span className="hero__stat-label">Unique Designs</span>
             </div>
             <div className="hero__stat">
