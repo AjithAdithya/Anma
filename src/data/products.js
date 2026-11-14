@@ -330,12 +330,28 @@ const keychainNames = {
   'turtle-dragonfruit': 'Dragon Fruit Turtle Keychain', 'turtle-pudding': 'Cherry Pudding Turtle Keychain',
   'rainbow': 'Rainbow Keychain', 'evil-eye': 'Evil Eye Keychain',
 }
-const keychainFiles = Object.entries(
+const keychainAll = Object.entries(
   import.meta.glob('../assets/Keychains/keychain-*.{png,webp}', { eager: true, import: 'default' })
 ).map(([path, image]) => {
   const hit = Object.entries(keychainNames).find(([k]) => path.includes(`keychain-${k}.`))
-  return { image, name: hit ? hit[1] : undefined }
+  return { key: hit ? hit[0] : undefined, image, name: hit ? hit[1] : undefined }
 })
+const keychainImg = (key) => keychainAll.find((k) => k.key === key)?.image
+// Keychains with several photos are grouped into one product with a picker
+const keychainGroups = [
+  { name: 'Astronaut Keychain', variantLabel: 'View', description: 'Handmade crochet astronaut keychain — see the front and side view.',
+    items: [['astronaut', 'Front'], ['astronaut-side', 'Side']] },
+  { name: 'Earth Keychains', variantLabel: 'View', description: 'Handmade crochet earth keychains — pick your view of the world.',
+    items: [['earth-plain', 'Australia'], ['earth-ball', 'Europe and Asia'], ['earth', 'North Pole'], ['earth-smiley', 'Smiley'], ['earth-globe', 'World']] },
+  { name: 'Octopus Keychains', variantLabel: 'Colour', description: 'Cute handmade crochet octopus keychains in purple, blue and pink.',
+    items: [['octopus-purple', 'Purple'], ['octopus-blue', 'Blue'], ['octopus-pink', 'Pink']] },
+  { name: 'Fruit Turtle Keychains', variantLabel: 'Fruit', description: 'Handmade crochet turtles with fruit shells — strawberry, dragon fruit, orange, kiwi, watermelon and tomato.',
+    items: [['turtle-strawberry', 'Strawberry'], ['turtle-dragonfruit', 'Dragon Fruit'], ['turtle-orange', 'Orange'], ['turtle-kiwi', 'Kiwi'], ['turtle-watermelon', 'Watermelon'], ['turtle-tomato', 'Tomato']] },
+  { name: 'Whale Keychains', variantLabel: 'Colour', description: 'Cute handmade crochet whale keychains in blue, pink and purple.',
+    items: [['whale-blue', 'Blue'], ['whale-pink', 'Pink'], ['whale-purple', 'Purple']] },
+].map((g) => ({ ...g, variants: g.items.map(([k, label]) => ({ label, fit: 'contain', image: keychainImg(k) })).filter((v) => v.image) }))
+const groupedKeychainKeys = keychainGroups.flatMap((g) => g.items.map(([k]) => k))
+const keychainFiles = keychainAll.filter((k) => !groupedKeychainKeys.includes(k.key))
 // Only the new magnet-*.png photos are shown (old .jpg magnets are hidden)
 const keychainImages = keychainFiles.map((k) => k.image)
 const magnetNames = {
@@ -603,6 +619,7 @@ export const products = [
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
   ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF')
     .map((p, i) => ({ ...p, name: keychainFiles[i].name ?? p.name, imageFit: 'contain' })),
+  ...keychainGroups.map((g) => ({ id: _id++, name: g.name, category: 'Keychains', price: 200, description: g.description, bgColor: '#F5E8FF', accentColor: '#C77DFF', image: g.variants[0].image, imageFit: 'contain', variants: g.variants, variantLabel: g.variantLabel })),
   ...expand('Fridge Magnets',          magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF')
     .map((p, i) => ({ ...p, name: magnetFiles[i].name ?? p.name })),
   {
