@@ -362,6 +362,22 @@ const keychainGroups = [
 ].map((g) => ({ ...g, variants: g.items.map(([k, label]) => ({ label, fit: 'contain', image: keychainImg(k) })).filter((v) => v.image) }))
 const groupedKeychainKeys = keychainGroups.flatMap((g) => g.items.map(([k]) => k))
 const keychainFiles = keychainAll.filter((k) => !groupedKeychainKeys.includes(k.key))
+// Subsections inside Keychains
+export const keychainSubcategories = ['All', 'Turtle Keychains', 'Solar Keychains', 'Flower Keychains']
+export const subcategoriesByCategory = { Dolls: dollSubcategories, Keychains: keychainSubcategories }
+const keychainFirstPage = ['Earth Keychains', 'Fruit Turtle Keychains', 'Cricket Keychains', 'Astronaut Keychain', 'Unicorn Keychain', 'Rainbow Turtle Keychain']
+const keychainSolarNames = ['Earth Keychains', 'Astronaut Keychain', 'Yellow and Blue Star Pair', 'Sunshine Keychain', 'Smiley Sun Keychain', 'Star & Moon Keychains']
+const keychainFlowerNames = ['Puff Flower Keychains', 'Sunflower Keychain', 'Sunflower Kid Keychain', 'Daisy Keychain', 'Tulip Pair Keychain', 'Tulip Keychain', 'Lily of the Valley Keychain']
+const keychainSubOf = (name) =>
+  /turtle/i.test(name) && name !== 'Strawberry Blossom Keychain' ? 'Turtle Keychains'
+  : keychainSolarNames.includes(name) ? 'Solar Keychains'
+  : keychainFlowerNames.includes(name) ? 'Flower Keychains'
+  : undefined
+const arrangeKeychains = (list) => {
+  const tagged = list.map((p) => ({ ...p, subcategory: keychainSubOf(p.name) }))
+  const first = keychainFirstPage.map((n) => tagged.find((p) => p.name === n)).filter(Boolean)
+  return [...first, ...tagged.filter((p) => !keychainFirstPage.includes(p.name))]
+}
 // Only the new magnet-*.png photos are shown (old .jpg magnets are hidden)
 const keychainImages = keychainFiles.map((k) => k.image)
 const magnetNames = {
@@ -627,9 +643,9 @@ export const products = [
   ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8')
     .map((p, i) => ({ ...p, name: bouquetFiles[i].name ?? p.name })),
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
-  ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF')
+  ...arrangeKeychains([...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF')
     .map((p, i) => ({ ...p, name: keychainFiles[i].name ?? p.name, imageFit: 'contain' })),
-  ...keychainGroups.map((g) => ({ id: _id++, name: g.name, category: 'Keychains', price: 200, description: g.description, bgColor: '#F5E8FF', accentColor: '#C77DFF', image: g.variants[0].image, imageFit: 'contain', variants: g.variants, variantLabel: g.variantLabel })),
+  ...keychainGroups.map((g) => ({ id: _id++, name: g.name, category: 'Keychains', price: 200, description: g.description, bgColor: '#F5E8FF', accentColor: '#C77DFF', image: g.variants[0].image, imageFit: 'contain', variants: g.variants, variantLabel: g.variantLabel }))]),
   ...expand('Fridge Magnets',          magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF')
     .map((p, i) => ({ ...p, name: magnetFiles[i].name ?? p.name })),
   {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { trackEvent } from '../analytics'
-import { products, categories, dollSubcategories } from '../data/products'
+import { products, categories, subcategoriesByCategory } from '../data/products'
 import ProductCard from './ProductCard'
 import ProductModal from './ProductModal'
 import '../styles/Catalogue.css'
@@ -69,7 +69,7 @@ export default function Catalogue() {
     ? products
     : products.filter((p) =>
         p.category === activeCategory &&
-        (activeCategory !== 'Dolls' || subCategory === 'All' || p.subcategory === subCategory)
+        (!subcategoriesByCategory[activeCategory] || subCategory === 'All' || p.subcategory === subCategory)
       )
   const sorted    = sortProducts(filtered, sortBy)
   const totalPages = Math.ceil(sorted.length / PAGE_SIZE)
@@ -136,9 +136,9 @@ export default function Catalogue() {
       </div>
 
       {/* Dolls subsections */}
-      {activeCategory === 'Dolls' && (
-        <div className="catalogue__subfilters" role="group" aria-label="Filter dolls by type">
-          {dollSubcategories.map((sub) => (
+      {subcategoriesByCategory[activeCategory] && (
+        <div className="catalogue__subfilters" role="group" aria-label="Filter by type">
+          {subcategoriesByCategory[activeCategory].map((sub) => (
             <button
               key={sub}
               className={`catalogue__sub-btn${subCategory === sub ? ' active' : ''}`}
