@@ -303,6 +303,11 @@ const gajraImages = Object.values(
   import.meta.glob('../assets/Gajra/*.jpg', { eager: true, import: 'default' })
 )
 const keychainNames = {
+  'strawberry-flower': 'Strawberry Blossom Keychain', 'bunny': 'Bunny Keychain', 'astronaut': 'Astronaut Keychain',
+  'astronaut-side': 'Astronaut Keychain (Side View)', 'turtle-orange': 'Orange Turtle Keychain',
+  'rainbow-trio': 'Rainbow Keychains Set', 'dog': 'Puppy Keychain', 'sun-orange': 'Sunshine Keychain',
+  'turtle-tomato': 'Tomato Turtle Keychain', 'kirby': 'Kirby Keychain', 'watermelon': 'Watermelon Keychains',
+  'turtle-red': 'Red Shell Turtle Keychain',
   'turtle-flower': 'Flower Turtle Keychain', 'turtle-strawberry': 'Strawberry Turtle Keychain',
   'hearts': 'Red Heart Keychains', 'earth': 'Earth Keychain', 'stars': 'Smiley Star Keychains',
   'star-moon': 'Star & Moon Keychains', 'sun': 'Smiley Sun Keychain',
