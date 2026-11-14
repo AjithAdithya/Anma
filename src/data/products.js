@@ -425,6 +425,13 @@ const charmFiles = Object.entries(
   const hit = Object.entries(charmNames).find(([k]) => path.endsWith(`charm-${k}.png`))
   return { image, name: hit ? hit[1] : undefined }
 })
+const babyNames = { 'red-dress': 'Red Baby Frock', 'sneaker-single': 'Black Baby Sneaker', 'sneaker-pair': 'Black Baby Sneakers Pair' }
+const babyFiles = Object.entries(
+  import.meta.glob('../assets/Baby Essentials/*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(babyNames).find(([k]) => path.endsWith(`baby-${k}.png`))
+  return { image, name: hit ? hit[1] : undefined }
+})
 // Expand an image array into individual product entries
 let _id = 1
 function expand(category, images, price, description, bgColor, accentColor) {
@@ -599,6 +606,8 @@ export const products = [
     .map((p, i) => ({ ...p, name: heartFiles[i].name ?? p.name, imageFit: 'contain' })),
   ...expand('Bag Charms', charmFiles.map((c) => c.image), 150, 'Handmade crochet bag charm — clip it on to add a cute touch to any bag.', '#FFF8DC', '#FFD93D')
     .map((p, i) => ({ ...p, name: charmFiles[i].name ?? p.name, imageFit: 'contain' })),
+  ...expand('Baby Essentials', babyFiles.map((b) => b.image), 400, 'Soft handmade crochet baby wear — made with love for little ones.', '#FFE8F4', '#FF6BA8')
+    .map((p, i) => ({ ...p, name: babyFiles[i].name ?? p.name, imageFit: 'contain' })),
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
@@ -628,4 +637,5 @@ export const categories = [
   'Rubber Bands',
   'Heart Plushies',
   'Bag Charms',
+  'Baby Essentials',
 ]
