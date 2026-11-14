@@ -95,12 +95,12 @@ export default function Hero() {
           </div>
 
           <h1 className="hero__title">
-            Wrap the World in <span>Handmade Magic</span>
+            Little Things <span>Handmade with Love</span>
           </h1>
 
           <p className="hero__subtitle">
-            Every stitch is a little piece of our heart. Discover beautifully crafted crochet
-            creations — from cozy blankets to adorable amigurumi — made just for you. 🧶
+            Discover thoughtfully handcrafted crochet flowers, adorable plushies, personalised
+            gifts and keepsakes made especially for you.
           </p>
 
           <div className="hero__cta-group">
