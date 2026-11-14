@@ -308,6 +308,10 @@ const keychainNames = {
   'rainbow-trio': 'Rainbow Keychains Set', 'dog': 'Puppy Keychain', 'sun-orange': 'Sunshine Keychain',
   'turtle-tomato': 'Tomato Turtle Keychain', 'kirby': 'Kirby Keychain', 'watermelon': 'Watermelon Keychains',
   'turtle-red': 'Red Shell Turtle Keychain',
+  'earth-smiley': 'Smiley Earth Keychain', 'no-face': 'No-Face Keychain', 'turtle-kiwi': 'Kiwi Turtle Keychain',
+  'octopus-purple': 'Purple Octopus Keychain', 'tulip-pair': 'Tulip Pair Keychain', 'minions': 'Minion Trio Keychains',
+  'earth-ball': 'Earth Ball Keychain', 'evil-eye-tassel': 'Evil Eye Tassel Keychain', 'ball-red': 'Red Striped Ball Keychain',
+  'octopus-blue': 'Blue Octopus Keychain', 'ghost': 'Ghost Keychain', 'flower-purple': 'Purple Puff Flower Keychain',
   'turtle-flower': 'Flower Turtle Keychain', 'turtle-strawberry': 'Strawberry Turtle Keychain',
   'hearts': 'Red Heart Keychains', 'earth': 'Earth Keychain', 'stars': 'Smiley Star Keychains',
   'star-moon': 'Star & Moon Keychains', 'sun': 'Smiley Sun Keychain',
@@ -315,9 +319,9 @@ const keychainNames = {
   'rainbow': 'Rainbow Keychain', 'evil-eye': 'Evil Eye Keychain',
 }
 const keychainFiles = Object.entries(
-  import.meta.glob('../assets/Keychains/keychain-*.png', { eager: true, import: 'default' })
+  import.meta.glob('../assets/Keychains/keychain-*.{png,webp}', { eager: true, import: 'default' })
 ).map(([path, image]) => {
-  const hit = Object.entries(keychainNames).find(([k]) => path.endsWith(`keychain-${k}.png`))
+  const hit = Object.entries(keychainNames).find(([k]) => path.includes(`keychain-${k}.`))
   return { image, name: hit ? hit[1] : undefined }
 })
 // Only the new magnet-*.png photos are shown (old .jpg magnets are hidden)
