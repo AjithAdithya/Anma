@@ -128,6 +128,7 @@ export default function Catalogue() {
             {cat === 'Pouches' && '👝 '}
             {cat === 'Rubber Bands' && '🎀 '}
             {cat === 'Heart Plushies' && '💖 '}
+            {cat === 'Bag Charms' && '🍒 '}
             {cat}
           </button>
         ))}
