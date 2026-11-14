@@ -366,7 +366,7 @@ const keychainFiles = keychainAll.filter((k) => !groupedKeychainKeys.includes(k.
 export const keychainSubcategories = ['All', 'Turtle Keychains', 'Solar Keychains', 'Flower Keychains']
 export const subcategoriesByCategory = { Dolls: dollSubcategories, Keychains: keychainSubcategories }
 const keychainFirstPage = ['Earth Keychains', 'Fruit Turtle Keychains', 'Cricket Keychains', 'Astronaut Keychain', 'Unicorn Keychain', 'Rainbow Turtle Keychain']
-const keychainSolarNames = ['Earth Keychains', 'Astronaut Keychain', 'Yellow and Blue Star Pair', 'Sunshine Keychain', 'Smiley Sun Keychain', 'Star & Moon Keychains']
+const keychainSolarNames = ['Earth Keychains', 'Astronaut Keychain', 'Yellow and Blue Star Pair', 'Sunshine Keychain', 'Smiley Sun Keychain', 'Star & Moon Keychains', 'Sleepy Cloud Keychain']
 const keychainFlowerNames = ['Puff Flower Keychains', 'Sunflower Keychain', 'Sunflower Kid Keychain', 'Daisy Keychain', 'Tulip Pair Keychain', 'Tulip Keychain', 'Lily of the Valley Keychain']
 const keychainSubOf = (name) =>
   /turtle/i.test(name) && name !== 'Strawberry Blossom Keychain' ? 'Turtle Keychains'
