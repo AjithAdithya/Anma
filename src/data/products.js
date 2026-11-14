@@ -302,9 +302,21 @@ const bouquetImages = bouquetFiles.map((b) => b.image)
 const gajraImages = Object.values(
   import.meta.glob('../assets/Gajra/*.jpg', { eager: true, import: 'default' })
 )
-// Keychain images removed from the page (files remain in src/assets/Keychains)
-const keychainImages = []
+const keychainNames = {
+  'turtle-flower': 'Flower Turtle Keychain', 'turtle-strawberry': 'Strawberry Turtle Keychain',
+  'hearts': 'Red Heart Keychains', 'earth': 'Earth Keychain', 'stars': 'Smiley Star Keychains',
+  'star-moon': 'Star & Moon Keychains', 'sun': 'Smiley Sun Keychain',
+  'turtle-dragonfruit': 'Dragon Fruit Turtle Keychain', 'turtle-pudding': 'Cherry Pudding Turtle Keychain',
+  'rainbow': 'Rainbow Keychain', 'evil-eye': 'Evil Eye Keychain',
+}
+const keychainFiles = Object.entries(
+  import.meta.glob('../assets/Keychains/keychain-*.png', { eager: true, import: 'default' })
+).map(([path, image]) => {
+  const hit = Object.entries(keychainNames).find(([k]) => path.endsWith(`keychain-${k}.png`))
+  return { image, name: hit ? hit[1] : undefined }
+})
 // Only the new magnet-*.png photos are shown (old .jpg magnets are hidden)
+const keychainImages = keychainFiles.map((k) => k.image)
 const magnetNames = {
   'magnet-sunflower.': 'Sunflower Fridge Magnet',
   'magnet-daisy.': 'Daisy Fridge Magnet',
@@ -568,7 +580,8 @@ export const products = [
   ...expand('Flowers & Bouquets', bouquetImages,   600,  'Everlasting crochet flower. Never wilts — a perfect gift that lasts forever.',         '#FFE8F4', '#FF6BA8')
     .map((p, i) => ({ ...p, name: bouquetFiles[i].name ?? p.name })),
   ...expand('Gajra',              gajraImages,     300,  'Traditional gajra recreated in crochet. Wear it all day without any wilting.',         '#FFF8DC', '#FFD93D'),
-  ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF'),
+  ...expand('Keychains',          keychainImages,  200,  'Cute crochet keychain in various shapes and colours. A fun little accessory!',         '#F5E8FF', '#C77DFF')
+    .map((p, i) => ({ ...p, name: keychainFiles[i].name ?? p.name, imageFit: 'contain' })),
   ...expand('Fridge Magnets',          magnetImages,    150,  'Tiny crochet fridge magnet. An adorable little décor piece.',                          '#E8F4FF', '#4D96FF')
     .map((p, i) => ({ ...p, name: magnetFiles[i].name ?? p.name })),
   {
