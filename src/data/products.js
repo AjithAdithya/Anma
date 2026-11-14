@@ -687,31 +687,13 @@ export const products = [
   ...expand('Sweater',            sweaterImages,  1200,  'Handmade crochet sweater crafted with premium yarn. Warm, stylish, and totally unique.','#E8FFE8', '#6BCB77'),
 ]
 
+// 'All' first, then every section in alphabetical order
 export const categories = [
   'All',
-  'Bags',
-  'Bangles',
-  'Chains',
-  'Clips',
-  'Crochet Beanie',
-  'Dolls',
-  'Earrings',
-  'Flower Pots',
-  'Flowers & Bouquets',
-  'Gajra',
-  'Keychains',
-  'Fridge Magnets',
-  'Sweater',
-  'Airpod Cases',
-  'Appliques',
-  'Glass Holders',
-  'Car Hangings',
-  'Coasters',
-  'Curtain Hangings',
-  'God Dolls',
-  'Pouches',
-  'Rubber Bands',
-  'Heart Plushies',
-  'Bag Charms',
-  'Baby Essentials',
+  ...[
+    'Airpod Cases', 'Appliques', 'Baby Essentials', 'Bag Charms', 'Bags', 'Bangles', 'Car Hangings', 'Chains',
+    'Clips', 'Coasters', 'Crochet Beanie', 'Curtain Hangings', 'Dolls', 'Earrings', 'Flower Pots',
+    'Flowers & Bouquets', 'Fridge Magnets', 'Gajra', 'Glass Holders', 'God Dolls', 'Heart Plushies',
+    'Keychains', 'Pouches', 'Rubber Bands', 'Sweater',
+  ].sort((a, b) => a.localeCompare(b)),
 ]
