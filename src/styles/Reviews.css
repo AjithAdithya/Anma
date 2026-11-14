@@ -52,6 +52,7 @@
   line-height: 1.7;
   color: var(--gray);
   flex: 1;
+  white-space: pre-line;
 }
 
 .reviews__footer {

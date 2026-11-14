@@ -5,8 +5,17 @@ import bagImg       from '../assets/Bags/20231113_230941.jpg'
 import flowerPotImg from '../assets/Flower Pots/20260307_155413.jpg'
 
 import heartImg     from '../assets/Heart Plushies/heart-pink-bubble.png'
+import rosebudImg   from '../assets/Flowers & Bouquets/bouquet-213.png'
 
 export const reviews = [
+  {
+    id: 7,
+    name: 'Happy Customer',
+    product: 'Red Rosebud Bouquet',
+    rating: 5,
+    text: "Jitna expect Kiya tha usse bhi zada achha h\n\nNeat work ❤️",
+    image: rosebudImg,
+  },
   {
     id: 6,
     name: 'Happy Customer',
