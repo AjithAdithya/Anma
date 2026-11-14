@@ -18,7 +18,7 @@ export const reviews = [
   },
   {
     id: 6,
-    name: 'Happy Customer',
+    name: 'Darshini',
     product: 'Pink Heart Plushie',
     rating: 5,
     text: "The heart crochet is super cute, Madhu! 😍😍😍 Very plushy and soft ❤️ Love it! ❤️❤️❤️❤️ Can see the hard work and perfection in every detail!!",
