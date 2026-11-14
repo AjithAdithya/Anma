@@ -45,11 +45,11 @@
 }
 
 .header__tagline {
-  font-size: 0.72rem;
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: 0.3px;
-  color: var(--coral);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #80CBE8; /* same light blue as the logo */
   white-space: nowrap;
   line-height: 1;
 }
