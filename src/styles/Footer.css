@@ -136,6 +136,7 @@
 }
 
 .footer__social-link--insta:hover { border-color: var(--lavender); color: var(--lavender); }
+.footer__social-link--wa:hover { border-color: #25D366; color: #25D366; }
 .footer__social-link--email:hover { border-color: var(--coral); color: var(--coral); }
 
 /* Column headers */
