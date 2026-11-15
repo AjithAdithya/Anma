@@ -10,7 +10,7 @@ import rosebudImg   from '../assets/Flowers & Bouquets/bouquet-213.png'
 export const reviews = [
   {
     id: 7,
-    name: 'Happy Customer',
+    name: 'S_K_Mohshina',
     product: 'Red Rosebud Bouquet',
     rating: 5,
     text: "Jitna expect Kiya tha usse bhi zada achha h\n\nNeat work ❤️",
