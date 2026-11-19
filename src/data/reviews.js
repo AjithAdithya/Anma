@@ -62,7 +62,27 @@ import whaleKeychainImg from '../assets/Keychains/keychain-whale-blue.png'
 
 import doraemonYellowImg from '../assets/Dolls/doll-190.png'
 
+import blackWhiteRoseImg from '../assets/Flowers & Bouquets/bouquet-208.png'
+
+import pilotDollImg from '../assets/Dolls/doll-173.png'
+
 export const reviews = [
+  {
+    id: 47,
+    name: 'Zerah Felix',
+    product: 'Pilot Doll, Captain America Doll & Lilac & White Lily Bouquet',
+    rating: 5,
+    text: "The crochet set was beyond my expectations! The tiny pilot doll and aeroplane were so cute and special, and the flowers added such a lovely touch. It made the gift very unique for my pilot friend. Thank you for putting so much love into your work! ❤️✨",
+    image: pilotDollImg,
+  },
+  {
+    id: 46,
+    name: 'kavya.23',
+    product: 'Black & White Rose Bouquet & Hanuman Doll',
+    rating: 5,
+    text: "Thank you so much for listening to my concerns regarding the customisation and for giving me so much of your time. I truly appreciate it. I just had a small request, and you went out of your way to make it special. It means a lot to me! 🥹💗\n\nI have had experiences with other pages that don't listen, so this means even more to me. I deeply appreciate your efforts. May God bless you with more and more success in everything you do! ✨❤️",
+    image: blackWhiteRoseImg,
+  },
   {
     id: 45,
     name: 'Dhruvil D Dhanani',
