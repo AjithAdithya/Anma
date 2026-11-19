@@ -108,7 +108,7 @@ const dollNames = {
   'doll-155': 'Captain America', 'doll-156': 'Jerry', 'doll-157': 'Love Teddy Bear',
   'doll-158': 'Jerry Keychain', 'doll-160': 'Itachi', 'doll-161': 'Blue Penguin',
   'doll-162': 'Flying Ace Snoopy', 'doll-163': 'Chhota Bheem', 'doll-164': 'Horse in Basket',
-  'doll-166': 'SKZ Bunny Doll', 'doll-167': 'Luffy Doll', 'doll-169': 'Heart Teddy',
+  'doll-166': 'LEEBit Doll', 'doll-167': 'Luffy Doll', 'doll-169': 'Heart Teddy',
   'doll-171': 'Deadpool', 'doll-172': 'Zoro Doll', 'doll-173': 'Pilot Doll',
   'doll-174': 'Sadness Doll', 'doll-175': 'Human Keepsake', 'doll-176': 'Itachi (Back View)',
   'doll-177': 'Gojo Satoru Doll', 'doll-178': 'Tall Tom Doll', 'doll-179': 'Joy Doll',

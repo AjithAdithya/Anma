@@ -12,8 +12,17 @@ import pinkRoseImg  from '../assets/Flowers & Bouquets/bouquet-245.png'
 import purpleTulipImg from '../assets/Flowers & Bouquets/bouquet-200.png'
 import daisyTrioImg from '../assets/Flowers & Bouquets/bouquet-227.png'
 import purpleSunflowerImg from '../assets/Flowers & Bouquets/bouquet-246.png'
+import skzBunnyImg from '../assets/Dolls/doll-166.png'
 
 export const reviews = [
+  {
+    id: 15,
+    name: 'nandiiini_02',
+    product: 'LEEBit Doll',
+    rating: 5,
+    text: "OMGGGGGGG 😭😭😭😭😭😭😭😭\n\nIt's so adorable!\n\nWowwwww!\n\n😭😭😭 No, it's more than what I expected.\n\nOmg I love you so much 😭🥺🙈❤️",
+    image: skzBunnyImg,
+  },
   {
     id: 14,
     name: 'Darshan Tilesara',
