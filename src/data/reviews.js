@@ -10,8 +10,17 @@ import roseTulipImg from '../assets/Flowers & Bouquets/bouquet-244.png'
 import tulipSunflowerImg from '../assets/Reviews/pink-tulip-sunflower.png'
 import pinkRoseImg  from '../assets/Flowers & Bouquets/bouquet-245.png'
 import purpleTulipImg from '../assets/Flowers & Bouquets/bouquet-200.png'
+import daisyTrioImg from '../assets/Flowers & Bouquets/bouquet-227.png'
 
 export const reviews = [
+  {
+    id: 13,
+    name: 'Bhargavi',
+    product: 'Colourful Daisy Trio Bouquet',
+    rating: 5,
+    text: "Very pretty thanks❤️",
+    image: daisyTrioImg,
+  },
   {
     id: 12,
     name: 'Vansh Bhojwani',
