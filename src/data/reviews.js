@@ -12,6 +12,14 @@ import pinkRoseImg  from '../assets/Flowers & Bouquets/bouquet-245.png'
 
 export const reviews = [
   {
+    id: 11,
+    name: '_03abhi_',
+    product: 'Parrot Doll',
+    rating: 5,
+    text: "Thank you for this, I got it right on time !!!\n\nI'm soo happy with the finished product ❤️",
+    image: dollImg,
+  },
+  {
     id: 10,
     name: 'Preeti',
     product: 'Pink Rose Bouquet',
