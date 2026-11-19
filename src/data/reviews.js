@@ -12,7 +12,7 @@ import tulipSunflowerImg from '../assets/Reviews/pink-tulip-sunflower.png'
 export const reviews = [
   {
     id: 9,
-    name: 'Happy Customer',
+    name: 'Ishan Pareekh',
     product: 'Pink Tulip & Sunflower Bouquet',
     rating: 5,
     text: "They're very beautiful 💗\n\nI appreciate the craft.\n\nI think it's one of the hardest things to learn out there right now, honestly. 💗\n\nGotta give appreciation when it's due! 💗",
