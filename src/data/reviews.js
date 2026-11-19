@@ -28,7 +28,27 @@ import zoroImg from '../assets/Dolls/doll-172.png'
 
 import pinkRoseSunflowerImg from '../assets/Flowers & Bouquets/bouquet-243.png'
 
+import piggySunflowerImg from '../assets/Flowers & Bouquets/bouquet-223.png'
+
+import sadnessImg from '../assets/Dolls/doll-174.png'
+
 export const reviews = [
+  {
+    id: 27,
+    name: 'Dikshita Jain',
+    product: 'Sadness Doll',
+    rating: 5,
+    text: "So cuteee!\n\nWow!\n\nReally very nice ❤️",
+    image: sadnessImg,
+  },
+  {
+    id: 26,
+    name: '<3chaya',
+    product: 'Piggy Sunflower Bouquet',
+    rating: 5,
+    text: "So cute! ❤️\n\nI really loved it.\n\nThank u fr ur efforts ❤️",
+    image: piggySunflowerImg,
+  },
   {
     id: 25,
     name: 'Varsha',
