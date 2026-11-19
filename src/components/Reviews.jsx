@@ -14,7 +14,7 @@ export default function Reviews() {
 
       <div className="reviews__grid">
         {reviews.map((r) => (
-          <article key={r.id} className="reviews__card">
+          <article key={r.id} className={`reviews__card${r.layout === 'grid' ? ' reviews__card--grid' : ''}`}>
             {(r.images || (r.image ? [r.image] : [])).length > 0 && (
               <div className="reviews__imgs">
                 {(r.images || [r.image]).map((src, i) => (

@@ -65,11 +65,23 @@ import doraemonYellowImg from '../assets/Dolls/doll-190.png'
 import blackWhiteRoseImg from '../assets/Flowers & Bouquets/bouquet-208.png'
 
 import pilotDollImg from '../assets/Dolls/doll-173.png'
+import lilacLilyImg from '../assets/Flowers & Bouquets/bouquet-206.png'
 
 import harryPotterImg from '../assets/Dolls/doll-145.png'
 import beePenguinImg from '../assets/Flowers & Bouquets/bouquet-190.png'
 
+import turtleRedImg from '../assets/Keychains/keychain-turtle-red.png'
 import sunflowerKeychainImg from '../assets/Keychains/keychain-sunflower-gold.png'
+import beeKeychainImg from '../assets/Reviews/bee-keychain.png'
+import krishnaImg from '../assets/God Dolls/god-krishna.png'
+import heartsKeychainImg from '../assets/Keychains/keychain-hearts.png'
+import bunnyFaceImg from '../assets/Keychains/keychain-bunny-plain.png'
+import smileySunImg from '../assets/Keychains/keychain-sun.png'
+import octopusPurpleImg from '../assets/Keychains/keychain-octopus-purple.png'
+import octopusPinkImg from '../assets/Keychains/keychain-octopus-pink.png'
+import whalePinkImg from '../assets/Keychains/keychain-whale-pink.png'
+import rainbowImg from '../assets/Keychains/keychain-rainbow.png'
+import whaleBlueImg from '../assets/Keychains/keychain-whale-blue.png'
 
 export const reviews = [
   {
@@ -79,6 +91,8 @@ export const reviews = [
     rating: 5,
     text: "Really liked your work… very neat work! ❤️\n\nI liked the bee the most — wanted to keep one for myself, but all those got sold! 🐝💕",
     image: sunflowerKeychainImg,
+    images: [turtleRedImg, sunflowerKeychainImg, beeKeychainImg, krishnaImg, heartsKeychainImg, bunnyFaceImg, smileySunImg, octopusPurpleImg, octopusPinkImg, whalePinkImg, rainbowImg, whaleBlueImg],
+    layout: 'grid',
     fit: 'contain',
   },
   {
@@ -97,6 +111,7 @@ export const reviews = [
     rating: 5,
     text: "The crochet set was beyond my expectations! The tiny pilot doll and aeroplane were so cute and special, and the flowers added such a lovely touch. It made the gift very unique for my pilot friend. Thank you for putting so much love into your work! ❤️✨",
     image: pilotDollImg,
+    images: [pilotDollImg, lilacLilyImg],
   },
   {
     id: 46,
