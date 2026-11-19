@@ -14,7 +14,7 @@ import purpleTulipImg from '../assets/Flowers & Bouquets/bouquet-200.png'
 export const reviews = [
   {
     id: 12,
-    name: 'Happy Customer',
+    name: 'Vansh Bhojwani',
     product: 'Purple Tulip & Daisy Bouquet',
     rating: 5,
     text: "Received before time. Actually in just 24 hours!\n\nGreat work! They really look better in person than photos! ✨\n\nLoved the product, finishing and size too! 🙌🏻❤️",
