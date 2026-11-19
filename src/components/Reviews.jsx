@@ -15,7 +15,7 @@ export default function Reviews() {
       <div className="reviews__grid">
         {reviews.map((r) => (
           <article key={r.id} className="reviews__card">
-            {r.image && <img className="reviews__img" src={r.image} alt={r.product} loading="lazy" />}
+            {r.image && <img className="reviews__img" src={r.image} alt={r.product} loading="lazy" style={r.fit ? { objectFit: r.fit, background: '#fff8f0' } : undefined} />}
             <div className="reviews__body">
               <div className="reviews__stars" aria-label={`${r.rating} out of 5 stars`}>
                 {'★'.repeat(r.rating)}

@@ -32,7 +32,59 @@ import piggySunflowerImg from '../assets/Flowers & Bouquets/bouquet-223.png'
 
 import sadnessImg from '../assets/Dolls/doll-174.png'
 
+import sunflowerPotImg from '../assets/Flower Pots/pot-100.png'
+
+import smileyPotImg from '../assets/Flower Pots/pot-73.png'
+
+import mixedFlowerPotImg from '../assets/Flower Pots/pot-104.png'
+
+import greenMurugarImg from '../assets/God Dolls/god-green-murugar.png'
+
+import cherryKeychainImg from '../assets/Keychains/keychain-cherry.png'
+
 export const reviews = [
+  {
+    id: 32,
+    name: 'Sowmya 🎈',
+    product: 'Cherry Keychain',
+    rating: 5,
+    text: "Awww cutest! ❤️\n\nThe size is perfect ma'am.\n\nThank you so much! 💕",
+    image: cherryKeychainImg,
+    fit: 'contain',
+  },
+  {
+    id: 31,
+    name: 'Varun Prasath',
+    product: 'Green Murugar Doll',
+    rating: 5,
+    text: "Super mam romba nice-nga. Murugar romba alagha irukaru...... ❤️\n\n👏👏👏👏\n\nNice work 👍👍👍 Keep doing!",
+    image: greenMurugarImg,
+    fit: 'contain',
+  },
+  {
+    id: 30,
+    name: 'Smriti',
+    product: 'Mixed Flower Bouquet Pot',
+    rating: 5,
+    text: "Thank you @anma_crochet for this wonderful crochet flower pot ❤️🌸\n\nYou are so talented 🌟\nKeep growing 🧿",
+    image: mixedFlowerPotImg,
+  },
+  {
+    id: 29,
+    name: 'pot pranitaaa',
+    product: 'Cactus Pot & Smiley Sunflower & Daisy Pot',
+    rating: 5,
+    text: "@_anma_crochet You have magical hands",
+    image: smileyPotImg,
+  },
+  {
+    id: 28,
+    name: 'Rohith',
+    product: 'Cactus, Daisy & Sunflower Pot Set',
+    rating: 5,
+    text: "Hey woww.... It is soooo perfect and beautiful. 😍😍\n\nAnd yes, it's more than I expected. Thank you so much! Those are really cuteee..... I'm so glad that I found your page 🫶",
+    image: sunflowerPotImg,
+  },
   {
     id: 27,
     name: 'Dikshita Jain',
