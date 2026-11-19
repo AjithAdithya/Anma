@@ -14,7 +14,17 @@ import daisyTrioImg from '../assets/Flowers & Bouquets/bouquet-227.png'
 import purpleSunflowerImg from '../assets/Flowers & Bouquets/bouquet-246.png'
 import skzBunnyImg from '../assets/Dolls/doll-166.png'
 
+import sunflowerPurpleImg from '../assets/Flowers & Bouquets/bouquet-215.png'
+
 export const reviews = [
+  {
+    id: 16,
+    name: 'Happy Customer',
+    product: 'Sunflower Purple Wrap Bouquet',
+    rating: 5,
+    text: "Wow I liked it!\n\nThe sunflower looks pretty ❤️",
+    image: sunflowerPurpleImg,
+  },
   {
     id: 15,
     name: 'nandiiini_02',
