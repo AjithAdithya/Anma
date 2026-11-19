@@ -89,13 +89,56 @@ import minionKeychainImg from '../assets/Keychains/keychain-minions.webp'
 
 import teletubbiesImg from '../assets/Dolls/doll-154.png'
 
+import marshallImg from '../assets/Dolls/doll-131.png'
+
+import bunnyGirlImg from '../assets/Dolls/doll-135.png'
+
+import chhotaBheemImg from '../assets/Dolls/doll-163.png'
+
+import tomJerryImg from '../assets/Dolls/doll-186.png'
+
 export const reviews = [
+  {
+    id: 56,
+    name: 'MONA',
+    product: 'Minion Pair Set, Teletubbies Set, Chhota Bheem, Marshall Fire Pup Set & Tom & Jerry Set',
+    rating: 5,
+    text: "U really did a great job, justification to each and every piece, any amount of appreciation will be less for u, And with so much availability to answer all my queries and suggestions, Most welcome, definitely gonna recommend you to others for ur hardwork and dedication, and no need to say sorry, the end products are worth waiting.",
+    image: minionSetImg,
+    images: [minionSetImg, teletubbiesImg, chhotaBheemImg, marshallImg, tomJerryImg],
+    layout: 'grid',
+    fit: 'contain',
+  },
+  {
+    id: 55,
+    name: 'MONA',
+    product: 'Chhota Bheem',
+    rating: 5,
+    text: "U HAVE REALLY DONE A GREAT JOB\nI SHOULD BE PROUD OF MYSELF ALSO FOR UPDATING UR WORK PORTFOLIO 😅\nJOKES APART, ITS REALLY REALLY LOOKING VERY CUTE, THE KIDS WILL GONNA LOVE ALL OF THESE",
+    image: chhotaBheemImg,
+  },
+  {
+    id: 54,
+    name: 'MONA',
+    product: 'Bunny Girl Doll',
+    rating: 5,
+    text: "Very cute and pretty",
+    image: bunnyGirlImg,
+  },
+  {
+    id: 53,
+    name: 'MONA',
+    product: 'Marshall Fire Pup Set',
+    rating: 5,
+    text: "THEY CAME OUT BEAUTIFULLY ADORABLY CUTE 🤩🤩🤩 ITS BEYOND PERFECT",
+    image: marshallImg,
+  },
   {
     id: 52,
     name: 'MONA',
     product: 'Teletubbies Set',
     rating: 5,
-    text: "Super duper cute, its really very pretty\n\nI really wanted something different for my family, and you became the source of that happiness. ❤️\n\nBefore finding you, I interacted with so many creators, but they were charging much higher prices for these creations. I had even finalised an order with another artist, but she eventually ghosted me because she couldn't deliver on time.\n\nWith you, you're constantly in touch and keep me updated throughout the process. That gives me immense trust and satisfaction, knowing that both my money and the creation I envisioned are in safe hands. ❤️🥰",
+    text: "Super duper cute, its really very pretty\n\nThe innocence they are carrying is wonderful\n\nI really wanted something different for my family, and you became the source of that happiness. ❤️\n\nBefore finding you, I interacted with so many creators, but they were charging much higher prices for these creations. I had even finalised an order with another artist, but she eventually ghosted me because she couldn't deliver on time.\n\nWith you, you're constantly in touch and keep me updated throughout the process. That gives me immense trust and satisfaction, knowing that both my money and the creation I envisioned are in safe hands. ❤️🥰",
     image: teletubbiesImg,
   },
   {

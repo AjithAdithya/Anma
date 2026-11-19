@@ -16,7 +16,10 @@ export default function Reviews() {
         {reviews.map((r) => (
           <article key={r.id} className={`reviews__card${r.layout === 'grid' ? ' reviews__card--grid' : ''}`}>
             {(r.images || (r.image ? [r.image] : [])).length > 0 && (
-              <div className="reviews__imgs">
+              <div
+                className="reviews__imgs"
+                style={r.layout === 'grid' && (r.images || []).length === 5 ? { gridTemplateColumns: 'repeat(5, 1fr)' } : undefined}
+              >
                 {(r.images || [r.image]).map((src, i) => (
                   <img key={i} className="reviews__img" src={src} alt={r.product} loading="lazy" style={r.fit ? { objectFit: r.fit, background: '#fff8f0' } : undefined} />
                 ))}
