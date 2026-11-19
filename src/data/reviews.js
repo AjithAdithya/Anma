@@ -19,7 +19,7 @@ import sunflowerPurpleImg from '../assets/Flowers & Bouquets/bouquet-215.png'
 export const reviews = [
   {
     id: 16,
-    name: 'Happy Customer',
+    name: 'Drishti',
     product: 'Sunflower Purple Wrap Bouquet',
     rating: 5,
     text: "Wow I liked it!\n\nThe sunflower looks pretty ❤️",
