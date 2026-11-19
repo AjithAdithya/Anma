@@ -18,7 +18,25 @@ import sunflowerPurpleImg from '../assets/Flowers & Bouquets/bouquet-215.png'
 
 import cactusPotImg from '../assets/Flower Pots/pot-107.png'
 
+import batmanImg from '../assets/Dolls/doll-133.png'
+
 export const reviews = [
+  {
+    id: 19,
+    name: 'Adma Vidya',
+    product: 'Batman Doll',
+    rating: 5,
+    text: "Sema\n\nEpdi panra ivlo porumaya",
+    image: batmanImg,
+  },
+  {
+    id: 18,
+    name: 'Vaishnodevi',
+    product: 'Batman Doll',
+    rating: 5,
+    text: "Omg thank you so much, looks very cute",
+    image: batmanImg,
+  },
   {
     id: 17,
     name: 'Smriti',
