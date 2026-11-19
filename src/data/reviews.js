@@ -8,8 +8,17 @@ import heartImg     from '../assets/Heart Plushies/heart-pink-bubble.png'
 import rosebudImg   from '../assets/Flowers & Bouquets/bouquet-213.png'
 import roseTulipImg from '../assets/Flowers & Bouquets/bouquet-244.png'
 import tulipSunflowerImg from '../assets/Reviews/pink-tulip-sunflower.png'
+import pinkRoseImg  from '../assets/Flowers & Bouquets/bouquet-245.png'
 
 export const reviews = [
+  {
+    id: 10,
+    name: 'Preeti',
+    product: 'Pink Rose Bouquet',
+    rating: 5,
+    text: "The flowers looked lovely! The person I gifted the flowers loved them. Thanks for your efforts. You're doing great ❤️",
+    image: pinkRoseImg,
+  },
   {
     id: 9,
     name: 'Ishan Pareekh',
