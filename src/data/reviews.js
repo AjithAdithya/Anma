@@ -42,7 +42,136 @@ import greenMurugarImg from '../assets/God Dolls/god-green-murugar.png'
 
 import cherryKeychainImg from '../assets/Keychains/keychain-cherry.png'
 
+import evilEyeKeychainImg from '../assets/Keychains/keychain-evil-eye.png'
+
+import pinkLotusImg from '../assets/Flowers & Bouquets/bouquet-194.png'
+
+import earthKeychainImg from '../assets/Keychains/keychain-earth-smiley.png'
+
+import spidermanCarImg from '../assets/Car Hangings/car-spiderman.png'
+
+import blueLilyImg from '../assets/Flowers & Bouquets/bouquet-228.png'
+
+import breadPouchImg from '../assets/Pouches/pouch-toast.png'
+
+import squirrelImg from '../assets/Dolls/doll-187.png'
+
+import starMoonImg from '../assets/Keychains/keychain-star-moon.png'
+
+import whaleKeychainImg from '../assets/Keychains/keychain-whale-blue.png'
+
 export const reviews = [
+  {
+    id: 45,
+    name: 'Dhruvil D Dhanani',
+    product: 'Doraemon & Rose',
+    rating: 5,
+    text: "Hello ma’am! Received it today. Thank you so much! It is amazing, and she loves it! 👌👌👌",
+  },
+  {
+    id: 44,
+    name: 'Ashhsj04',
+    product: 'Star & Moon Keychains',
+    rating: 5,
+    text: "Its really cute and pretty",
+    image: starMoonImg,
+    fit: 'contain',
+  },
+  {
+    id: 43,
+    name: 'Samik._.19',
+    product: 'Whale Keychain & Miffy Keychain',
+    rating: 5,
+    text: "It's really cute and pretty. Tq so much!",
+    image: whaleKeychainImg,
+    fit: 'contain',
+  },
+  {
+    id: 42,
+    name: 'tina.25_12',
+    product: 'Star & Moon Keychains',
+    rating: 5,
+    text: "Yeaa it's beautiful",
+    image: starMoonImg,
+    fit: 'contain',
+  },
+  {
+    id: 41,
+    name: 'B🍟',
+    product: 'Squirrel with Acorn',
+    rating: 5,
+    text: "hahahaha cuteeeee",
+    image: squirrelImg,
+  },
+  {
+    id: 40,
+    name: 'Abhinav Singh',
+    product: 'Bread Pouch',
+    rating: 5,
+    text: "hahahaha thats so cute",
+    image: breadPouchImg,
+    fit: 'contain',
+  },
+  {
+    id: 39,
+    name: 'Kushi Bhat',
+    product: 'Blue Lily Bouquet',
+    rating: 5,
+    text: "Very, very beautiful! Loved the quality of work. Will order again for sure. 🫶",
+    image: blueLilyImg,
+  },
+  {
+    id: 38,
+    name: 'Sanjana',
+    product: 'Spiderman Car Hanging',
+    rating: 5,
+    text: "Hi! I received the courier. It's so cute! ❤️\n\nI'm sharing your reel with my mom too. She loved it and wants to get one as well! 🥰\n\nThank you so much for your hard work. Everyone is appreciating it so much! 💗",
+    image: spidermanCarImg,
+    fit: 'contain',
+  },
+  {
+    id: 37,
+    name: 'Yashaswi',
+    product: 'Earth Keychains',
+    rating: 5,
+    text: "Heyy, this is great so accurate!\n\nThe details are very precise 😀❤️",
+    image: earthKeychainImg,
+    fit: 'contain',
+  },
+  {
+    id: 36,
+    name: 'animeuniverse_1010',
+    product: 'Pink Lotus Bouquet',
+    rating: 5,
+    text: "Thank you so much! ❤️\n\nIt's really pretty 💗💗\n\nI'm really happy.\n\nTysm for timely delivery and taking an urgent order 💘",
+    image: pinkLotusImg,
+  },
+  {
+    id: 35,
+    name: 'animeuniverse_1010',
+    product: 'Pink Lotus Bouquet',
+    rating: 5,
+    text: "It's awesome",
+    image: pinkLotusImg,
+  },
+  {
+    id: 34,
+    name: 'Khushi Bhat',
+    product: 'Evil Eye Keychain',
+    rating: 5,
+    text: "Really loved it ma'am! Quality of the yarn used is amazing and the finishing of both the products is brilliant! Will definitely order some more custom pieces 😁🫶",
+    image: evilEyeKeychainImg,
+    fit: 'contain',
+  },
+  {
+    id: 33,
+    name: 'Khushi Bhat',
+    product: 'Evil Eye Keychain & Cherry Keychain',
+    rating: 5,
+    text: "Damn soo pretty",
+    image: evilEyeKeychainImg,
+    fit: 'contain',
+  },
   {
     id: 32,
     name: 'Sowmya 🎈',
