@@ -114,7 +114,7 @@ const dollNames = {
   'doll-177': 'Gojo Satoru Doll', 'doll-178': 'Tall Tom Doll', 'doll-179': 'Joy Doll',
   'doll-180': 'Harry Potter (Back View)', 'doll-181': 'Noddy', 'doll-182': 'Purple Penguin',
   'doll-183': 'Puppy Plush', 'doll-184': 'Choro Doll', 'doll-185': 'Blue Pikachu (Back View)',
-  'doll-186': 'Tom & Jerry Set', 'doll-187': 'Squirrel with Acorn', 'doll-188': 'Mini Minion',
+  'doll-186': 'Tom & Jerry Set', 'doll-187': 'Squirrel with Acorn', 'doll-188': 'Mini Minion', 'doll-189': 'Doraemon Straw Hat Doll', 'doll-190': 'Doraemon Yellow Hat Doll',
 }
 const dollAll = Object.entries(
   import.meta.glob('../assets/Dolls/*.{jpg,png}', { eager: true, import: 'default' })
@@ -177,7 +177,7 @@ const dollSubByKey = {
   'doll-155': 'Marvel', 'doll-147': 'Marvel', 'doll-171': 'Marvel',
   'doll-133': 'DC', 'doll-142': 'DC',
   'doll-132': 'Tom & Jerry', 'doll-178': 'Tom & Jerry', 'doll-156': 'Tom & Jerry', 'doll-158': 'Tom & Jerry', 'doll-186': 'Tom & Jerry',
-  'doll-153': 'Anime', 'doll-167': 'Anime', 'doll-172': 'Anime', 'doll-177': 'Anime', 'doll-160': 'Anime', 'doll-176': 'Anime', 'doll-146': 'Anime', 'doll-184': 'Anime',
+  'doll-153': 'Anime', 'doll-167': 'Anime', 'doll-172': 'Anime', 'doll-177': 'Anime', 'doll-160': 'Anime', 'doll-176': 'Anime', 'doll-146': 'Anime', 'doll-184': 'Anime', 'doll-189': 'Anime', 'doll-190': 'Anime',
   'doll-174': 'Inside Out', 'doll-179': 'Inside Out',
   'doll-188': 'Minions',
 }

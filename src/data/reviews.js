@@ -60,13 +60,16 @@ import starMoonImg from '../assets/Keychains/keychain-star-moon.png'
 
 import whaleKeychainImg from '../assets/Keychains/keychain-whale-blue.png'
 
+import doraemonYellowImg from '../assets/Dolls/doll-190.png'
+
 export const reviews = [
   {
     id: 45,
     name: 'Dhruvil D Dhanani',
-    product: 'Doraemon & Rose',
+    product: 'Doraemon Yellow Hat Doll',
     rating: 5,
     text: "Hello ma’am! Received it today. Thank you so much! It is amazing, and she loves it! 👌👌👌",
+    image: doraemonYellowImg,
   },
   {
     id: 44,
