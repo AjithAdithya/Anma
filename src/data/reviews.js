@@ -66,7 +66,19 @@ import blackWhiteRoseImg from '../assets/Flowers & Bouquets/bouquet-208.png'
 
 import pilotDollImg from '../assets/Dolls/doll-173.png'
 
+import harryPotterImg from '../assets/Dolls/doll-145.png'
+import beePenguinImg from '../assets/Flowers & Bouquets/bouquet-190.png'
+
 export const reviews = [
+  {
+    id: 48,
+    name: '_ayush___04__',
+    product: 'Harry Potter Doll & Bee & Penguin Flower Bouquet',
+    rating: 5,
+    text: "She not only liked it but absolutely loved everything! She was speechless with happiness. I'm beyond thankful for all your hard work and the effort you put into creating these beautiful crochet pieces.\n\nThank you so much! She especially appreciated the handwritten notes and the aesthetic drawings you created. She loved every single piece of the gift.\n\nEverything was worth it just to see the expression on her face. Thank you for making that moment so special with your efforts! ❤️🥹\n\nHi, please check! I have paid you for every nitty-gritty detail you considered in my order without much resistance, and that was such a kind gesture, especially considering my tight budget. We are so happy with everything and would love to place another order whenever an occasion comes up in the future. ❤️",
+    image: harryPotterImg,
+    images: [harryPotterImg, beePenguinImg],
+  },
   {
     id: 47,
     name: 'Zerah Felix',
@@ -166,32 +178,15 @@ export const reviews = [
     name: 'animeuniverse_1010',
     product: 'Pink Lotus Bouquet',
     rating: 5,
-    text: "Thank you so much! ❤️\n\nIt's really pretty 💗💗\n\nI'm really happy.\n\nTysm for timely delivery and taking an urgent order 💘",
+    text: "It's awesome\n\nThank you so much! ❤️\n\nIt's really pretty 💗💗\n\nI'm really happy.\n\nTysm for timely delivery and taking an urgent order 💘",
     image: pinkLotusImg,
-  },
-  {
-    id: 35,
-    name: 'animeuniverse_1010',
-    product: 'Pink Lotus Bouquet',
-    rating: 5,
-    text: "It's awesome",
-    image: pinkLotusImg,
-  },
-  {
-    id: 34,
-    name: 'Khushi Bhat',
-    product: 'Evil Eye Keychain',
-    rating: 5,
-    text: "Really loved it ma'am! Quality of the yarn used is amazing and the finishing of both the products is brilliant! Will definitely order some more custom pieces 😁🫶",
-    image: evilEyeKeychainImg,
-    fit: 'contain',
   },
   {
     id: 33,
     name: 'Khushi Bhat',
     product: 'Evil Eye Keychain & Cherry Keychain',
     rating: 5,
-    text: "Damn soo pretty",
+    text: "Damn soo pretty\n\nReally loved it ma'am! Quality of the yarn used is amazing and the finishing of both the products is brilliant! Will definitely order some more custom pieces 😁🫶",
     image: evilEyeKeychainImg,
     fit: 'contain',
   },
