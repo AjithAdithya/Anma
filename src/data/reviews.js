@@ -7,8 +7,17 @@ import flowerPotImg from '../assets/Flower Pots/20260307_155413.jpg'
 import heartImg     from '../assets/Heart Plushies/heart-pink-bubble.png'
 import rosebudImg   from '../assets/Flowers & Bouquets/bouquet-213.png'
 import roseTulipImg from '../assets/Flowers & Bouquets/bouquet-244.png'
+import tulipSunflowerImg from '../assets/Reviews/pink-tulip-sunflower.png'
 
 export const reviews = [
+  {
+    id: 9,
+    name: 'Happy Customer',
+    product: 'Pink Tulip & Sunflower Bouquet',
+    rating: 5,
+    text: "They're very beautiful 💗\n\nI appreciate the craft.\n\nI think it's one of the hardest things to learn out there right now, honestly. 💗\n\nGotta give appreciation when it's due! 💗",
+    image: tulipSunflowerImg,
+  },
   {
     id: 8,
     name: 'Sri ஹரி ❤️',
