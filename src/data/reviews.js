@@ -20,7 +20,63 @@ import cactusPotImg from '../assets/Flower Pots/pot-107.png'
 
 import batmanImg from '../assets/Dolls/doll-133.png'
 
+import redRoseDuoImg from '../assets/Flowers & Bouquets/bouquet-196.png'
+
+import marioImg from '../assets/Dolls/doll-140.png'
+
+import zoroImg from '../assets/Dolls/doll-172.png'
+
+import pinkRoseSunflowerImg from '../assets/Flowers & Bouquets/bouquet-243.png'
+
 export const reviews = [
+  {
+    id: 25,
+    name: 'Varsha',
+    product: 'Pink Rose & Sunflower Bouquet',
+    rating: 5,
+    text: "So pretty! It looks omg 😍🤩❤️",
+    image: pinkRoseSunflowerImg,
+  },
+  {
+    id: 24,
+    name: 'Nikitha',
+    product: 'Batman Doll',
+    rating: 5,
+    text: "Awesome, Looks so great",
+    image: batmanImg,
+  },
+  {
+    id: 23,
+    name: 'Ashritha',
+    product: 'Batman Doll',
+    rating: 5,
+    text: "Awwwww very very adorable 🥰\n\nThankyouuuuuuuuuuu ❤️",
+    image: batmanImg,
+  },
+  {
+    id: 22,
+    name: 'Priya Manivannan',
+    product: 'Zoro Doll',
+    rating: 5,
+    text: "You are awesome and your works are lit! 🔥🔥🔥❤️\n\nTrust me, you will go great heights. It's mere perfection! ❤️\n\nGreat work 👏🏻👏🏻👏🏻\n\nThank you!",
+    image: zoroImg,
+  },
+  {
+    id: 21,
+    name: 'Sesha Aadhi',
+    product: 'Mario & Kung Fu Panda Dolls',
+    rating: 5,
+    text: "Received the parcel.\n\nI was stunned!!! 😍😍\n\nVera level work!! Worth the wait ✨🔥🔥\n\nEspecially mario 😍😍❤️❤️\n\nSemma work ba!!! My best wishes ...\n\nSemma craft ... ❤️❤️ Thank you card and packaging also very professional 😊😊✨\n\n✌️✌️🎉🤩🤩👏👏👏\n\nThank you so much 😀😀😀",
+    image: marioImg,
+  },
+  {
+    id: 20,
+    name: 'Varsha Ramkumar',
+    product: 'Red Rose Duo Bouquet',
+    rating: 5,
+    text: "It's soooo beautiful! ❤️\n\nAbsolutely loved it! ❤️\n\nThank you so much 💗💗",
+    image: redRoseDuoImg,
+  },
   {
     id: 19,
     name: 'Adma Vidya',
