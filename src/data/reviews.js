@@ -9,8 +9,17 @@ import rosebudImg   from '../assets/Flowers & Bouquets/bouquet-213.png'
 import roseTulipImg from '../assets/Flowers & Bouquets/bouquet-244.png'
 import tulipSunflowerImg from '../assets/Reviews/pink-tulip-sunflower.png'
 import pinkRoseImg  from '../assets/Flowers & Bouquets/bouquet-245.png'
+import purpleTulipImg from '../assets/Flowers & Bouquets/bouquet-200.png'
 
 export const reviews = [
+  {
+    id: 12,
+    name: 'Happy Customer',
+    product: 'Purple Tulip & Daisy Bouquet',
+    rating: 5,
+    text: "Received before time. Actually in just 24 hours!\n\nGreat work! They really look better in person than photos! ✨\n\nLoved the product, finishing and size too! 🙌🏻❤️",
+    image: purpleTulipImg,
+  },
   {
     id: 11,
     name: '_03abhi_',
@@ -58,14 +67,6 @@ export const reviews = [
     rating: 5,
     text: "The heart crochet is super cute, Madhu! 😍😍😍 Very plushy and soft ❤️ Love it! ❤️❤️❤️❤️ Can see the hard work and perfection in every detail!!",
     image: heartImg,
-  },
-  {
-    id: 1,
-    name: 'Priya S.',
-    product: 'Crochet Doll',
-    rating: 5,
-    text: "Ordered a custom doll for my daughter's birthday and it was absolutely perfect! The detail and quality is stunning. Will definitely be ordering more!",
-    image: dollImg,
   },
   {
     id: 2,
