@@ -16,7 +16,17 @@ import skzBunnyImg from '../assets/Dolls/doll-166.png'
 
 import sunflowerPurpleImg from '../assets/Flowers & Bouquets/bouquet-215.png'
 
+import cactusPotImg from '../assets/Flower Pots/pot-107.png'
+
 export const reviews = [
+  {
+    id: 17,
+    name: 'Smriti',
+    product: 'Cactus Pot',
+    rating: 5,
+    text: "Oh my goodness\n\n😍😍😍😍😍😍\n\nThis would be the cutest thing I saw today!\n\nIt's perfect 🥺🥺\n\nThank you so much ❤️🥺",
+    image: cactusPotImg,
+  },
   {
     id: 16,
     name: 'Drishti',
