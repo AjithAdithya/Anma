@@ -94,6 +94,18 @@
   font-weight: 600;
 }
 
+.reviews__count {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 700;
+  color: var(--gray);
+}
+
+.reviews__count strong {
+  color: var(--dark);
+  font-size: 1.2rem;
+}
+
 /* Set layout: a tidy grid of photos (e.g. a whole order of keychains) */
 .reviews__card--grid {
   grid-column: span 2;

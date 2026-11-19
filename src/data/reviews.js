@@ -83,7 +83,38 @@ import whalePinkImg from '../assets/Keychains/keychain-whale-pink.png'
 import rainbowImg from '../assets/Keychains/keychain-rainbow.png'
 import whaleBlueImg from '../assets/Keychains/keychain-whale-blue.png'
 
+import minionSetImg from '../assets/Dolls/doll-165.png'
+
+import minionKeychainImg from '../assets/Keychains/keychain-minions.webp'
+
+import teletubbiesImg from '../assets/Dolls/doll-154.png'
+
 export const reviews = [
+  {
+    id: 52,
+    name: 'MONA',
+    product: 'Teletubbies Set',
+    rating: 5,
+    text: "Super duper cute, its really very pretty\n\nI really wanted something different for my family, and you became the source of that happiness. ❤️\n\nBefore finding you, I interacted with so many creators, but they were charging much higher prices for these creations. I had even finalised an order with another artist, but she eventually ghosted me because she couldn't deliver on time.\n\nWith you, you're constantly in touch and keep me updated throughout the process. That gives me immense trust and satisfaction, knowing that both my money and the creation I envisioned are in safe hands. ❤️🥰",
+    image: teletubbiesImg,
+  },
+  {
+    id: 51,
+    name: 'Mona',
+    product: 'Minion Trio Keychains',
+    rating: 5,
+    text: "So cute 🥰🥰🥰",
+    image: minionKeychainImg,
+    fit: 'contain',
+  },
+  {
+    id: 50,
+    name: 'MONA',
+    product: 'Minion Pair Set',
+    rating: 5,
+    text: "Your finishing is really good! The products came out beautifully, and I genuinely appreciate your transparency throughout the process. ❤️\n\nYou yourself addressed the height issue instead of leaving it for the customer to point out. Not everyone is this honest and transparent; some people might mislead customers about such things. I truly appreciate your honesty and the quality of your work. Keep growing! ✨",
+    image: minionSetImg,
+  },
   {
     id: 49,
     name: 'Aparna',

@@ -38,6 +38,10 @@ export default function Reviews() {
           </article>
         ))}
       </div>
+
+      <p className="reviews__count">
+        <strong>{reviews.length}</strong> happy customer reviews 💕
+      </p>
     </section>
   )
 }
