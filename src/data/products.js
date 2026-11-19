@@ -291,7 +291,7 @@ const bouquetNames = {
   237: 'Blue & White Hearts Bouquet', 238: 'Sunflower Duo Bouquet', 239: 'Sunflower in Glass Vase',
   240: 'White Plumeria Bouquet', 241: 'Grand Mixed Flower Bouquet', 242: 'Sunflower Rose Daisy Bouquet',
   243: 'Pink Rose & Sunflower Bouquet', 244: 'Red Rose & White Tulip Bouquet',
-  245: 'Pink Rose Bouquet',
+  245: 'Pink Rose Bouquet', 246: 'Purple Tulip & Sunflower Bouquet',
 }
 const bouquetFiles = Object.entries(
   import.meta.glob('../assets/Flowers & Bouquets/bouquet-*.png', { eager: true, import: 'default' })
