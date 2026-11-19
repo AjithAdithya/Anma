@@ -6,8 +6,17 @@ import flowerPotImg from '../assets/Flower Pots/20260307_155413.jpg'
 
 import heartImg     from '../assets/Heart Plushies/heart-pink-bubble.png'
 import rosebudImg   from '../assets/Flowers & Bouquets/bouquet-213.png'
+import roseTulipImg from '../assets/Flowers & Bouquets/bouquet-244.png'
 
 export const reviews = [
+  {
+    id: 8,
+    name: 'Sri ஹரி ❤️',
+    product: 'Red Rose & White Tulip Bouquet',
+    rating: 5,
+    text: "Nd the flowers are awesome 😭🖤\n\nSeriously the best 👌🏻\nWorth more than the price 🥺",
+    image: roseTulipImg,
+  },
   {
     id: 7,
     name: 'S_K_Mohshina',
