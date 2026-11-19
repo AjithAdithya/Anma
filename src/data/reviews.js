@@ -69,7 +69,18 @@ import pilotDollImg from '../assets/Dolls/doll-173.png'
 import harryPotterImg from '../assets/Dolls/doll-145.png'
 import beePenguinImg from '../assets/Flowers & Bouquets/bouquet-190.png'
 
+import sunflowerKeychainImg from '../assets/Keychains/keychain-sunflower-gold.png'
+
 export const reviews = [
+  {
+    id: 49,
+    name: 'Aparna',
+    product: 'Red Tortoise, Sunflower, Honeybee, Heart, Bunny Face, Smiley Sun, Whale & Octopus Keychains, Rainbow Keychain & Krishna Doll',
+    rating: 5,
+    text: "Really liked your work… very neat work! ❤️\n\nI liked the bee the most — wanted to keep one for myself, but all those got sold! 🐝💕",
+    image: sunflowerKeychainImg,
+    fit: 'contain',
+  },
   {
     id: 48,
     name: '_ayush___04__',
