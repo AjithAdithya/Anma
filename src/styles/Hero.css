@@ -270,7 +270,8 @@
 .hero__review-thumb {
   width: 150px;
   height: 150px;
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff8f0;
   border-radius: var(--radius-md);
   flex-shrink: 0;
   align-self: center;

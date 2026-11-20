@@ -21,7 +21,7 @@ export default function Reviews() {
                 style={r.layout === 'grid' && (r.images || []).length === 5 ? { gridTemplateColumns: 'repeat(5, 1fr)' } : undefined}
               >
                 {(r.images || [r.image]).map((src, i) => (
-                  <img key={i} className="reviews__img" src={src} alt={r.product} loading="lazy" style={r.fit ? { objectFit: r.fit, background: '#fff8f0' } : undefined} />
+                  <img key={i} className="reviews__img" src={src} alt={r.product} loading="lazy" />
                 ))}
               </div>
             )}
