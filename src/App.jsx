@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import Marquee from './components/Marquee'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import WhatsAppFloat from './components/WhatsAppFloat'
 import Home from './pages/Home'
 import WorkshopPage from './pages/WorkshopPage'
 
@@ -19,6 +20,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <WhatsAppFloat />
       <Analytics />
     </BrowserRouter>
   )

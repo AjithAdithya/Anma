@@ -459,3 +459,61 @@
   min-width: 64px;
   text-align: center;
 }
+
+/* ===== PHONES: keep the text and the review carousel side by side ===== */
+@media (max-width: 700px) {
+  .hero {
+    padding: 2.5rem 0.75rem 2.5rem;
+    min-height: auto;
+  }
+
+  .hero__content {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 0.6rem;
+    text-align: left;
+    align-items: start;
+  }
+
+  .hero__text { gap: 0.7rem; }
+  .hero__badge { margin: 0; font-size: 0.62rem; padding: 0.25rem 0.6rem; }
+  .hero__title { font-size: 1.55rem; line-height: 1.2; }
+  .hero__subtitle { margin: 0; font-size: 0.74rem; line-height: 1.5; }
+
+  .hero__cta-group { flex-direction: column; gap: 0.45rem; justify-content: flex-start; }
+  .hero__btn-primary,
+  .hero__btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.55rem 0.5rem;
+    font-size: 0.78rem;
+  }
+
+  .hero__stats { gap: 0.6rem 1rem; justify-content: flex-start; }
+  .hero__stat-num { font-size: 1.2rem; }
+  .hero__stat-label { font-size: 0.58rem; }
+
+  /* compact review carousel */
+  .hero__carousel { gap: 0.6rem; }
+  .hero__review-card { padding: 0.7rem; gap: 0.6rem; }
+  .hero__review-card-inner { flex-direction: column; gap: 0.5rem; }
+  .hero__review-thumb { width: 100%; height: 110px; }
+  .hero__review-card-text { gap: 0.35rem; }
+  .hero__review-stars { font-size: 0.7rem; }
+  .hero__review-text {
+    font-size: 0.68rem;
+    line-height: 1.45;
+    -webkit-line-clamp: 6;
+  }
+  .hero__review-footer { gap: 0.4rem; padding-top: 0.5rem; }
+  .hero__review-avatar { width: 24px; height: 24px; font-size: 0.7rem; flex-shrink: 0; }
+  .hero__review-name { font-size: 0.7rem; }
+  .hero__review-product {
+    font-size: 0.58rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .hero__carousel-arrow { width: 28px; height: 28px; }
+  .hero__carousel-count { font-size: 0.7rem; min-width: 48px; }
+}
