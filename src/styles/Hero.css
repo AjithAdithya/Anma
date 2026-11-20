@@ -298,6 +298,11 @@
   line-height: 1.7;
   font-style: italic;
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-line;
 }
 
 .hero__review-footer {
@@ -401,7 +406,7 @@
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .hero__content {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     text-align: center;
   }
 
@@ -427,6 +432,11 @@
 }
 
 @media (max-width: 480px) {
+  .hero__review-card { padding: 1.25rem; }
+  .hero__review-card-inner { flex-direction: column; }
+  .hero__review-thumb { width: 100%; height: 190px; }
+  .hero__review-text { font-size: 0.92rem; }
+
   .hero {
     padding: 5rem 1rem 3rem;
   }
